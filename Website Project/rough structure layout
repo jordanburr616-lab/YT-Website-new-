@@ -1,0 +1,29 @@
+portfolio/
+│
+├── index.html         ← homepage
+├── style.css          ← styling
+├── script.js          ← optional JS for interaction
+└── images/            ← headshot, project thumbnails, etc
+
+What the Site Should Include (Initial Version)
+
+Header: Your name and a navigation bar (Home, Projects, Contact)
+About Me: A short intro: who you are, what you love to build
+Projects: 2–3 project descriptions with titles, images, and GitHub links
+Contact: A way to reach you (email or social links)
+Footer:	Copyright and maybe a quote or logo
+
+Notes:
+
+- CSS stands for Cascading Style Sheets.
+- It’s the language used to style and visually design your web pages.
+If HTML is the structure (like walls, windows, doors),
+then CSS is the paint, layout, fonts, and decorations.
+
+THE FINAL PUSH: (what needs to be fixed before version 1.0 releases)
+
+- The tab image is a little too low (DONE)
+- 2 javascript projects only run during the home tab (DONE)
+- javascript page transition definitely needs tweeks (DONE)
+- Update transition images to have quotes (DONE)
+- Bottom scroller? (DONE)
