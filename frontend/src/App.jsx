@@ -113,7 +113,6 @@ function App() {
               height: "70px",
               borderRadius: "50%",
               background: "#646464ff",
-              border: "none",
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
