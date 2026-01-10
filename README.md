@@ -8,7 +8,7 @@
 This project is actively iterated and reflects how I approach planning, execution, and continuous improvement in real-world projects.
 
 ---
-##Project Goals
+## Project Goals
 
 - Design and manage systems that prioritize consistency, clarity, and execution
 
@@ -20,9 +20,9 @@ This project is actively iterated and reflects how I approach planning, executio
 
 ---
 
-##Key Components
+## Key Components
 
-###1. Content Platform (YouTube)
+### 1. Content Platform (YouTube)
 
 A structured content initiative focused on testing and refining ideas through repeatable production workflows.
 
@@ -34,7 +34,7 @@ What this demonstrates:
 
 - Use of performance metrics (retention, CTR, engagement) to guide iteration
 
-###2. Web Product
+### 2. Web Product
 
 A centralized web platform built to connect multiple initiatives into a single, navigable experience.
 
@@ -56,7 +56,7 @@ What this demonstrates:
 
 - Version control and rapid iteration practices
 
-###3. Productivity System Templates
+### 3. Productivity System Templates
 
 Reusable systems designed to enforce structure, reduce decision fatigue, and support consistent execution.
 
@@ -70,7 +70,7 @@ What this demonstrates:
 
 ---
 
-##How to Navigate This Repository
+## How to Navigate This Repository
 
 - Front-end code contains the web platform implementation
 
@@ -82,7 +82,7 @@ This repository is intended to be viewed at a high level to understand project s
 
 ---
 
-##What This Project Demonstrates
+## What This Project Demonstrates
 
 - Project and product ownership from planning through iteration
 
@@ -94,7 +94,7 @@ This repository is intended to be viewed at a high level to understand project s
 
 ---
 
-##Roadmap (High-Level)
+## Roadmap (High-Level)
 
 - Continue iterating on platform structure and content integration
 
@@ -106,13 +106,13 @@ This repository is intended to be viewed at a high level to understand project s
 
 ---
 
-##Notes
+## Notes
 
 This project is intentionally iterative. Rather than treating delivery as a one-time event, it reflects an approach focused on shipping value, gathering feedback, and improving continuously.
 
 ---
 
-##Contact
+## Contact
 
 Jordan Burr
 GitHub: https://github.com/jordanburr616-lab
