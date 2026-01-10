@@ -1,7 +1,7 @@
 # Improving JB — Personal Productivity Platform
 
 ---
-##Overview
+## Overview
 
 **Improving JB** a personal productivity platform designed to explore how structured systems, iteration, and analytics-driven decision making can be applied across technical and content-driven projects. The platform serves as an umbrella initiative that integrates content production, web development, and reusable productivity systems into a single, evolving ecosystem.
 
