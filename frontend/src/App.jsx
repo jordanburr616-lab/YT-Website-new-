@@ -18,8 +18,8 @@ function App() {
       return <div><Systems /></div>;
     case "about":
       return <div><About /></div>;
-    // case "chat":
-    //   return <div><Chat /></div>;
+    case "community":
+      return <div><Community /></div>;
     // case "momentum":
     //   return <div><Momentum /></div>;
     default:
@@ -85,8 +85,8 @@ function App() {
           <Tab label="Home" value="home" activeTab={activeTab} setActiveTab={setActiveTab} />
           <Tab label="Systems" value="systems" activeTab={activeTab} setActiveTab={setActiveTab} />
           <Tab label="About Me" value="about" activeTab={activeTab} setActiveTab={setActiveTab} />
-          {/* <Tab label="Chat" value="chat" activeTab={activeTab} setActiveTab={setActiveTab} />
-          <Tab label="Momentum" value="momentum" activeTab={activeTab} setActiveTab={setActiveTab} /> */}
+          <Tab label="Community" value="community" activeTab={activeTab} setActiveTab={setActiveTab} />
+          {/* <Tab label="Momentum" value="momentum" activeTab={activeTab} setActiveTab={setActiveTab} />  */}
         </div>
       </nav>
 

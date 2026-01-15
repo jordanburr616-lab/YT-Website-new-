@@ -10,20 +10,24 @@ function Home() {
   const youtubeVideos = [
 
   {
+    id: "nSEYiBpRexE",
+    title: "Why making friends feels impossible (what actually works)"
+  },
+  {
     id: "7HQlAXvbhG8",
-    title: "building discipline is easier than it seems"
+    title: "Why discipline isn't sticking (even when giving your all)"
   },
   {
     id: "-nJkg6gsJRM",
-    title: "confidence is easier than it seems",
+    title: "Confidence seems unattainable (until you understand this)",
   },
   {
     id: "HYTLAPSd3Wk",
-    title: "getting off your phone is easier than it seems",
+    title: "Why you can't stop scrolling (it's simpler than you think)",
   },
   {
     id: "vEsGoaE5Ffo",
-    title: "losing weight is easier than it seems",
+    title: "Why you can't lose weight (even tho you're trying)",
   },
   {
     id: "MDb4z82SGNQ",
