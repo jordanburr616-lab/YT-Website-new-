@@ -1,16 +1,23 @@
 import { useState } from "react";
+import { useEffect } from "react";
+
 
 import Home from "./components/Home";
 import Systems from "./components/Systems";
 import About from "./components/About";
 import Chat from "./components/Chat";
-import Momentum from "./components/Momentum";
+import Reset from "./components/systems/ThirtyDayReset";
+
 
 function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMinimized, setChatMinimized] = useState(false);
 
+
+  useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [activeTab]);
 
   const renderTab = () => {
   switch (activeTab) {
@@ -20,10 +27,12 @@ function App() {
       return <div><About /></div>;
     case "community":
       return <div><Community /></div>;
-    // case "momentum":
-    //   return <div><Momentum /></div>;
+    case "reset":
+      return <Reset onBack={() => setActiveTab("programs")} />;
+
     default:
-      return <Home />;
+  return <Home setActiveTab={setActiveTab} />;
+
   }
 };
 
@@ -276,29 +285,48 @@ function Tab({ label, value, activeTab, setActiveTab }) {
   return (
     <button
       onClick={() => setActiveTab(value)}
+      onMouseEnter={(e) => {
+        if (!isActive) {
+          e.currentTarget.style.transform = "translateY(-2px)";
+          e.currentTarget.style.opacity = "0.95";
+        }
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = isActive
+          ? "scale(1.12)"
+          : "translateY(0)";
+        e.currentTarget.style.opacity = isActive ? "1" : "0.75";
+      }}
       style={{
         background: "none",
         border: "none",
         cursor: "pointer",
 
-        fontSize: "1.2rem",          
+        fontSize: "1.2rem",
         fontWeight: isActive ? "700" : "500",
         letterSpacing: "0.4px",
 
-        opacity: isActive ? 1 : 0.75,
         color: "#111",
 
-        padding: "8px 4px",          
+        opacity: isActive ? 1 : 0.75,
+
+        padding: "8px 6px",
+
         borderBottom: isActive
           ? "3px solid black"
           : "3px solid transparent",
 
-        transition: "opacity 0.2s ease",
+        transform: isActive ? "scale(1.12)" : "translateY(0)",
+
+        transition:
+          "transform 0.18s ease, opacity 0.15s ease, border-bottom 0.15s ease",
       }}
     >
       {label}
     </button>
   );
 }
+
+
 
 export default App;

@@ -1,4 +1,4 @@
-function Home() {
+function Home({ setActiveTab }) {
 
   const containerStyle = {
   maxWidth: "1100px",
@@ -141,6 +141,7 @@ const heroStyles = {
               <div style={heroStyles.ctaWrap}>
                 <button
                   style={heroStyles.button}
+                  onClick={() => setActiveTab("systems")}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "translateX(4px)";
                   }}
@@ -184,7 +185,7 @@ const heroStyles = {
         </div>
       </div>
 
-      {/* PROGRAM SECTION */}
+{/* PROGRAM SECTION */}
 <div
   style={{
     backgroundColor: "#35a4cf",
@@ -250,6 +251,13 @@ const heroStyles = {
         </p>
 
         <button
+          onClick={() => setActiveTab("reset")}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateX(4px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateX(0)";
+          }}
           style={{
             background: "#2da6da",
             color: "white",
@@ -260,30 +268,72 @@ const heroStyles = {
             letterSpacing: "1px",
             borderRadius: "8px",
             cursor: "pointer",
+            transition: "transform 0.2s ease",
           }}
         >
           EXPLORE →
         </button>
       </div>
 
-      {/* RIGHT – VISUAL PLACEHOLDER */}
+      {/* RIGHT – VISUAL (FILLS, ROUNDED, TRANSITIONS) */}
       <div
+        onClick={() => setActiveTab("reset")}
         style={{
           background: "#f1f3f5",
           borderRadius: "14px",
           height: "420px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#777",
-          fontSize: "0.9rem",
+          cursor: "pointer",
+          overflow: "hidden",            
+          position: "relative",
+          transition: "transform 0.25s ease, box-shadow 0.25s ease"          
         }}
+        onMouseEnter={(e) => {
+          e.currentTarget.querySelector(".img-2").style.opacity = "1";
+          e.currentTarget.style.transform = "translateY(-6px)";
+          e.currentTarget.style.boxShadow =
+            "0 18px 40px rgba(0, 0, 0, 0.15)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.querySelector(".img-2").style.opacity = "0";
+          e.currentTarget.style.transform = "translateY(0)";
+          e.currentTarget.style.boxShadow = "none";
+        }}
+
       >
-        PROGRAM PREVIEW
+        {/* IMAGE 1 – BEFORE */}
+        <img
+          src="/images/bands-refresh-1.png"
+          alt="Before 30 Day Reset"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",          
+          }}
+        />
+
+        {/* IMAGE 2 – AFTER */}
+        <img
+          src="/images/bands-refresh-2.png"
+          alt="After 30 Day Reset"
+          className="img-2"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: 0,
+            transition: "opacity 0.3s ease", 
+          }}
+        />
       </div>
+
     </div>
   </section>
 </div>
+
 
 
 
@@ -339,55 +389,143 @@ const heroStyles = {
               marginBottom: "80px",
             }}
           >
-            {/* PROGRAM 1 */}
-            <div style={{ textAlign: "center" }}>
-              <div
+            {/* SYSTEM – 30 DAY RESET */}
+          <div style={{ textAlign: "center" }}>
+            {/* IMAGE CONTAINER */}
+            <div
+              onMouseEnter={(e) => {
+                e.currentTarget.querySelector(".img-2").style.opacity = "1";
+                e.currentTarget.style.transform = "translateY(-6px)";
+                e.currentTarget.style.boxShadow =
+                  "0 18px 40px rgba(0, 0, 0, 0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.querySelector(".img-2").style.opacity = "0";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+              style={{
+                background: "#e5e7eb",
+                height: "320px",
+                borderRadius: "16px",
+                marginBottom: "16px",
+                overflow: "hidden",
+                position: "relative",
+                cursor: "pointer",
+                transition: "transform 0.25s ease, box-shadow 0.25s ease",
+              }}
+            >
+              {/* IMAGE 1 */}
+              <img
+                src="/images/bands-refresh-1.png"
+                alt="30 Day Reset"
                 style={{
-                  background: "#e5e7eb",
-                  height: "320px",
-                  borderRadius: "16px",
-                  marginBottom: "16px",
-                  boxShadow: `
-                    0 0 18px rgba(45, 166, 218, 0.35),
-                    0 0 36px rgba(45, 166, 218, 0.2)
-                  `,
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
                 }}
-              >
-                {/* image goes here */}
-              </div>
+              />
 
-              <h3 style={{ fontWeight: "700" }}>
-                30 Day Reset
-              </h3>
+              {/* IMAGE 2 */}
+              <img
+                src="/images/bands-refresh-2.png"
+                alt="30 Day Reset preview"
+                className="img-2"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: 0,
+                  transition: "opacity 0.3s ease",
+                }}
+              />
             </div>
 
-            {/* PROGRAM 2 */}
+            {/* TEXT — STAYS PUT */}
+            <h3 style={{ fontWeight: "700" }}>
+              30 Day Reset
+            </h3>
+          </div>
+
+
+
+            {/* PROGRAM 2 – COMING SOON */}
             <div style={{ textAlign: "center" }}>
               <div
+                onMouseEnter={(e) => {
+                  e.currentTarget.querySelector(".img-2").style.opacity = "1";
+                  e.currentTarget.style.transform = "translateY(-6px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 18px 40px rgba(0, 0, 0, 0.12)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.querySelector(".img-2").style.opacity = "0";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
                 style={{
                   background: "#e5e7eb",
                   height: "320px",
                   borderRadius: "16px",
                   marginBottom: "16px",
-                  opacity: 0.9,
-                  boxShadow: `
-                    0 0 14px rgba(45, 166, 218, 0.25),
-                    0 0 28px rgba(45, 166, 218, 0.15)
-                  `,
+                  overflow: "hidden",
+                  position: "relative",
+                  opacity: 0.85,
+                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
                 }}
               >
-                {/* image goes here */}
+                {/* IMAGE 1 – GRAYSCALE DEFAULT */}
+                <img
+                  src="/images/coming-soon-1.png"
+                  alt="More systems coming"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    filter: "grayscale(100%) contrast(0.9)",
+                  }}
+                />
+
+                {/* IMAGE 2 – COLOR ON HOVER */}
+                <img
+                  src="/images/coming-soon-2.png"
+                  alt="More systems coming soon"
+                  className="img-2"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
+                  }}
+                />
               </div>
 
               <h3 style={{ fontWeight: "700" }}>
                 More Systems Coming
               </h3>
             </div>
+
           </div>
 
           {/* VIEW ALL BUTTON */}
           <div style={{ textAlign: "center" }}>
             <button
+              onClick={() => setActiveTab("programs")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-4px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
               style={{
                 background: "#2da6da",
                 color: "white",
@@ -398,10 +536,13 @@ const heroStyles = {
                 letterSpacing: "1px",
                 borderRadius: "8px",
                 cursor: "pointer",
+                transition: "transform 0.2s ease, opacity 0.2s ease",
+
               }}
             >
               VIEW ALL
             </button>
+
           </div>
         </section>
       </div>
@@ -567,7 +708,11 @@ const heroStyles = {
             >
               <button
                 style={{
-                  background: "#2da6da",
+                  position: "relative",
+                  background: "linear-gradient(to right, #ff0000 50%, #2da6da 50%)",
+                  backgroundSize: "200% 100%",
+                  backgroundPosition: "right bottom",
+
                   color: "white",
                   border: "none",
                   padding: "16px 48px",
@@ -576,10 +721,19 @@ const heroStyles = {
                   letterSpacing: "1px",
                   borderRadius: "8px",
                   cursor: "pointer",
+
+                  transition: "background-position 0.35s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundPosition = "left bottom";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundPosition = "right bottom";
                 }}
               >
                 SUBSCRIBE
               </button>
+
             </a>
           </div>
         </section>
@@ -699,7 +853,6 @@ function ScrollIndicator() {
     </div>
   );
 }
-
 
 export default Home;
 

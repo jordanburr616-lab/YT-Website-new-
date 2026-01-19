@@ -143,21 +143,116 @@ if (activeSystem === "30-day-reset") {
               { title: "Consistency System", live: false },
             ].map((system, i) => (
               <div key={i} style={{ textAlign: "center" }}>
-                <div
-                  onClick={() => {
-                    if (system.title === "30 Day Reset") {
-                      setActiveSystem("30-day-reset");
-                    }
-                  }}
-                  style={{
-                    background: "#ffffff",
-                    height: "320px",
-                    borderRadius: "16px",
-                    marginBottom: "16px",
-                    opacity: system.live ? 1 : 0.75,
-                    cursor: system.live ? "pointer" : "default",
-                  }}
-                />
+                {system.title === "30 Day Reset" ? (
+                  /* ================= LIVE SYSTEM ================= */
+                  <div
+                    onClick={() => setActiveSystem("30-day-reset")}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.querySelector(".img-2").style.opacity = "1";
+                      e.currentTarget.style.transform = "translateY(-6px)";
+                      e.currentTarget.style.boxShadow =
+                        "0 18px 40px rgba(0, 0, 0, 0.15)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.querySelector(".img-2").style.opacity = "0";
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                    style={{
+                      background: "#ffffff",
+                      height: "320px",
+                      borderRadius: "16px",
+                      marginBottom: "16px",
+                      cursor: "pointer",
+                      overflow: "hidden",
+                      position: "relative",
+                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                    }}
+                  >
+                    <img
+                      src="/images/bands-refresh-1.png"
+                      alt="30 Day Reset (before)"
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+
+                    <img
+                      src="/images/bands-refresh-2.png"
+                      alt="30 Day Reset (after)"
+                      className="img-2"
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        opacity: 0,
+                        transition: "opacity 0.3s ease",
+                      }}
+                    />
+                  </div>
+                ) : (
+                  /* ================= COMING SOON SYSTEM ================= */
+                  <div
+                    onMouseEnter={(e) => {
+                      e.currentTarget.querySelector(".img-2").style.opacity = "1";
+                      e.currentTarget.style.transform = "translateY(-6px)";
+                      e.currentTarget.style.boxShadow =
+                        "0 18px 40px rgba(0, 0, 0, 0.12)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.querySelector(".img-2").style.opacity = "0";
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                    style={{
+                      background: "#ffffff",
+                      height: "320px",
+                      borderRadius: "16px",
+                      marginBottom: "16px",
+                      overflow: "hidden",
+                      position: "relative",
+                      opacity: 0.75,
+                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                    }}
+                  >
+                    <img
+                      src="/images/coming-soon-1.png"
+                      alt="Coming soon"
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+
+                        /* 🔑 NEW */
+                        filter: "grayscale(100%) contrast(0.9)",
+                        opacity: 0.85,
+                      }}
+                    />
+
+                    <img
+                      src="/images/coming-soon-2.png"
+                      alt="Coming soon preview"
+                      className="img-2"
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        opacity: 0,
+                        transition: "opacity 0.3s ease",
+                      }}
+                    />
+                  </div>
+                )}
 
                 <h3 style={{ fontWeight: "700", color: "white" }}>
                   {system.title}
@@ -177,6 +272,7 @@ if (activeSystem === "30-day-reset") {
               </div>
             ))}
           </div>
+
         </section>
       </div>
 
