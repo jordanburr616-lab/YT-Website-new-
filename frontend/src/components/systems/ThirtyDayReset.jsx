@@ -118,6 +118,58 @@ function ThirtyDayReset({ onBack }) {
           rebuild structure, and regain momentum — without relying on motivation.
         </p>
 
+        {/* PAID VERSION CTA */}
+        <div
+          style={{
+            marginBottom: "32px",
+          }}
+        >
+          <a
+            href="https://www.notion.so/The-30-Day-Reset-2e15f1ba8b5080e4b8c9f28a00774468?source=copy_link"
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <button
+              style={{
+                background: "#111",
+                color: "white",
+                border: "none",
+                padding: "14px 26px",
+                borderRadius: "8px",
+                fontSize: "0.9rem",
+                fontWeight: "700",
+                letterSpacing: "0.6px",
+                cursor: "pointer",
+                transition: "transform 0.2s ease, opacity 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateX(4px)";
+                e.currentTarget.style.opacity = "0.9";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateX(0)";
+                e.currentTarget.style.opacity = "1";
+              }}
+            >
+              GET THE FULL SYSTEM →
+            </button>
+          </a>
+        </div>
+
+        <p
+          style={{
+            fontSize: "0.8rem",
+            opacity: 0.6,
+            marginTop: "8px",
+          }}
+        >
+          Free version available below.
+
+
+        </p>
+
+
         {/* VIDEO PLACEHOLDER */}
         <div
         style={{
@@ -180,19 +232,26 @@ function ThirtyDayReset({ onBack }) {
             No signup. No funnel. Just the structure.
           </p>
 
-          <button
-            style={{
-              background: "white",
-              color: "#111",
-              border: "none",
-              padding: "14px 28px",
-              borderRadius: "8px",
-              fontWeight: "700",
-              cursor: "pointer",
-            }}
+          <a
+            href="https://www.notion.so/The-30-Day-reset-Free-Version-2d35f1ba8b50805dadadd697450021cd?source=copy_link"
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: "none" }}
           >
-            ACCESS FREE VERSION →
-          </button>
+            <button
+              style={{
+                background: "white",
+                color: "#111",
+                border: "none",
+                padding: "14px 28px",
+                borderRadius: "8px",
+                fontWeight: "700",
+                cursor: "pointer",
+              }}
+            >
+              ACCESS FREE VERSION →
+            </button>
+          </a>
         </div>
       </section>
     </div>

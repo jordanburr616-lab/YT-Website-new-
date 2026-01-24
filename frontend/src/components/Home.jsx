@@ -1,4 +1,4 @@
-function Home({ setActiveTab }) {
+function Home({ setActiveTab, setActiveSystem }) {
 
   const containerStyle = {
   maxWidth: "1100px",
@@ -251,7 +251,11 @@ const heroStyles = {
         </p>
 
         <button
-          onClick={() => setActiveTab("reset")}
+          onClick={() => {
+            setActiveTab("systems");
+            setActiveSystem("reset");
+          }}
+
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateX(4px)";
           }}
@@ -277,7 +281,11 @@ const heroStyles = {
 
       {/* RIGHT – VISUAL (FILLS, ROUNDED, TRANSITIONS) */}
       <div
-        onClick={() => setActiveTab("reset")}
+        onClick={() => {
+          setActiveTab("systems");
+          setActiveSystem("reset");
+        }}
+
         style={{
           background: "#f1f3f5",
           borderRadius: "14px",
@@ -393,6 +401,12 @@ const heroStyles = {
           <div style={{ textAlign: "center" }}>
             {/* IMAGE CONTAINER */}
             <div
+
+              onClick={() => {
+                setActiveTab("systems");
+                setActiveSystem("reset");
+              }}
+
               onMouseEnter={(e) => {
                 e.currentTarget.querySelector(".img-2").style.opacity = "1";
                 e.currentTarget.style.transform = "translateY(-6px)";
@@ -519,7 +533,7 @@ const heroStyles = {
           {/* VIEW ALL BUTTON */}
           <div style={{ textAlign: "center" }}>
             <button
-              onClick={() => setActiveTab("programs")}
+              onClick={() => setActiveTab("systems")}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-4px)";
               }}

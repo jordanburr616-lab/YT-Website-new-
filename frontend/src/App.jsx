@@ -5,14 +5,18 @@ import { useEffect } from "react";
 import Home from "./components/Home";
 import Systems from "./components/Systems";
 import About from "./components/About";
+import Community from "./components/Community";
 import Chat from "./components/Chat";
 import Reset from "./components/systems/ThirtyDayReset";
 
 
 function App() {
+  const [activeSystem, setActiveSystem] = useState(null);
   const [activeTab, setActiveTab] = useState("home");
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMinimized, setChatMinimized] = useState(false);
+  const [chatHovered, setChatHovered] = useState(false);
+
 
 
   useEffect(() => {
@@ -20,21 +24,24 @@ function App() {
     }, [activeTab]);
 
   const renderTab = () => {
-  switch (activeTab) {
-    case "systems":
-      return <div><Systems /></div>;
-    case "about":
-      return <div><About /></div>;
-    case "community":
-      return <div><Community /></div>;
-    case "reset":
-      return <Reset onBack={() => setActiveTab("programs")} />;
+    if (activeTab === "systems") {
+      if (activeSystem === "reset") {
+        return <Reset onBack={() => setActiveSystem(null)} />;
+      }
 
-    default:
-  return <Home setActiveTab={setActiveTab} />;
+      return <Systems setActiveSystem={setActiveSystem} />;
+    }
 
-  }
-};
+    switch (activeTab) {
+      case "about":
+        return <About />;
+      case "community":
+        return <Community/>;
+      default:
+        return <Home setActiveTab={setActiveTab} setActiveSystem={setActiveSystem} />;
+    }
+  };
+
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f3f5f6ff" }}>
@@ -113,35 +120,84 @@ function App() {
             zIndex: 1000,
           }}
         >
-          {/* TOGGLE BUTTON */}
+          {/* CHAT LAUNCHER */}
           {!chatOpen && (
-          <button
-            onClick={() => setChatOpen(!chatOpen)}
-            style={{
-              width: "70px",
-              height: "70px",
-              borderRadius: "50%",
-              background: "#646464ff",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
-              border: "2px solid rgba(255,255,255,0.25)",
-            }}
-          >
-            <img
-              src="/images/chat.png"
-              alt="Chat"
-              style={{
-                width: "64px",
-                height: "64px",
-                objectFit: "contain",
-                pointerEvents: "none",
+            <div
+              onMouseEnter={() => setChatHovered(true)}
+              onMouseLeave={() => setChatHovered(false)}
+              onClick={() => {
+                setChatHovered(false);
+                setChatOpen(true);
               }}
-            />
-          </button>
+
+              style={{
+                position: "fixed",
+                bottom: "24px",
+                right: "24px",
+                width: "80px",
+                height: "80px",
+                cursor: "pointer",
+                zIndex: 1000,
+              }}
+            >
+              {/* CIRCLE */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "50%",
+                  background: "#646464ff",
+                  border: chatHovered
+                    ? "2px solid #a09e9e"
+                    : "2px solid #d1d5db",
+                  boxShadow: chatHovered
+                    ? "0 16px 36px rgba(0,0,0,0.35)"
+                    : "0 8px 24px rgba(0,0,0,0.25)",
+                  transform: chatHovered ? "scale(1.08)" : "scale(1)",
+                  transition: "all 0.25s cubic-bezier(.2,.8,.2,1)",
+                  
+                }}
+              />
+
+              {/* DEFAULT BANDS */}
+              <img
+                src="/images/chat.png"
+                alt="Bands"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  opacity: chatHovered ? 0 : 1,
+                  transform: "scale(1)",
+                  transition: "opacity 0.15s ease",
+                  pointerEvents: "none",
+                }}
+              />
+
+              {/* HOVER BANDS */}
+              <img
+                src="/images/chat-hover.png"
+                alt="Bands hover"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  opacity: chatHovered ? 1 : 0,
+                  transform: chatHovered
+                    ? "scale(1.25) translateY(-6px)"
+                    : "scale(1)",
+                  transition: "opacity 0.15s ease, transform 0.3s cubic-bezier(.2,1,.2,1)",
+                  pointerEvents: "none",
+                }}
+              />
+
+            </div>
           )}
+
 
           {/* CHAT PANEL */}
 
@@ -226,7 +282,9 @@ function App() {
                     onClick={() => {
                       setChatOpen(false);
                       setChatMinimized(false);
+                      setChatHovered(false);
                     }}
+
                     aria-label="Close chat"
                     style={{
                       background: "none",

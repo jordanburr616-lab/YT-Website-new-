@@ -9,53 +9,73 @@ function About() {
     <div style={{ background: "#afb1b3ff", minHeight: "100vh" }}>
       <section style={containerStyle}>
         {/* IMAGE */}
-        <div
+        <img
+          src="/images/about-me.png"
+          alt="About me"
           style={{
             width: "100%",
-            height: "420px",
+            height: "auto",          
             borderRadius: "20px",
-            background: "#e5e7eb",
             marginBottom: "64px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#777",
-            fontWeight: "600",
+            boxShadow: `
+                  0 0 18px rgba(45, 166, 218, 0.35),
+                  0 0 40px rgba(45, 166, 218, 0.25),
+                  0 0 80px rgba(45, 166, 218, 0.15)
+                `,
           }}
-        >
-          ICONIC IMAGE / VISUAL GOES HERE
-        </div>
+        />
+
 
         {/* TEXT */}
         <div style={{ maxWidth: "720px" }}>
+          {/* EYEBROW */}
+          <p
+            style={{
+              marginBottom: "20px",
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              fontWeight: "600",
+              color: "#374151",
+              textTransform: "uppercase",
+            }}
+          >
+            Building Systems Since 2018
+          </p>
+
+          {/* OPENING */}
           <p style={{ marginBottom: "28px", lineHeight: "1.8" }}>
-            <strong>I believe systems are what build successful people.</strong>
+            <strong>
+              “Building systems since 2018” doesn’t mean I had it figured out
+              early.
+            </strong>{" "}
+            It means I got tired of relying on motivation — and started designing
+            structure instead.
           </p>
 
           <p style={{ marginBottom: "28px", lineHeight: "1.8" }}>
-            For the longest time, I relied on motivation to improve myself.
-            Sometimes it worked. Most of the time though, it didn’t. The progress
-            was too inconsistent and it kept on leading me to dead ends that
-            forced me to start over.
+            For years, I tried to improve myself by pushing harder and waiting
+            for motivation to show up. Sometimes it worked. Most of the time, it
+            didn’t. Progress was inconsistent, fragile, and always reset when
+            life got messy.
           </p>
 
           <p style={{ marginBottom: "28px", lineHeight: "1.8" }}>
             Everything changed when I stopped chasing motivation and started
-            building structure. Having clear rules leading to fewer decisions.
-            Systems that worked even when I didn’t feel like showing up.
+            building structure. Clear rules. Fewer decisions. Systems that worked
+            even on days I didn’t feel like showing up.
           </p>
 
           <p style={{ marginBottom: "28px", lineHeight: "1.8" }}>
             Over time, those systems helped me rebuild my habits, discipline, and
-            direction. This site exists to share what I’ve learned. Not hype or
-            inspiration, but practical systems that actually work.
+            direction. This site exists to share what I’ve learned — not hype or
+            inspiration, but practical systems that actually hold up in real
+            life.
           </p>
 
           <p style={{ marginBottom: "28px", lineHeight: "1.8" }}>
-            I studied computer science which helped me further my understanding
-            with coding, but more importantly, I learned how systems work. How
-            structure, constraints, and feedback loops shape behavior. That way
-            of thinking now drives everything I build here.
+            Studying computer science helped me understand something deeper than
+            just code: how structure, constraints, and feedback loops shape
+            behavior. That way of thinking now drives everything I build here.
           </p>
 
           <p style={{ marginBottom: "28px", lineHeight: "1.8" }}>
@@ -65,9 +85,8 @@ function About() {
           </p>
 
           <p style={{ lineHeight: "1.8" }}>
-            Bands isn’t a mascot. It’s a reminder of the person you become when
-            you stop waiting to feel ready and start building towards your
-            dreams.
+            Bands isn’t a mascot. It’s a reminder of who you become when you stop
+            waiting to feel ready and start building anyway.
           </p>
         </div>
       </section>
