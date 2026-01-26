@@ -115,13 +115,18 @@ function ThirtyDayReset({ onBack }) {
         }}
         >
           A simple execution system designed to help you reset your habits,
-          rebuild structure, and regain momentum — without relying on motivation.
+           rebuild structure, and regain momentum — without relying on motivation.
+           Built with fail-safes that let you recover from incomplete days instead of spiraling.
         </p>
 
         {/* PAID VERSION CTA */}
         <div
           style={{
-            marginBottom: "32px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "6px",           // 🔥 controls closeness
+            marginBottom: "40px",
           }}
         >
           <a
@@ -155,19 +160,16 @@ function ThirtyDayReset({ onBack }) {
               GET THE FULL SYSTEM →
             </button>
           </a>
+
+          <span
+            style={{
+              fontSize: "0.75rem", // 🔽 slightly smaller
+              opacity: 0.6,
+            }}
+          >
+            Free version available below.
+          </span>
         </div>
-
-        <p
-          style={{
-            fontSize: "0.8rem",
-            opacity: 0.6,
-            marginTop: "8px",
-          }}
-        >
-          Free version available below.
-
-
-        </p>
 
 
         {/* VIDEO PLACEHOLDER */}
@@ -193,14 +195,27 @@ function ThirtyDayReset({ onBack }) {
 
         {/* WHAT THIS IS */}
         <h2 style={{ fontSize: "2rem", fontWeight: "800", marginBottom: "16px" }}>
-          What this system is
+          Why this works
         </h2>
 
-        <p style={{ maxWidth: "640px", lineHeight: "1.7", marginBottom: "40px" }}>
-          The 30 Day Reset is not a motivation challenge. It’s a lightweight
-          structure that helps you eliminate decision fatigue, focus on the
-          essentials, and rebuild consistency one day at a time.
-        </p>
+        <div style={{ maxWidth: "640px", marginBottom: "40px" }}>
+          <p style={{ lineHeight: "1.7", marginBottom: "16px" }}>
+            The 30 Day Reset works because you define the rules.
+          </p>
+
+          <p style={{ lineHeight: "1.7", marginBottom: "16px" }}>
+            Instead of forcing strict guidelines, the system adapts to your real life,
+            giving you the freedom to set your own non-negotiables, follow through even 
+            on rough days, and recover quickly when things don’t work out.
+          </p>
+
+          <p style={{ lineHeight: "1.7" }}>
+            This structure has been refined through my own personal use to prioritize
+            sustainability over intensity, making it possible to stay consistent
+            without burnout.
+          </p>
+        </div>
+
 
         {/* WHAT YOU GET */}
         <h2 style={{ fontSize: "2rem", fontWeight: "800", marginBottom: "16px" }}>
@@ -208,10 +223,11 @@ function ThirtyDayReset({ onBack }) {
         </h2>
 
         <ul style={{ lineHeight: "1.8", marginBottom: "48px" }}>
-          <li>Daily structure to remove guesswork</li>
+          <li>Daily tasks checklist</li>
           <li>Weekly reset checkpoints</li>
-          <li>A clear definition of “enough” each day</li>
-          <li>A simple way to rebuild momentum fast</li>
+          <li>"Once a week" freebies</li>
+          <li>Fall back system when previous day is incomplete</li>
+          <li>Structured day counter with complete/incomplete buttons</li>
         </ul>
 
         {/* FREE VERSION */}
@@ -228,8 +244,8 @@ function ThirtyDayReset({ onBack }) {
           </h3>
 
           <p style={{ maxWidth: "520px", marginBottom: "24px", opacity: 0.95 }}>
-            You can start using the core version of the 30 Day Reset for free.
-            No signup. No funnel. Just the structure.
+            You can start using the original version of the 30 Day Reset for free.
+            No signup just give it a go!
           </p>
 
           <a
@@ -247,10 +263,20 @@ function ThirtyDayReset({ onBack }) {
                 borderRadius: "8px",
                 fontWeight: "700",
                 cursor: "pointer",
+                transition: "transform 0.2s ease, opacity 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateX(4px)";
+                e.currentTarget.style.opacity = "0.9";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateX(0)";
+                e.currentTarget.style.opacity = "1";
               }}
             >
-              ACCESS FREE VERSION →
+              FREE VERSION →
             </button>
+
           </a>
         </div>
       </section>

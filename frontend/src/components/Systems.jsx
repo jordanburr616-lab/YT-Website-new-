@@ -113,7 +113,7 @@ if (activeSystem === "30-day-reset") {
               textWrap: 0,
             }}
           >
-            Structured frameworks designed to turn intention into consistent action.
+            Structured systems/programs designed to turn intention into consistent action.
           </p>
 
         </section>
@@ -139,8 +139,8 @@ if (activeSystem === "30-day-reset") {
           >
             {[
               { title: "30 Day Reset", live: true },
-              { title: "Focus System", live: false },
-              { title: "Consistency System", live: false },
+              { title: "Laser Focus", live: false },
+              { title: "Daily Execution", live: false },
             ].map((system, i) => (
               <div key={i} style={{ textAlign: "center" }}>
                 {system.title === "30 Day Reset" ? (

@@ -45,7 +45,8 @@ const heroStyles = {
   title: {
     fontSize: "4rem",
     fontWeight: "800",
-    marginBottom: "12px",
+    marginBottom: "0px",
+    lineHeight: "1.0",  
     color: "white",
     WebkitTextStroke: "2px black",
     letterSpacing: "0.8px",
@@ -54,14 +55,17 @@ const heroStyles = {
       0 0 12px rgba(110, 193, 228, 0.4),
       0 0 18px rgba(110, 193, 228, 0.25)
     `,
-    whiteSpace: "nowrap",
+  },
+  lineWrap: {
+    display: "inline-block",
+    marginBottom: "2px", 
   },
   underline: {
     height: "12px",
     width: "102%",
     background: "#2da6da",
     borderRadius: "6px",
-    marginTop: "-25px",
+    marginTop: "-6px",
     opacity: 0.85,
     transform: "rotate(-0.6deg)",
   },
@@ -103,7 +107,7 @@ const heroStyles = {
         style={{
           background: "#afb1b3ff",
           width: "100%",
-          padding: "180px 0",
+          padding: "130px 0",
           position: "relative",
           overflow: "hidden",
         }}
@@ -128,13 +132,20 @@ const heroStyles = {
             <div style={{ maxWidth: "520px" }}>
               {/* TITLE */}
               <div style={heroStyles.titleWrap}>
-                <h1 style={heroStyles.title}>KEEP BUILDING.</h1>
-                <div style={heroStyles.underline} />
+                <div style={heroStyles.lineWrap}>
+                  <h1 style={heroStyles.title}>IMPROVE</h1>
+                  <div style={heroStyles.underline} />
+                </div>
+
+                <div style={heroStyles.lineWrap}>
+                  <h1 style={heroStyles.title}>EVERYDAY</h1>
+                  <div style={heroStyles.underline} />
+                </div>
               </div>
 
               {/* SUBTITLE */}
               <p style={heroStyles.subtitle}>
-                Stack wins every day
+                Build Discipline. Stack Wins. Repeat.
               </p>
 
               {/* CTA */}
@@ -149,7 +160,7 @@ const heroStyles = {
                     e.currentTarget.style.transform = "translateX(0)";
                   }}
                 >
-                  Productivity Hacks →
+                  Start Improving →
                 </button>
               </div>
             </div>
@@ -222,7 +233,7 @@ const heroStyles = {
             marginBottom: "16px",
           }}
         >
-          NEW PRODUCTIVITY HACK
+          NEW PRODUCTIVITY SYSTEM
         </p>
 
         <h2
@@ -246,8 +257,8 @@ const heroStyles = {
             color: "#111",
           }}
         >
-          Improving JB&apos;s schedule planner that makes planning and
-          getting your goals done <strong>ACTUALLY achievable</strong>.
+          Improving JB&apos;s daily nonnegotiables tracker that turns discipline into consistency and
+          makes progress <strong>ACTUALLY achievable</strong>.
         </p>
 
         <button
