@@ -104,6 +104,22 @@ function App() {
       </span>
     </div>
 
+    {isMobile && (
+      <button
+        onClick={() => setMenuOpen(true)}
+        style={{
+          background: "none",
+          border: "none",
+          fontSize: "28px",
+          cursor: "pointer",
+          color: "#111",
+        }}
+      >
+        ☰
+      </button>
+    )}
+
+
         {/* TABS */}
         {isMobile && (
           <div
@@ -117,7 +133,7 @@ function App() {
               boxShadow: "-12px 0 32px rgba(0,0,0,0.25)",
               transform: menuOpen ? "translateX(0)" : "translateX(100%)",
               transition: "transform 0.3s cubic-bezier(.2,.8,.2,1)",
-              zIndex: 1000,
+              zIndex: 2000,
               paddingTop: "96px",
             }}
           >
@@ -128,66 +144,29 @@ function App() {
               { label: "Community", value: "community" },
             ].map((item) => (
               <button
-                onClick={() => setMenuOpen(true)}
+                key={item.value}
+                onClick={() => {
+                  setActiveTab(item.value);
+                  setMenuOpen(false);
+                }}
                 style={{
+                  width: "100%",
+                  padding: "14px 20px",
                   background: "none",
                   border: "none",
-                  fontSize: "26px",
-                  cursor: "pointer",
+                  textAlign: "left",
+                  fontSize: "1.05rem",
+                  fontWeight: "600",
                   color: "#111",
+                  cursor: "pointer",
                 }}
               >
-                ☰
+                {item.label}
               </button>
             ))}
           </div>
         )}
-
-
       </nav>
-
-      {isMobile && menuOpen && (
-      <div
-        style={{
-          position: "absolute",
-          top: "72px",
-          right: "16px",
-          background: "#ffffff",
-          borderRadius: "12px",
-          boxShadow: "0 12px 32px rgba(0,0,0,0.25)",
-          padding: "12px 0",
-          zIndex: 1000,
-          minWidth: "180px",
-        }}
-      >
-        {[
-          { label: "Home", value: "home" },
-          { label: "Systems", value: "systems" },
-          { label: "About Me", value: "about" },
-          { label: "Community", value: "community" },
-        ].map((item) => (
-          <button
-            key={item.value}
-            onClick={() => {
-              setActiveTab(item.value);
-              setMenuOpen(false);
-            }}
-            style={{
-              width: "100%",
-              padding: "12px 18px",
-              background: "none",
-              border: "none",
-              textAlign: "left",
-              fontSize: "1rem",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
-    )}
 
 
         
