@@ -20,7 +20,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 600);
+    const handleResize = () => setIsMobile(window.innerWidth < 900);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -128,24 +128,16 @@ function App() {
               { label: "Community", value: "community" },
             ].map((item) => (
               <button
-                key={item.value}
-                onClick={() => {
-                  setActiveTab(item.value);
-                  setMenuOpen(false);
-                }}
+                onClick={() => setMenuOpen(true)}
                 style={{
-                  width: "100%",
-                  padding: "14px 20px",
                   background: "none",
                   border: "none",
-                  textAlign: "left",
-                  fontSize: "1.05rem",
-                  fontWeight: "600",
-                  color: "#111", // 🔥 black text
+                  fontSize: "26px",
                   cursor: "pointer",
+                  color: "#111",
                 }}
               >
-                {item.label}
+                ☰
               </button>
             ))}
           </div>
