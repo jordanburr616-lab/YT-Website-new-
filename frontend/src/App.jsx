@@ -104,6 +104,15 @@ function App() {
       </span>
     </div>
 
+    {!isMobile && (
+      <div style={{ display: "flex", gap: "16px" }}>
+        <Tab label="Home" value="home" activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Tab label="Systems" value="systems" activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Tab label="About Me" value="about" activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Tab label="Community" value="community" activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>
+    )}
+
     {isMobile && (
       <button
         onClick={() => setMenuOpen(true)}
@@ -118,9 +127,9 @@ function App() {
         ☰
       </button>
     )}
+      </nav>
 
-
-        {/* TABS */}
+      {/* TABS */}
         {isMobile && (
           <div
             style={{
@@ -166,7 +175,6 @@ function App() {
             ))}
           </div>
         )}
-      </nav>
 
 
         
