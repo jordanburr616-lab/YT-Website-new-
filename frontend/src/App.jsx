@@ -16,7 +16,7 @@ function App() {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMinimized, setChatMinimized] = useState(false);
   const [chatHovered, setChatHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -88,6 +88,7 @@ function App() {
         style={{
           fontSize: "2.5rem",          
           fontWeight: "800",
+          fontFamily: "'Poppins', system-ui, sans-serif",
           color: "#fafafaff",              
           WebkitTextStroke: "1px black", 
           letterSpacing: "0.8px",
@@ -104,48 +105,52 @@ function App() {
     </div>
 
         {/* TABS */}
-        {isMobile ? (
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
+        {isMobile && (
+          <div
             style={{
-              background: "none",
-              border: "none",
-              fontSize: "26px",
-              cursor: "pointer",
-              color: "#111",
+              position: "fixed",
+              top: "0",
+              right: "0",
+              height: "100vh",
+              width: "220px",
+              background: "#ffffff",
+              boxShadow: "-12px 0 32px rgba(0,0,0,0.25)",
+              transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+              transition: "transform 0.3s cubic-bezier(.2,.8,.2,1)",
+              zIndex: 1000,
+              paddingTop: "96px",
             }}
           >
-            ☰
-          </button>
-        ) : (
-          <div style={{ display: "flex", gap: "16px" }}>
-            <Tab
-              label="Home"
-              value="home"
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            />
-            <Tab
-              label="Systems"
-              value="systems"
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            />
-            <Tab
-              label="About Me"
-              value="about"
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            />
-            <Tab
-              label="Community"
-              value="community"
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            />
-
+            {[
+              { label: "Home", value: "home" },
+              { label: "Systems", value: "systems" },
+              { label: "About Me", value: "about" },
+              { label: "Community", value: "community" },
+            ].map((item) => (
+              <button
+                key={item.value}
+                onClick={() => {
+                  setActiveTab(item.value);
+                  setMenuOpen(false);
+                }}
+                style={{
+                  width: "100%",
+                  padding: "14px 20px",
+                  background: "none",
+                  border: "none",
+                  textAlign: "left",
+                  fontSize: "1.05rem",
+                  fontWeight: "600",
+                  color: "#111", // 🔥 black text
+                  cursor: "pointer",
+                }}
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
         )}
+
 
       </nav>
 

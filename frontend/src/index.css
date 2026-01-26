@@ -43,3 +43,7 @@ a:visited {
   }
 }
 
+button {
+  color: inherit;
+}
+
