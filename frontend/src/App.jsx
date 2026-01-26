@@ -146,33 +146,50 @@ function App() {
               paddingTop: "96px",
             }}
           >
+
+            <button
+              onClick={() => setMenuOpen(false)}
+              style={{
+                position: "absolute",
+                top: "20px",
+                left: "20px",
+                background: "none",
+                border: "none",
+                fontSize: "28px",
+                cursor: "pointer",
+                color: "#111",
+              }}
+            >
+              ✕
+            </button>
+
             {[
               { label: "Home", value: "home" },
-              { label: "Systems", value: "systems" },
+              { label: "Programs", value: "programs" },
               { label: "About Me", value: "about" },
-              { label: "Community", value: "community" },
-            ].map((item) => (
-              <button
+              { label: "Chat", value: "chat" },
+              { label: "Momentum", value: "momentum" },
+            ].map((item, index, arr) => (
+              <div
                 key={item.value}
                 onClick={() => {
                   setActiveTab(item.value);
                   setMenuOpen(false);
                 }}
                 style={{
-                  width: "100%",
-                  padding: "14px 20px",
-                  background: "none",
-                  border: "none",
-                  textAlign: "left",
-                  fontSize: "1.05rem",
-                  fontWeight: "600",
-                  color: "#111",
+                  fontSize: "1.25rem",
+                  fontWeight: "700",
+                  padding: "18px 0",
+                  borderBottom:
+                    index !== arr.length - 1 ? "1px solid #111" : "none",
                   cursor: "pointer",
+                  color: "#111",
                 }}
               >
                 {item.label}
-              </button>
+              </div>
             ))}
+
           </div>
         )}
 
