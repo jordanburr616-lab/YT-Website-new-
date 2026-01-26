@@ -165,10 +165,9 @@ function App() {
 
             {[
               { label: "Home", value: "home" },
-              { label: "Programs", value: "programs" },
+              { label: "Systems", value: "systems" },
               { label: "About Me", value: "about" },
-              { label: "Chat", value: "chat" },
-              { label: "Momentum", value: "momentum" },
+              { label: "Community", value: "community" },
             ].map((item, index, arr) => (
               <div
                 key={item.value}
@@ -179,7 +178,7 @@ function App() {
                 style={{
                   fontSize: "1.25rem",
                   fontWeight: "700",
-                  padding: "18px 0",
+                  padding: "18px 24px",
                   borderBottom:
                     index !== arr.length - 1 ? "1px solid #111" : "none",
                   cursor: "pointer",
