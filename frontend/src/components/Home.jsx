@@ -113,13 +113,12 @@ const heroStyles = {
               <div style={heroStyles.titleWrap}>
                 <div className="hero-line">
                   <h1 className="hero-title">IMPROVE</h1>
-                  <span className="hero-underline" />
                 </div>
 
                 <div className="hero-line">
                   <h1 className="hero-title">EVERYDAY</h1>
-                  <span className="hero-underline" />
                 </div>
+
 
               </div>
 
