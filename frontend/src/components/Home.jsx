@@ -147,13 +147,15 @@ const heroStyles = {
             {/* RIGHT — IMAGE */}
             <div className="hero-image-wrap"
               style={{
-                // padding: "24px",               // space between image + glow
+                position: "absolute",
+                position: "relative",
                 borderRadius: "28px",
-                background: "#ffffff",         // clean white base
+                background: "#ffffff",
                 boxShadow: `
-                  0 0 18px rgba(45, 166, 218, 0.35),
-                  0 0 40px rgba(45, 166, 218, 0.25),
-                  0 0 80px rgba(45, 166, 218, 0.15)
+                  0 0 0 2px rgba(45,166,218,0.35),
+                  0 0 28px rgba(45,166,218,0.65),
+                  0 0 60px rgba(45,166,218,0.45),
+                  0 0 120px rgba(45,166,218,0.3)
                 `,
               }}
             >
