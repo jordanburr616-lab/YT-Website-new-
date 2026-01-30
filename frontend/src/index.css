@@ -97,4 +97,36 @@ button {
   }
 }
 
+@media (max-width: 768px) {
+  .hero-text h1 {
+    -webkit-text-stroke: 1.2px black;
+    text-shadow:
+      0 0 4px rgba(110, 193, 228, 0.5),
+      0 0 8px rgba(110, 193, 228, 0.35);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    -webkit-text-stroke: 1px black;
+    letter-spacing: 0.4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text div[style*="underline"] {
+    height: 6px;
+    margin-top: -3px;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-sidebar,
+  .scroll-indicator {
+    display: none !important;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 
