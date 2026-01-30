@@ -120,7 +120,7 @@ const heroStyles = {
             zIndex: 3,
           }}
         >
-          <section
+          <section className="hero-section"
             style={{
               display: "flex",
               alignItems: "center",
@@ -129,7 +129,7 @@ const heroStyles = {
             }}
           >
             {/* LEFT COLUMN — TEXT */}
-            <div style={{ maxWidth: "520px" }}>
+            <div className="hero-text" style={{ maxWidth: "520px" }}>
               {/* TITLE */}
               <div style={heroStyles.titleWrap}>
                 <div style={heroStyles.lineWrap}>
@@ -166,7 +166,7 @@ const heroStyles = {
             </div>
 
             {/* RIGHT — IMAGE */}
-            <div
+            <div className="hero-image-wrap"
               style={{
                 // padding: "24px",               // space between image + glow
                 borderRadius: "28px",
@@ -210,7 +210,7 @@ const heroStyles = {
       justifyContent: "center",
     }}
   >
-    <div
+    <div className="reset-card"
       style={{
         background: "#ffffff",
         borderRadius: "20px",
@@ -400,7 +400,7 @@ const heroStyles = {
           </div>
 
           {/* PROGRAM GRID */}
-          <div
+          <div className="systems-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
@@ -619,7 +619,7 @@ const heroStyles = {
           </div>
 
           {/* VIDEO GRID */}
-          <div
+          <div className="youtube-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
@@ -769,8 +769,8 @@ const heroStyles = {
 }
 
 function SocialLinks() {
-  return (
-    <div
+  return ( 
+    <div className="social-sidebar"
       style={{
         position: "fixed",
         left: "20px",
@@ -836,7 +836,7 @@ const iconStyle = {
 
 function ScrollIndicator() {
   return (
-    <div
+    <div className="scroll-indicator"
       style={{
         position: "fixed",
         right: "20px",
