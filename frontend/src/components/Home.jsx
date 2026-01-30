@@ -42,20 +42,6 @@ const heroStyles = {
     position: "relative",
     marginBottom: "32px",
   },
-  title: {
-    fontSize: "4rem",
-    fontWeight: "800",
-    marginBottom: "0px",
-    lineHeight: "1.0",  
-    color: "white",
-    WebkitTextStroke: "2px black",
-    letterSpacing: "0.8px",
-    textShadow: `
-      0 0 6px rgba(110, 193, 228, 0.6),
-      0 0 12px rgba(110, 193, 228, 0.4),
-      0 0 18px rgba(110, 193, 228, 0.25)
-    `,
-  },
   lineWrap: {
     display: "inline-block",
     marginBottom: "2px", 
@@ -120,27 +106,21 @@ const heroStyles = {
             zIndex: 3,
           }}
         >
-          <section className="hero-section"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "80px",
-            }}
-          >
+          <section className="hero-section">
             {/* LEFT COLUMN — TEXT */}
             <div className="hero-text" style={{ maxWidth: "520px" }}>
               {/* TITLE */}
               <div style={heroStyles.titleWrap}>
-                <div style={heroStyles.lineWrap}>
-                  <h1 style={heroStyles.title}>IMPROVE</h1>
-                  <div style={heroStyles.underline} />
+                <div className="hero-line">
+                  <h1 className="hero-title">IMPROVE</h1>
+                  <span className="hero-underline" />
                 </div>
 
-                <div style={heroStyles.lineWrap}>
-                  <h1 style={heroStyles.title}>EVERYDAY</h1>
-                  <div style={heroStyles.underline} />
+                <div className="hero-line">
+                  <h1 className="hero-title">EVERYDAY</h1>
+                  <span className="hero-underline" />
                 </div>
+
               </div>
 
               {/* SUBTITLE */}
