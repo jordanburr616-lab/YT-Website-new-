@@ -88,6 +88,8 @@ const heroStyles = {
         <>
       <SocialLinks />
       <ScrollIndicator/>
+
+      
       {/* HERO – FULL WIDTH */}
       <div
         style={{
@@ -107,73 +109,50 @@ const heroStyles = {
           }}
         >
           <section className="hero-section">
-            {/* LEFT COLUMN — TEXT */}
-            <div className="hero-text" style={{ maxWidth: "520px" }}>
-              {/* TITLE */}
-              <div style={heroStyles.titleWrap}>
-                <div className="hero-line">
-                  <h1 className="hero-title">IMPROVE</h1>
-                </div>
 
-                <div className="hero-line">
-                  <h1 className="hero-title">EVERYDAY</h1>
-                </div>
+  <div className="hero-text">
 
+    {/* TOP ROW */}
+    <div className="hero-top-row">
 
-              </div>
+      <div className="hero-title-text">
+        <h1 className="hero-title">IMPROVE</h1>
+        <h1 className="hero-title">EVERYDAY</h1>
+      </div>
 
-              {/* SUBTITLE */}
-              <p style={heroStyles.subtitle}>
-                Build Discipline. Stack Wins. Repeat.
-              </p>
+      {/* BIG IMAGE MOVED HERE */}
+      <div className="hero-image-wrap">
+        <span className="hero-badge">IMPROVE EVERYDAY</span>
+        <img
+          src="/images/building.png"
+          alt="Building progress"
+          className="hero-main-image"
+        />
+      </div>
 
-              {/* CTA */}
-              <div style={heroStyles.ctaWrap}>
-                <button
-                  style={heroStyles.button}
-                  onClick={() => setActiveTab("systems")}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateX(4px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateX(0)";
-                  }}
-                >
-                  Start Improving →
-                </button>
-              </div>
-            </div>
+    </div>
 
-            {/* RIGHT — IMAGE */}
-            <div className="hero-image-wrap"
-              style={{
-                position: "absolute",
-                position: "relative",
-                borderRadius: "28px",
-                background: "#ffffff",
-                boxShadow: `
-                  0 0 0 2px rgba(45,166,218,0.35),
-                  0 0 28px rgba(45,166,218,0.65),
-                  0 0 60px rgba(45,166,218,0.45),
-                  0 0 120px rgba(45,166,218,0.3)
-                `,
-              }}
-            >
-              <img
-                src="/images/building.png"
-                alt="Building progress"
-                style={{
-                  width: "900px",
-                  maxWidth: "100%",
-                  height: "auto",
-                  display: "block",
-                  borderRadius: "20px",
-                }}
-              />
-            </div>
+    <p className="hero-subtitle">
+      Build Discipline. Stack Wins. Repeat.
+    </p>
 
+    <button
+      className="hero-cta"
+      style={heroStyles.button}
+      onClick={() => setActiveTab("systems")}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateX(4px)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateX(0)";
+      }}
+    >
+      Start Improving →
+    </button>
 
-          </section>
+  </div>
+</section>
+
         </div>
       </div>
 
