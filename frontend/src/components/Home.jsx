@@ -156,162 +156,46 @@ const heroStyles = {
         </div>
       </div>
 
-{/* PROGRAM SECTION */}
-<div
-  style={{
-    backgroundColor: "#35a4cf",
-    padding: "120px 0",
-  }}
->
-  <section
-    style={{
-      ...containerStyle,
-      display: "flex",
-      justifyContent: "center",
-    }}
-  >
-    <div className="reset-card"
-      style={{
-        background: "#ffffff",
-        borderRadius: "20px",
-        padding: "72px 64px",
-        width: "100%",
-        maxWidth: "1000px",
-        display: "grid",
-        gridTemplateColumns: "1.2fr 0.8fr",
-        gap: "64px",
-        alignItems: "center",
-      }}
-    >
-      {/* LEFT – TEXT */}
-      <div>
-        <p
-          style={{
-            letterSpacing: "2px",
-            fontSize: "0.8rem",
-            opacity: 0.6,
-            marginBottom: "16px",
-          }}
-        >
-          NEW PRODUCTIVITY SYSTEM
-        </p>
+{/*Program Section*/}
+<section id="reset">
+<div className="program-section">
+  <div className="program-container">
+    <div className="reset-card">
+      
+      <div className="reset-content">
+        <p className="reset-eyebrow">NEW PRODUCTIVITY SYSTEM</p>
+        <h1 className="reset-title">30 Day Reset</h1>
 
-        <h2
-          style={{
-            fontSize: "3rem",
-            fontWeight: "800",
-            marginBottom: "20px",
-            color: "#111",
-          }}
-        >
-          30 Day Reset
-        </h2>
-
-        <p
-          style={{
-            fontSize: "1.1rem",
-            lineHeight: "1.7",
-            opacity: 0.8,
-            maxWidth: "520px",
-            marginBottom: "40px",
-            color: "#111",
-          }}
-        >
-          Improving JB&apos;s daily nonnegotiables tracker that turns discipline into consistency and
-          makes progress <strong>ACTUALLY achievable</strong>.
+        <p className="reset-description">
+          Improving JB's daily nonnegotiables tracker that turns discipline
+          into consistency and makes progress <strong>ACTUALLY</strong> achievable.
         </p>
 
         <button
-          onClick={() => {
-            setActiveTab("systems");
-            setActiveSystem("reset");
-          }}
+            className="reset-button"
+            onClick={() => setActiveTab("30-day-reset")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateX(4px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateX(0)";
+            }}
+          >
+            EXPLORE →
+          </button>
 
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "translateX(4px)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "translateX(0)";
-          }}
-          style={{
-            background: "#2da6da",
-            color: "white",
-            border: "none",
-            padding: "16px 36px",
-            fontSize: "0.9rem",
-            fontWeight: "600",
-            letterSpacing: "1px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            transition: "transform 0.2s ease",
-          }}
-        >
-          EXPLORE →
-        </button>
       </div>
 
-      {/* RIGHT – VISUAL (FILLS, ROUNDED, TRANSITIONS) */}
-      <div
-        onClick={() => {
-          setActiveTab("systems");
-          setActiveSystem("reset");
-        }}
-
-        style={{
-          background: "#f1f3f5",
-          borderRadius: "14px",
-          height: "420px",
-          cursor: "pointer",
-          overflow: "hidden",            
-          position: "relative",
-          transition: "transform 0.25s ease, box-shadow 0.25s ease"          
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.querySelector(".img-2").style.opacity = "1";
-          e.currentTarget.style.transform = "translateY(-6px)";
-          e.currentTarget.style.boxShadow =
-            "0 18px 40px rgba(0, 0, 0, 0.15)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.querySelector(".img-2").style.opacity = "0";
-          e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.boxShadow = "none";
-        }}
-
-      >
-        {/* IMAGE 1 – BEFORE */}
-        <img
-          src="/images/bands-refresh-1.png"
-          alt="Before 30 Day Reset"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",          
-          }}
-        />
-
-        {/* IMAGE 2 – AFTER */}
-        <img
-          src="/images/bands-refresh-2.png"
-          alt="After 30 Day Reset"
-          className="img-2"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            opacity: 0,
-            transition: "opacity 0.3s ease", 
-          }}
-        />
+      <div className="reset-image">
+        <img src="/images/bands-refresh-1.png" alt="30 Day Reset" />
       </div>
 
     </div>
-  </section>
+  </div>
 </div>
+</section>
+
+
 
 
 

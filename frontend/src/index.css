@@ -197,6 +197,11 @@ button {
   display: none; /* desktop default */
 }
 
+@media (min-width: 769px) {
+  .hero-badge {
+    display: none;
+  }
+}
 /* MOBILE ONLY */
 @media (max-width: 768px) {
 
@@ -238,7 +243,7 @@ button {
     background: rgba(45, 166, 218, 0.9);
     color: white;
 
-    font-size: 0.65rem;
+    font-size: 0.695rem;
     font-weight: 800;
     letter-spacing: 2px;
 
@@ -248,15 +253,30 @@ button {
     z-index: 2;
     pointer-events: none;
   }
+
+  .reset-card {
+    display: block;          /* KILLS grid */
+    padding: 48px 24px;      
+  }
+
+  .reset-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .reset-description {
+    max-width: none;
+  }
+
+  .reset-image {
+    margin: 32px 0;
+  }
 }
 
 /* =========================
    DESKTOP DEFAULTS
 ========================= */
 
-.hero-badge {
-  display: none;
-}
 
 .hero-top-row {
   display: flex;
@@ -280,4 +300,90 @@ button {
   max-width: 100%;
   border-radius: 20px;
   display: block;
+}
+
+.program-section {
+  background: #35a4cf;
+  padding: 120px 0;
+}
+
+.program-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.reset-card {
+  background: white;
+  border-radius: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 24px;
+
+  display: block;
+}
+
+.reset-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.reset-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #9aa3ad;
+}
+
+.reset-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.reset-description {
+  max-width: none;
+}
+
+.reset-button {
+  width: fit-content;
+  background: #2da6da;
+  color: white;
+  border: none;
+  padding: 16px 36px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.reset-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset-image img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .reset-card {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.reset-button {
+  transition: transform 0.2s ease;
+}
+
+.reset-button:hover {
+  transform: translateX(4px);
 }
