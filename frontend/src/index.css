@@ -419,3 +419,8 @@ button {
 .reset-button:hover {
   transform: translateX(4px);
 }
+
+.systems-size {
+  max-width: 420px; /* adjust until it feels right */
+  margin: 0 auto;
+}

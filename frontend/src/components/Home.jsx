@@ -230,35 +230,14 @@ const heroStyles = {
           {/* SECTION HEADER */}
           <div style={{ marginBottom: "64px" }}>
             <div style={{ display: "inline-block" }}>
-              <h2
-                style={{
-                  fontSize: "2.5rem",
-                  fontWeight: "800",
-                  marginBottom: "12px",
-                  color: "white",
-                  WebkitTextStroke: "1px black",
-                  textShadow: `
-                    0 0 6px rgba(45, 166, 218, 0.6),
-                    0 0 12px rgba(45, 166, 218, 0.35),
-                    0 0 18px rgba(45, 166, 218, 0.2)
-                  `,
-                }}
-              >
-                SYSTEMS
-              </h2>
+              <div className="systems-title-image">
+                <img
+                  src="/images/systems-title.png"
+                  alt="Systems"
+                  className="systems-title-img systems-title-img-1"
+                />
+              </div>
 
-              {/* BLUE UNDERLINE */}
-              <div
-                style={{
-                  height: "10px",
-                  width: "105%",
-                  background: "#2da6da",
-                  borderRadius: "6px",
-                  marginTop: "-18px",
-                  opacity: 0.85,
-                  transform: "rotate(-0.6deg)",
-                }}
-              />
             </div>
           </div>
 
@@ -274,63 +253,23 @@ const heroStyles = {
             {/* SYSTEM – 30 DAY RESET */}
           <div style={{ textAlign: "center" }}>
             {/* IMAGE CONTAINER */}
-            <div
+            <div className="reset-image systems-size"
 
               onClick={() => {
                 setActiveTab("systems");
                 setActiveSystem("reset");
               }}
-
-              onMouseEnter={(e) => {
-                e.currentTarget.querySelector(".img-2").style.opacity = "1";
-                e.currentTarget.style.transform = "translateY(-6px)";
-                e.currentTarget.style.boxShadow =
-                  "0 18px 40px rgba(0, 0, 0, 0.15)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.querySelector(".img-2").style.opacity = "0";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-              style={{
-                background: "#e5e7eb",
-                height: "320px",
-                borderRadius: "16px",
-                marginBottom: "16px",
-                overflow: "hidden",
-                position: "relative",
-                cursor: "pointer",
-                transition: "transform 0.25s ease, box-shadow 0.25s ease",
-              }}
-            >
-              {/* IMAGE 1 */}
-              <img
-                src="/images/bands-refresh-1.png"
-                alt="30 Day Reset"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-
-              {/* IMAGE 2 */}
-              <img
-                src="/images/bands-refresh-2.png"
-                alt="30 Day Reset preview"
-                className="img-2"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  opacity: 0,
-                  transition: "opacity 0.3s ease",
-                }}
-              />
+              >
+                <img
+                  src="/images/bands-refresh-1.png"
+                  alt="Coming Soon"
+                  className="reset-img"
+                />
+                <img
+                  src="/images/bands-refresh-2.png"
+                  alt="Coming Soon Active"
+                  className="reset-img reset-img-2"
+                />
             </div>
 
             {/* TEXT — STAYS PUT */}
@@ -343,57 +282,16 @@ const heroStyles = {
 
             {/* PROGRAM 2 – COMING SOON */}
             <div style={{ textAlign: "center" }}>
-              <div
-                onMouseEnter={(e) => {
-                  e.currentTarget.querySelector(".img-2").style.opacity = "1";
-                  e.currentTarget.style.transform = "translateY(-6px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 18px 40px rgba(0, 0, 0, 0.12)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.querySelector(".img-2").style.opacity = "0";
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
-                style={{
-                  background: "#e5e7eb",
-                  height: "320px",
-                  borderRadius: "16px",
-                  marginBottom: "16px",
-                  overflow: "hidden",
-                  position: "relative",
-                  opacity: 0.85,
-                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                }}
-              >
-                {/* IMAGE 1 – GRAYSCALE DEFAULT */}
+              <div className="reset-image systems-size">
                 <img
                   src="/images/coming-soon-1.png"
-                  alt="More systems coming"
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    filter: "grayscale(100%) contrast(0.9)",
-                  }}
+                  alt="Coming Soon"
+                  className="reset-img"
                 />
-
-                {/* IMAGE 2 – COLOR ON HOVER */}
                 <img
                   src="/images/coming-soon-2.png"
-                  alt="More systems coming soon"
-                  className="img-2"
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    opacity: 0,
-                    transition: "opacity 0.3s ease",
-                  }}
+                  alt="Coming Soon Active"
+                  className="reset-img reset-img-2"
                 />
               </div>
 
