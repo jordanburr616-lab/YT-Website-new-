@@ -424,3 +424,19 @@ button {
   max-width: 420px; /* adjust until it feels right */
   margin: 0 auto;
 }
+
+.systems-title-img {
+  max-width: 220px;
+  width: 100%;
+  margin-top: -124px;
+}
+
+.page-content {
+  padding-top: 96px; /* mobile baseline */
+}
+
+@media (min-width: 769px) {
+  .page-content {
+    padding-top: 128px;
+  }
+}

@@ -91,7 +91,7 @@ const heroStyles = {
 
       
       {/* HERO – FULL WIDTH */}
-      <div
+      <div class="page-content"
         style={{
           background: "#afb1b3ff",
           width: "100%",
