@@ -201,6 +201,10 @@ button {
   .hero-badge {
     display: none;
   }
+
+  .reset-content {
+    padding: 0 32px;
+  }
 }
 /* MOBILE ONLY */
 @media (max-width: 768px) {
@@ -270,6 +274,7 @@ button {
 
   .reset-image {
     margin: 32px 0;
+    transform: scale(0.94);
   }
 }
 
@@ -362,15 +367,42 @@ button {
 }
 
 .reset-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  transition: transform 0.3s ease;
 }
 
-.reset-image img {
+.reset-img {
   width: 100%;
-  max-width: 360px;
-  height: auto;
+  display: block;
+  border-radius: 20px; /* keeps your rounded edges */
+}
+
+/* Top image */
+.reset-img-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Desktop hover */
+.reset-image:hover {
+  transform: translateY(-8px);
+}
+
+.reset-image:hover .reset-img-2 {
+  opacity: 1;
+}
+
+/* Mobile press */
+
+.reset-image:active {
+  transform: translateY(-8px);
+}
+
+.reset-image:active .reset-img-2 {
+  opacity: 1;
 }
 
 @media (min-width: 900px) {

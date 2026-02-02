@@ -173,7 +173,10 @@ const heroStyles = {
 
         <button
             className="reset-button"
-            onClick={() => setActiveTab("30-day-reset")}
+            onClick={() => {
+                setActiveTab("systems");
+                setActiveSystem("reset");
+              }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateX(4px)";
             }}
@@ -186,9 +189,25 @@ const heroStyles = {
 
       </div>
 
-      <div className="reset-image">
-        <img src="/images/bands-refresh-1.png" alt="30 Day Reset" />
+      <div className="reset-image"
+      onClick={() => {
+                setActiveTab("systems");
+                setActiveSystem("reset");
+              }}
+              >
+
+        <img
+          src="/images/bands-refresh-1.png"
+          alt="30 Day Reset"
+          className="reset-img reset-img-1"
+        />
+        <img
+          src="/images/bands-refresh-2.png"
+          alt="30 Day Reset Active"
+          className="reset-img reset-img-2"
+        />
       </div>
+
 
     </div>
   </div>
