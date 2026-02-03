@@ -83,7 +83,7 @@ if (activeSystem === "30-day-reset") {
         style={{
           background: "#afb1b3ff",
           width: "100%",
-          padding: "20px 0",
+          padding: "130px 0 0 0",
           position: "relative",
           overflow: "hidden",
         }}

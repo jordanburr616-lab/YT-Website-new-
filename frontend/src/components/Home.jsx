@@ -10,6 +10,10 @@ function Home({ setActiveTab, setActiveSystem }) {
   const youtubeVideos = [
 
   {
+    id: "o9YNEvila8M",
+    title: "Waking Up Early Is Easy (Once You Understand This)",
+  },
+  {
     id: "nSEYiBpRexE",
     title: "Why making friends feels impossible (what actually works)"
   },
@@ -29,10 +33,7 @@ function Home({ setActiveTab, setActiveSystem }) {
     id: "vEsGoaE5Ffo",
     title: "Why you can't lose weight (even tho you're trying)",
   },
-  {
-    id: "MDb4z82SGNQ",
-    title: "The Next Chapter",
-  },
+  
 
 ];
 
@@ -91,11 +92,11 @@ const heroStyles = {
 
       
       {/* HERO – FULL WIDTH */}
-      <div class="page-content"
+      <div
         style={{
           background: "#afb1b3ff",
           width: "100%",
-          padding: "130px 0",
+          padding: "180px 0 80px 0",
           position: "relative",
           overflow: "hidden",
         }}
@@ -347,44 +348,20 @@ const heroStyles = {
           {/* SECTION HEADER */}
           <div style={{ marginBottom: "64px" }}>
             <div style={{ display: "inline-block" }}>
-              <h2
-                style={{
-                  fontSize: "2.5rem",
-                  fontWeight: "800",
-                  marginBottom: "12px",
-                  color: "white",
-                  WebkitTextStroke: "1px black",
-                  textShadow: `
-                    0 0 6px rgba(45, 166, 218, 0.6),
-                    0 0 12px rgba(45, 166, 218, 0.35),
-                    0 0 18px rgba(45, 166, 218, 0.2)
-                  `,
-                }}
-              >
-                YOUTUBE
-              </h2>
-
-              {/* BLUE UNDERLINE */}
-              <div
-                style={{
-                  height: "10px",
-                  width: "105%",
-                  background: "#2da6da",
-                  borderRadius: "6px",
-                  marginTop: "-18px",
-                  opacity: 0.85,
-                  transform: "rotate(-0.6deg)",
-                }}
-              />
+              <div className="systems-title-image">
+                <img
+                  src="/images/youtube-title.png"
+                  alt="Youtube"
+                  className="systems-title-img systems-title-img-1"
+                />
+              </div>
             </div>
           </div>
 
           {/* VIDEO GRID */}
           <div className="youtube-grid"
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "32px",
+
               marginBottom: "80px",
             }}
           >
@@ -466,14 +443,7 @@ const heroStyles = {
                   {/* TITLE */}
                   <div style={{ padding: "12px 14px" }}>
                     <h3
-                      style={{
-                        fontSize: "1rem",
-                        fontWeight: "700",
-                        color: "#111",
-                        lineHeight: "1.3",
-                        // padding: "1px 2px",
-                        minHeight: "45px",
-                      }}
+                      
                     >
                       {video.title}
                     </h3>

@@ -16,6 +16,7 @@ function About() {
             width: "100%",
             height: "auto",          
             borderRadius: "20px",
+            marginTop: "40px",
             marginBottom: "64px",
             boxShadow: `
                   0 0 18px rgba(45, 166, 218, 0.35),
@@ -37,6 +38,7 @@ function About() {
               fontWeight: "600",
               color: "#374151",
               textTransform: "uppercase",
+              
             }}
           >
             Building Systems Since 2018

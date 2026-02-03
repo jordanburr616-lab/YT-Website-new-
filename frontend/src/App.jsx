@@ -69,7 +69,7 @@ function App() {
         }}
       >
       {/* LOGO */}
-      <div
+      <div 
         onClick={() => setActiveTab("home")}
         style={{
           display: "flex",
