@@ -474,5 +474,15 @@ button {
   }
 }
 
+.chat-body {
+  background-color: #494949; /* your neutral grey */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
 
 

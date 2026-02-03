@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Chat() {
+function Chat({ onSave }) {
   const [bandsState, setBandsState] = useState("waiting");
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -9,17 +9,33 @@ function Chat() {
 
 
   useEffect(() => {
-    setBandsState("talking");
+    setBandsState("thinking");
 
-    setMessages([
-      {
-        role: "assistant",
-        text: "I’m Bands. What are you looking for?\n• Systems & templates\n• YouTube content\n• About JB",
-      },
-    ]);
+    const timer = setTimeout(() => {
+      setMessages([
+        {
+          role: "assistant",
+          text: "I’m Bands. What are you looking for?\n• Systems & templates\n• YouTube content\n• About JB",
+          
+        },
+      ]);
+      setBandsState("waiting");
+      
 
-    setTimeout(() => setBandsState("waiting"), 800);
+    }, 500); // ← this delay is the “signal”
+
+    return () => clearTimeout(timer);
   }, []);
+
+  const handleNewChat = () => {
+      setMessages([]);
+    };
+    
+  const handleSave = () => {
+    if (messages.length === 0) return;
+
+    onSave(messages);
+  };
 
   async function handleSend() {
   if (!input.trim() || loading) return;
@@ -92,7 +108,7 @@ function Chat() {
   return (
 
     
-    <div
+    <div className="chat-wrapper"
       style={{
         height: "100%",
         display: "flex",
@@ -100,7 +116,7 @@ function Chat() {
       }}
     >
       {/* CHAT HISTORY */}
-      <div
+      <div className="chat-body"
         style={{
           flex: 1,
           padding: "16px",
@@ -138,7 +154,7 @@ function Chat() {
       </div>
 
       {/* INPUT BAR */}
-      <div
+      <div className="chat-input"
         style={{
           position: "relative",
           borderTop: "1px solid #e5e7eb",

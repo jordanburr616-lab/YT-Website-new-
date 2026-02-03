@@ -18,6 +18,10 @@ function App() {
   const [chatHovered, setChatHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [chatSessionId, setChatSessionId] = useState(0);
+  const [saveChatSignal, setSaveChatSignal] = useState(0);
+  const [savedChats, setSavedChats] = useState([]);
+
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 900);
@@ -219,6 +223,7 @@ function App() {
               onMouseLeave={() => setChatHovered(false)}
               onClick={() => {
                 setChatHovered(false);
+                setChatMinimized(false);
                 setChatOpen(true);
               }}
 
@@ -325,13 +330,17 @@ function App() {
                 }}
               >
                 {/* LEFT: TITLE */}
-                <span style={{ fontWeight: "600" }}>Bands</span>
+                <span style={{ fontWeight: "600" }}>Ask Bands</span>
 
                 {/* RIGHT: CONTROLS */}
                 <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                   {/* NEW CHAT (placeholder) */}
                   <button
                     title="New chat"
+                    onClick={() => {
+                      console.log("NEW CHAT");
+                      setChatSessionId((id) => id + 1);
+                    }}
                     style={{
                       width: "30px",
                       height: "26px",
@@ -339,9 +348,6 @@ function App() {
                       border: "1.8px solid #2b2b2b",
                       background: "none",
                       cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
                       fontSize: "16px",
                       fontWeight: "700",
                       lineHeight: 1,
@@ -350,22 +356,29 @@ function App() {
                     +
                   </button>
 
+
+
                   {/* MINIMIZE (placeholder) */}
                   <button
                     title={chatMinimized ? "Expand" : "Minimize"}
-                    onClick={() => setChatMinimized(!chatMinimized)}
+                    onClick={() => setChatMinimized((prev) => !prev)}
                     style={{
                       background: "none",
                       border: "none",
                       cursor: "pointer",
                       fontSize: "18px",
                       fontWeight: "700",
-                      transform: chatMinimized ? "scaleX(1.8) rotate(180deg)" : "scaleX(1.8)",
+                      transform: chatMinimized
+                        ? "scaleX(1.8) rotate(180deg)"
+                        : "scaleX(1.8)",
                       lineHeight: 1,
                     }}
                   >
                     v
                   </button>
+
+
+
 
 
 
@@ -393,11 +406,16 @@ function App() {
               </div>
 
               {/* CHAT BODY */}
-              {!chatMinimized && (
-                <div style={{ flex: 1, overflow: "hidden" }}>
-                  <Chat />
-                </div>
-              )}
+              <div
+                style={{
+                  flex: 1,
+                  overflow: "hidden",
+                  display: chatMinimized ? "none" : "block",
+                }}
+              >
+                <Chat key={chatSessionId} />
+              </div>
+
 
             </div>
           )}
