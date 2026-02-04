@@ -501,17 +501,20 @@ button {
 
 @media (max-width: 600px) {
   .chat-container {
+    width: calc(100vw - 24px) !important; /* SAFE WIDTH */
     height: 62vh !important;
     max-height: 62vh !important;
-    width: 94vw !important;
 
-    right: 50% !important;
-    transform: translateX(50%);
+    left: 12px;          /* hard anchor */
+    right: auto;
     bottom: 16px;
+
+    transform: none;     /* KILL TRANSFORM */
+    box-sizing: border-box;
   }
 
   .chat-container.minimized {
-    height: 56px;
+    height: 56px !important;
   }
 }
 
