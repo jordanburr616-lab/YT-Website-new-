@@ -574,8 +574,7 @@ button {
 
 @media (max-width: 768px) {
   .title-size {
-    max-width: 320px;
-    margin-top: 0;
+    max-width: 160px;
   }
 }
 
