@@ -95,7 +95,7 @@ if (activeSystem === "30-day-reset") {
             <img
               src="/images/productivity-systems-title.png"
               alt="Systems"
-              className="systems-title-img"
+            
             />
           </div>
 
