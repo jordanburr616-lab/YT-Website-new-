@@ -361,7 +361,8 @@ function App() {
                   {/* MINIMIZE (placeholder) */}
                   <button
                     title={chatMinimized ? "Expand" : "Minimize"}
-                    onClick={() => setChatMinimized((prev) => !prev)}
+                    onClick={() => setChatMinimized(prev => !prev)}
+
                     style={{
                       background: "none",
                       border: "none",
@@ -406,11 +407,9 @@ function App() {
               </div>
 
               {/* CHAT BODY */}
-              {!chatMinimized && (
-                <div style={{ flex: 1, overflow: "hidden" }}>
-                  <Chat key={chatSessionId} />
-                </div>
-              )}
+              <div className="chat-content" style={{ flex: 1, overflow: "hidden" }}>
+                <Chat key={chatSessionId} />
+              </div>
 
 
             </div>

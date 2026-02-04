@@ -555,11 +555,23 @@ button {
   height: 100%;
 }
 
-
+.chat-container.minimized .chat-content {
+  display: none;
+}
 
 .chat-container.minimized {
   height: auto;
 }
 
+.title-size{
+  max-width: 1000px;
+  width: 100%;
+  margin-top: -304px;
+}
 
+@media (max-width: 768px) {
+  .title-size {
+    max-width: 320px;
+  }
+}
 

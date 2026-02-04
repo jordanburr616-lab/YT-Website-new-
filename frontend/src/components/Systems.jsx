@@ -91,18 +91,13 @@ if (activeSystem === "30-day-reset") {
         <section style={containerStyle}>
 
           {/* TITLE */}
-          <div style={heroStyles.titleWrap}>
-            <h1
-              style={{
-                ...heroStyles.title,
-                fontSize: "3rem",        // slimmer than Home
-                WebkitTextStroke: "1.5px black",
-              }}
-            >
-              PRODUCTIVITY SYSTEMS
-            </h1>
-            <div style={heroStyles.underline} />
-          </div>
+          <div className="title-size">
+                <img
+                  src="/images/productivity-systems-title.png"
+                  alt="Systems"
+                  // className="systems-title-img systems-title-img-1"
+                />
+              </div>
 
           {/* SUBTITLE */}
           <p
