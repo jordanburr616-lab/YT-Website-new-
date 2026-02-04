@@ -169,15 +169,7 @@ function Chat({ onSave }) {
         <img
           src={`/images/${bandsState}.png`}
           alt="Bands"
-          style={{
-            position: "absolute",
-            left: "16px",
-            bottom: "100%",
-            width: "min(140px, 18vw)",
-            height: "auto",
-            objectFit: "contain",
-            pointerEvents: "none",
-          }}
+          className="bands-avatar"
         />
 
         {/* TEXT INPUT */}

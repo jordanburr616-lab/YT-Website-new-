@@ -504,8 +504,8 @@ button {
 @media (max-width: 600px) {
   .chat-container {
     width: calc(100vw - 24px) !important; /* SAFE WIDTH */
-    height: 90vh !important;
-    max-height: 90vh !important;
+    height: 80vh !important;
+    max-height: 80vh !important;
 
     left: 12px;          /* hard anchor */
     right: auto;
@@ -524,9 +524,7 @@ button {
   }
 
   .bands-avatar {
-    width: 120px;   /* or 104px if you want presence */
-    bottom: 16px;  /* slight lift so he doesn’t feel cramped */
-    left: 16px;
+    width: min(180px, 30vw); /* bigger presence on phone */
   }
 }
 
@@ -543,10 +541,13 @@ button {
 
 .bands-avatar {
   position: absolute;
-  bottom: 12px;
-  left: 12px;
-  width: 64px; /* lock this */
+  left: 16px;
+  bottom: 100%;
+
+  width: min(140px, 18vw);
   height: auto;
+
+  object-fit: contain;
   pointer-events: none;
 }
 
