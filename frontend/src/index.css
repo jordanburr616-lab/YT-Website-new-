@@ -518,7 +518,7 @@ button {
   .chat-container.minimized {
     height: 56px !important;
   }
-  
+
   .chat-input input {
     font-size: 16px;
   }
@@ -545,7 +545,7 @@ button {
 }
 
 .chat-container.minimized {
-  height: 60px;
+  height: auto;
 }
 
 

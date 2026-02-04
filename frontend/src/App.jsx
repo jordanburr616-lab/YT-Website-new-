@@ -299,7 +299,7 @@ function App() {
           {/* CHAT PANEL */}
 
           {chatOpen && (
-            <div className="chat-container"
+            <div className={`chat-container ${chatMinimized ? "minimized" : ""}`}
               style={{
                 position: "fixed",
                 bottom: "24px",
@@ -406,15 +406,11 @@ function App() {
               </div>
 
               {/* CHAT BODY */}
-              <div
-                style={{
-                  flex: 1,
-                  overflow: "hidden",
-                  display: chatMinimized ? "none" : "block",
-                }}
-              >
-                <Chat key={chatSessionId} />
-              </div>
+              {!chatMinimized && (
+                <div style={{ flex: 1, overflow: "hidden" }}>
+                  <Chat key={chatSessionId} />
+                </div>
+              )}
 
 
             </div>
