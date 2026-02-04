@@ -524,7 +524,7 @@ button {
   }
 
   .bands-avatar {
-    width: min(180px, 30vw); /* bigger presence on phone */
+    width: min(240px, 45vw); /* bigger presence on phone */
   }
 }
 
