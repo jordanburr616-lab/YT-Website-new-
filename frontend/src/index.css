@@ -500,6 +500,18 @@ button {
   overflow: hidden;
 }
 
+.bands-avatar {
+  position: absolute;
+  left: 16px;
+  bottom: 100%;
+
+  width: min(140px, 18vw);
+  height: auto;
+
+  object-fit: contain;
+  pointer-events: none;
+}
+
 
 @media (max-width: 600px) {
   .chat-container {
@@ -539,17 +551,7 @@ button {
   height: 100%;
 }
 
-.bands-avatar {
-  position: absolute;
-  left: 16px;
-  bottom: 100%;
 
-  width: min(140px, 18vw);
-  height: auto;
-
-  object-fit: contain;
-  pointer-events: none;
-}
 
 .chat-container.minimized {
   height: auto;
