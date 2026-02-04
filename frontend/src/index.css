@@ -504,8 +504,8 @@ button {
 @media (max-width: 600px) {
   .chat-container {
     width: calc(100vw - 24px) !important; /* SAFE WIDTH */
-    height: 62vh !important;
-    max-height: 62vh !important;
+    height: 75vh !important;
+    max-height: 75vh !important;
 
     left: 12px;          /* hard anchor */
     right: auto;
@@ -521,6 +521,12 @@ button {
 
   .chat-input input {
     font-size: 16px;
+  }
+  
+  .bands-avatar {
+    width: 96px;   /* or 104px if you want presence */
+    bottom: 16px;  /* slight lift so he doesn’t feel cramped */
+    left: 16px;
   }
 }
 
