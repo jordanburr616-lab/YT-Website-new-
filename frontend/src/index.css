@@ -484,13 +484,14 @@ button {
   }
 }
 
+/* DESKTOP DEFAULT */
 .chat-container {
   position: fixed;
   bottom: 24px;
   right: 24px;
 
-  width: 380px;
-  height: 520px;
+  width: 420px;
+  height: 85vh;
   max-height: 720px;
 
   border-radius: 18px;
@@ -498,6 +499,7 @@ button {
   flex-direction: column;
   overflow: hidden;
 }
+
 
 @media (max-width: 600px) {
   .chat-container {
@@ -515,6 +517,10 @@ button {
 
   .chat-container.minimized {
     height: 56px !important;
+  }
+  
+  .chat-input input {
+    font-size: 16px;
   }
 }
 
