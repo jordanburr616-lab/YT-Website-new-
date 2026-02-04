@@ -421,7 +421,8 @@ button {
 .systems-title-img {
   max-width: 220px;
   width: 100%;
-  margin-top: -124px;
+  height: auto;
+  display: block;
 }
 
 .page-content {
@@ -571,7 +572,7 @@ button {
 
 @media (max-width: 768px) {
   .title-size {
-    max-width: 20px;
+    max-width: 320px;
   }
 }
 

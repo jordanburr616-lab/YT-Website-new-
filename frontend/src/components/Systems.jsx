@@ -92,12 +92,12 @@ if (activeSystem === "30-day-reset") {
 
           {/* TITLE */}
           <div className="title-size">
-                <img
-                  src="/images/productivity-systems-title.png"
-                  alt="Systems"
-                  // className="systems-title-img systems-title-img-1"
-                />
-              </div>
+            <img
+              src="/images/productivity-systems-title.png"
+              alt="Systems"
+              className="systems-title-img"
+            />
+          </div>
 
           {/* SUBTITLE */}
           <p
