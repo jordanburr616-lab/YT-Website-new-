@@ -299,14 +299,14 @@ function App() {
           {/* CHAT PANEL */}
 
           {chatOpen && (
-            <div
+            <div className="chat-container"
               style={{
                 position: "fixed",
                 bottom: "24px",
-                right: "24px",
-                width: "420px",              
-                height: chatMinimized ? "60px" : "85vh",
-                maxHeight: chatMinimized ? "60px" : "720px",
+                // right: "24px",
+                // width: "420px",              
+                // height: chatMinimized ? "60px" : "85vh",
+                // maxHeight: chatMinimized ? "60px" : "720px",
                 background: "#ffffff",
                 borderRadius: "18px",
                 border: "2px solid #2b2b2b", // dark outline
