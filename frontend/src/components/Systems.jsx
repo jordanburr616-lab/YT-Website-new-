@@ -140,71 +140,38 @@ if (activeSystem === "30-day-reset") {
               <div key={i} style={{ textAlign: "center" }}>
                 {system.title === "30 Day Reset" ? (
                   /* ================= LIVE SYSTEM ================= */
-                  <div
-                    onClick={() => setActiveSystem("30-day-reset")}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.querySelector(".img-2").style.opacity = "1";
-                      e.currentTarget.style.transform = "translateY(-6px)";
-                      e.currentTarget.style.boxShadow =
-                        "0 18px 40px rgba(0, 0, 0, 0.15)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.querySelector(".img-2").style.opacity = "0";
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.boxShadow = "none";
+                  <div className="reset-image systems-size systems-tab-img"
+
+                    onClick={() => {
+                      setActiveTab("systems");
+                      setActiveSystem("reset");
                     }}
                     style={{
                       background: "#ffffff",
                       height: "320px",
                       borderRadius: "16px",
                       marginBottom: "16px",
-                      cursor: "pointer",
                       overflow: "hidden",
                       position: "relative",
+                      opacity: 0.75,
                       transition: "transform 0.25s ease, box-shadow 0.25s ease",
                     }}
-                  >
+                    >
                     <img
                       src="/images/bands-refresh-1.png"
-                      alt="30 Day Reset (before)"
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
+                      alt="Coming Soon"
+                      className="reset-img"
                     />
-
                     <img
                       src="/images/bands-refresh-2.png"
-                      alt="30 Day Reset (after)"
-                      className="img-2"
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        opacity: 0,
-                        transition: "opacity 0.3s ease",
-                      }}
+                      alt="Coming Soon Active"
+                      className="reset-img reset-img-2"
                     />
                   </div>
                 ) : (
                   /* ================= COMING SOON SYSTEM ================= */
                   <div
-                    onMouseEnter={(e) => {
-                      e.currentTarget.querySelector(".img-2").style.opacity = "1";
-                      e.currentTarget.style.transform = "translateY(-6px)";
-                      e.currentTarget.style.boxShadow =
-                        "0 18px 40px rgba(0, 0, 0, 0.12)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.querySelector(".img-2").style.opacity = "0";
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
+                    className="reset-image systems-size systems-tab-img"
                     style={{
                       background: "#ffffff",
                       height: "320px",
@@ -218,33 +185,13 @@ if (activeSystem === "30-day-reset") {
                   >
                     <img
                       src="/images/coming-soon-1.png"
-                      alt="Coming soon"
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-
-                        /* 🔑 NEW */
-                        filter: "grayscale(100%) contrast(0.9)",
-                        opacity: 0.85,
-                      }}
+                      alt="Coming Soon"
+                      className="reset-img"
                     />
-
                     <img
                       src="/images/coming-soon-2.png"
-                      alt="Coming soon preview"
-                      className="img-2"
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        opacity: 0,
-                        transition: "opacity 0.3s ease",
-                      }}
+                      alt="Coming Soon Active"
+                      className="reset-img reset-img-2"
                     />
                   </div>
                 )}

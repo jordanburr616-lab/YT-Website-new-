@@ -572,9 +572,23 @@ button {
   margin-top: -250px;
 }
 
+
 @media (max-width: 768px) {
   .title-size {
-    max-width: 160px;
+    max-width: 100%;
+    min-width: 260px;
   }
+
+  .title-size img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.systems-tab-img{
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
 }
 
