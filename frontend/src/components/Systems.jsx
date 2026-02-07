@@ -143,9 +143,9 @@ if (activeSystem === "30-day-reset") {
                   <div className="reset-image systems-size systems-tab-img"
 
                     onClick={() => {
-                      setActiveTab("systems");
-                      setActiveSystem("reset");
+                      setActiveSystem("30-day-reset");
                     }}
+
                     style={{
                       background: "#ffffff",
                       height: "320px",
@@ -153,7 +153,6 @@ if (activeSystem === "30-day-reset") {
                       marginBottom: "16px",
                       overflow: "hidden",
                       position: "relative",
-                      opacity: 0.75,
                       transition: "transform 0.25s ease, box-shadow 0.25s ease",
                     }}
                     >

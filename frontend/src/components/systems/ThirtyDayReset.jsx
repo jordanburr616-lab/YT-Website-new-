@@ -71,6 +71,9 @@ function ThirtyDayReset({ onBack }) {
         <div
         style={{
             marginBottom: "24px",
+            zIndex: "5",
+            position: "relative",
+            marginTop: "40px"
         }}
         >
         <button
@@ -82,30 +85,21 @@ function ThirtyDayReset({ onBack }) {
             fontSize: "0.85rem",
             fontWeight: "600",
             cursor: "pointer",
+            
             }}
         >
             ← Back to Systems
         </button>
         </div>
 
-        {/* TITLE */}
-        <div style={heroStyles.titleWrap}>
-        <h1
-            style={{
-            ...heroStyles.title,
-            fontSize: "3rem",           // slimmer for detail page
-            WebkitTextStroke: "1.5px black",
-            }}
-        >
-            30 Day Reset
-        </h1>
-        <div
-            style={{
-            ...heroStyles.underline,
-            marginTop: "-16px",         // calmer than Home
-            }}
-        />
-        </div>
+        {/* TITLE */} 
+        <div className="title-size">
+            <img
+              src="/images/30-day-title.png"
+              alt="Systems"
+            
+            />
+          </div>
 
         <p
         style={{
@@ -147,6 +141,7 @@ function ThirtyDayReset({ onBack }) {
                 letterSpacing: "0.6px",
                 cursor: "pointer",
                 transition: "transform 0.2s ease, opacity 0.2s ease",
+                
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateX(4px)";

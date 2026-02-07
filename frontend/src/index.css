@@ -570,6 +570,8 @@ button {
   height: auto;
   display: block;
   margin-top: -250px;
+  position: relative;
+  z-index: 1;
 }
 
 
