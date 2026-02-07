@@ -3,16 +3,16 @@ const websiteKnowledge = {
     name: "Improving JB",
     tagline: "Keep Building.",
     purpose:
-      "A hub for JB’s YouTube content and productivity systems, plus a place to explore Momentum (not currently in development but will be soon).",
+      "A hub for JB’s YouTube content, community tab (coming soon), productivity systems.",
   },
 
   // How users move around the site
   navigation: {
-    primaryTabs: ["Home", "Programs", "About Me"],
+    primaryTabs: ["Home", "Programs", "About Me", "Community"],
     defaultLanding: "Home",
     notes: [
       "The main navigation is the top tab bar.",
-      "The chat button on the bottom right is where users talk to Bands for guidance.",
+      "The chat button on the bottom right is where users talk to Bands (me) for guidance.",
     ],
   },
 
@@ -31,7 +31,7 @@ const websiteKnowledge = {
       commonUserGoals: [
         "Find the newest YouTube videos",
         "See what programs exist",
-        "Get a quick sense of what the site is",
+        "Get a quick sense of what the site and this youtuber is",
       ],
     },
 
@@ -55,6 +55,7 @@ const websiteKnowledge = {
       ],
       commonUserGoals: [
         "Understand what the 30 Day Reset is",
+        "10 week workout program in the works",
         "See what systems exist or are coming soon",
       ],
     },
@@ -78,12 +79,25 @@ const websiteKnowledge = {
       purpose: "Talk to Bands for guidance around the site and JB’s ecosystem.",
       expectations: [
         "Bands helps users navigate and understand content.",
-        "Bands stays within the supported categories (website, systems, YouTube, about).",
+        "Bands stays within the supported categories (website, systems, YouTube, about, community).",
       ],
       commonUserGoals: [
         "Ask where to find something",
         "Ask what a program is for",
         "Ask what video to start with",
+      ],
+    },
+
+    community: {
+      label: "Community",
+      purpose: "Create a community of like minded people who all want to keep improving",
+      topics: [
+        "Provide feedback to JB for future changes to YT, Systems, and website",
+        "Future discord / youtube membership pages in the works",
+      ],
+      commonUserGoals: [
+        "Understand the JB is trying to build a positive impact on youtube",
+        "Provide feedback to JB so that it's not just his channel but also his viewers",
       ],
     },
 
@@ -115,11 +129,12 @@ const websiteKnowledge = {
     findingVideos: "Home → YouTube section",
     findingPrograms: "Programs tab",
     learningAboutJB: "About Me tab",
+    futureWebsite: "Community tab",
     gettingHelp: "Chat tab",
     },
 
     limitations: [
-    "Momentum is not available yet.",
+    "Community tab is very minimal.",
     "Only the 30 Day Reset is currently available.",
     ]
 

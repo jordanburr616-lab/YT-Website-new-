@@ -7,6 +7,7 @@ import websiteKnowledge from "./knowledge/website.js";
 import systemsKnowledge from "./knowledge/systems.js";
 import youtubeKnowledge from "./knowledge/youtube.js";
 import aboutKnowledge from "./knowledge/about.js";
+import communityKnowledge from "./knowledge/community.js";
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error("OPENAI_API_KEY is not set");
@@ -26,6 +27,8 @@ function getKnowledgeByContext(context) {
       return youtubeKnowledge;
     case "about":
       return aboutKnowledge;
+    case "community":
+      return communityKnowledge;
     default:
       return null;
   }

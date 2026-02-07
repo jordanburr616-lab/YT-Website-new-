@@ -15,7 +15,7 @@ function Chat({ onSave }) {
       setMessages([
         {
           role: "assistant",
-          text: "I’m Bands. What are you looking for?\n• Systems & templates\n• YouTube content\n• About JB",
+          text: "Hello there! My name's Bands. Whatever you have questions about, I can answer!\n\n• Systems & Programs\n• YouTube content\n• About JB\n• Community",
           
         },
       ]);
@@ -61,6 +61,9 @@ function Chat({ onSave }) {
     } else if (lower.includes("system") || lower.includes("template")) {
       inferredCategory = "systems";
       setActiveCategory("systems");
+    }else if (lower.includes("community") || lower.includes("feedback")) {
+      inferredCategory = "community";
+      setActiveCategory("about");
     } else if (lower.includes("about") || lower.includes("jb")) {
       inferredCategory = "about";
       setActiveCategory("about");

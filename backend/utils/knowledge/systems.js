@@ -17,6 +17,8 @@ const systemsKnowledge = {
         "A structured daily planning template",
         "A way to organize priorities but mainly non-negotiables",
         "A system focused on short-term structure (30 days)",
+        "a program that expects you to make mistakes and build off of it",
+        "30 day challenge of execution with a clear purpose",
       ],
       whatItIsNot: [
         "A habit coaching program",
@@ -24,7 +26,30 @@ const systemsKnowledge = {
         "A guarantee of results",
       ],
       connections: [
-        "Often referenced alongside discipline-related YouTube videos (will be soon)",
+        "Often referenced alongside discipline/consistency-related YouTube videos (will be soon)",
+        "Designed to complement JB’s systems-first philosophy",
+      ],
+    },
+    {
+      name: "10 week workout plan",
+      status: "in progress",
+      type: "Planner / program",
+      purpose:
+        "A structured workout system that will guarentee you will not burn out while reaching your fitness goals.",
+      whatItIs: [
+        "A structured daily workout template",
+        "A way to better understanding your lifting goals and what you can achieve in a 10 week window",
+        "setting up goals for the 10 weeks",
+        "a program that expects you to make mistakes and build off of it",
+        "a 10 week challenge that will push you",
+      ],
+      whatItIsNot: [
+        "A habit coaching program",
+        "A motivational challenge",
+        "A guarantee of results",
+      ],
+      connections: [
+        "Often referenced alongside workout/diet-related YouTube videos (will be soon)",
         "Designed to complement JB’s systems-first philosophy",
       ],
     },

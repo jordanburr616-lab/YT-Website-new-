@@ -594,3 +594,20 @@ button {
   border-radius: inherit;
 }
 
+.footer-socials{
+  max-Width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-Content: center;
+  gap: 36px;
+
+}
+
+@media (max-width: 600px) {
+  .footer-socials {
+    gap: 18px;
+  }
+}
+
+

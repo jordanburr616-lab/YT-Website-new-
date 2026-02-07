@@ -17,6 +17,7 @@ const aboutKnowledge = {
     framingNotes: [
       "JB focuses on structure and environment rather than willpower.",
       "The goal is sustainable progress, not short-term bursts.",
+      "He has the mentality of never giving up and get 1% better every single day"
     ],
   },
 
@@ -24,9 +25,9 @@ const aboutKnowledge = {
     whyItExists:
       "Improving JB exists to share JB’s approach to discipline and systems that support consistent execution. These systems reflect approaches JB has used in his own experience.",
     howItConnects: [
-      "YouTube videos explain ideas, reflections, and systems at a high level.",
+      "YouTube videos explain ideas, challenges, and systems that people likely face and don't know how to get around.",
       "Programs and templates provide structure that supports those ideas.",
-      "The website acts as a central hub connecting content and systems.",
+      "The website acts as a central hub connecting yt content and systems.",
     ],
   },
 

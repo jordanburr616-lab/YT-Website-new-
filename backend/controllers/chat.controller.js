@@ -12,7 +12,7 @@ export async function handleChat(req, res) {
     if (!context) {
       return res.json({
         reply:
-          "What are you looking for?\n• Website details\n• Systems & programs\n• YouTube\n• About JB",
+          "What are you looking for?\n• Website details\n• Systems & programs\n• YouTube\n• About JB\n• Community",
       });
     }
 

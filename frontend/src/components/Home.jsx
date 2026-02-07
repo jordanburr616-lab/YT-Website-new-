@@ -501,7 +501,8 @@ const heroStyles = {
 
 function SocialLinks() {
   return ( 
-    <div className="social-sidebar"
+    <div
+      className="social-sidebar"
       style={{
         position: "fixed",
         left: "20px",
@@ -513,44 +514,66 @@ function SocialLinks() {
         zIndex: 100,
       }}
     >
+      {/* YOUTUBE */}
       <a
         href="https://www.youtube.com/@improvingjb/videos"
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
       >
-        YT
-    {/* <img **FOR LATER UPGRADES**
-        src="/youtube-icon.png"
-        alt="YouTube"
-        style={{
-            width: "18px",
-            height: "18px",
+        <img
+          src="/images/youtube-icon.png"
+          alt="YouTube"
+          style={{
+            width: "22px",
+            height: "22px",
             objectFit: "contain",
-        }}
-    /> */}
+            filter: "brightness(1.5)",
+          }}
+        />
       </a>
 
+      {/* INSTAGRAM */}
       <a
         href="https://www.instagram.com/improvingjb/?hl=en"
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
       >
-        IG
+        <img
+          src="/images/instagram.png"
+          alt="Instagram"
+          style={{
+            width: "22px",
+            height: "22px",
+            objectFit: "contain",
+            filter: "brightness(1.5)",
+          }}
+        />
       </a>
 
+      {/* TIKTOK */}
       <a
         href="https://www.tiktok.com/@animedriven"
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
       >
-        TT
+        <img
+          src="/images/tiktok.png"
+          alt="TikTok"
+          style={{
+            width: "22px",
+            height: "22px",
+            objectFit: "contain",
+            filter: "brightness(1.5)",
+          }}
+        />
       </a>
     </div>
   );
 }
+
 
 const iconStyle = {
   width: "40px",

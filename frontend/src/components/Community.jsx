@@ -1,10 +1,13 @@
 function Community() {
   return (
     <div
+      className="page-content"
       style={{
-        minHeight: "100vh",
         background: "#afb1b3ff",
-        padding: "32px 24px",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        flex: '1',
       }}
     >
       {/* FEEDBACK CTA */}
@@ -14,48 +17,49 @@ function Community() {
           margin: "0 auto 24px",
           display: "flex",
           justifyContent: "flex-end",
-          position: "relative",
-          zIndex: 5,
         }}
       >
         <a
-          href="https://forms.gle/YOUR_FORM_LINK"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSe_aSVEgy0P2xGBYJBnK_ONROAqKFjkx6V5i7dzeE8efgPN4A/viewform?usp=publish-editor"
           target="_blank"
           rel="noreferrer"
-          style={{ textDecoration: "none" }}
         >
           <button
             style={{
-              background: "#111",
+              background: "#2da6da",          // same blue as other tabs
               color: "white",
               border: "none",
-              padding: "10px 16px",
-              borderRadius: "999px",
-              fontSize: "0.75rem",
+              padding: "24px 44px",
+              borderRadius: "8px",
+              fontSize: "1.3rem",
               fontWeight: "700",
-              letterSpacing: "0.8px",
+              letterSpacing: "0.5px",
               cursor: "pointer",
+              transition: "transform 0.2s ease, opacity 0.2s ease",
+              marginTop: "40px",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.opacity = "0.9";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.opacity = "1";
             }}
           >
-            GIVE FEEDBACK
+            PROVIDE FEEDBACK
           </button>
         </a>
       </div>
 
       {/* MAIN CONTENT */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <img
           src="/images/community-coming-soon.png"
           alt="Community coming soon"
           style={{
             width: "100%",
             maxWidth: "1100px",
-            height: "auto",
             borderRadius: "24px",
           }}
         />
@@ -63,6 +67,7 @@ function Community() {
     </div>
   );
 }
+
 
 
 export default Community;

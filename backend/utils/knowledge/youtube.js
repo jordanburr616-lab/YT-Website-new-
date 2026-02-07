@@ -7,9 +7,11 @@ const youtubeKnowledge = {
       "Reducing friction to take action",
       "Consistency over intensity",
       "Documenting personal growth honestly",
+      "Not being afraid to step outside of your comfort",
+      "believe that you can achieve anything through consistent effort"
     ],
     formatNotes: [
-      "Videos are primarily long-form explainers and reflections.",
+      "Videos are primarily long-form explainers on topics that aren't so easily explained but JB does his best ot explain them.",
       "Content focuses on practical systems and mindset framing, not hype.",
     ],
   },
@@ -23,6 +25,7 @@ const youtubeKnowledge = {
         "Why motivation fades",
         "Why discipline feels hard",
         "Why systems work better than willpower",
+        "Waking up early"
       ],
     },
     {
@@ -43,6 +46,7 @@ const youtubeKnowledge = {
         "Why making friends is hard",
         "Personal realizations",
         "Perspective shifts around conversations",
+        "Getting a girlfriend",
       ],
     },
     {
@@ -61,12 +65,12 @@ const youtubeKnowledge = {
     {
       reason: "New to the channel",
       suggestion:
-        "Start with videos that explain JB’s views on discipline and consistency.",
+        "Start with videos that explain JB’s views on discipline and confidence.",
     },
     {
       reason: "Struggling with consistency",
       suggestion:
-        "Watch videos focused on discipline systems and reducing friction.",
+        "Watch videos focused on discipline systems and consistency friction.",
     },
     {
       reason: "Interested in JB’s journey",

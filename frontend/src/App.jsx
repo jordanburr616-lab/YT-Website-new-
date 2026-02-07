@@ -436,15 +436,7 @@ function App() {
           }}
         >
           {/* Intentionally left blank */}
-          <div
-            style={{
-              maxWidth: "1100px",
-              margin: "0 auto",
-              padding: "0 24px",
-              display: "flex",
-              justifyContent: "center",
-              gap: "36px",            // more breathing room
-            }}
+          <div className="footer-socials"
           >
             {/* YOUTUBE */}
             <a
