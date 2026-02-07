@@ -436,6 +436,129 @@ function App() {
           }}
         >
           {/* Intentionally left blank */}
+          <div
+            style={{
+              maxWidth: "1100px",
+              margin: "0 auto",
+              padding: "0 24px",
+              display: "flex",
+              justifyContent: "center",
+              gap: "36px",            // more breathing room
+            }}
+          >
+            {/* YOUTUBE */}
+            <a
+              href="https://www.youtube.com/@improvingjb"
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <div
+                style={{
+                  width: "56px",
+                  height: "56px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src="/images/youtube-icon.png"
+                  alt="YouTube"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",     // 🔑 no stretching
+                    opacity: 0.85,
+                    transition: "opacity 0.2s ease, transform 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.transform = "translateY(-3px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = "0.85";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                />
+              </div>
+            </a>
+
+            <a
+              href="https://www.instagram.com/improvingjb/?hl=en"
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <div
+                style={{
+                  width: "56px",
+                  height: "56px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src="/images/instagram.png"
+                  alt="YouTube"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",     // 🔑 no stretching
+                    opacity: 0.85,
+                    transition: "opacity 0.2s ease, transform 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.transform = "translateY(-3px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = "0.85";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                />
+              </div>
+            </a>
+
+            <a
+              href="https://www.tiktok.com/@animedriven"
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <div
+                style={{
+                  width: "56px",
+                  height: "56px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src="/images/tiktok.png"
+                  alt="YouTube"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",     // 🔑 no stretching
+                    opacity: 0.85,
+                    transition: "opacity 0.2s ease, transform 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.transform = "translateY(-3px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = "0.85";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                />
+              </div>
+            </a>
+          </div>
+
         </div>
       </footer>
     </div>

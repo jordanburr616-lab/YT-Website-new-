@@ -134,8 +134,8 @@ if (activeSystem === "30-day-reset") {
           >
             {[
               { title: "30 Day Reset", live: true },
+              { title: "10 Week Workout Planner", live: false },
               { title: "Laser Focus", live: false },
-              { title: "Daily Execution", live: false },
             ].map((system, i) => (
               <div key={i} style={{ textAlign: "center" }}>
                 {system.title === "30 Day Reset" ? (
