@@ -74,7 +74,9 @@ function Chat({ onSave }) {
   setBandsState("thinking");
 
   try {
-    const res = await fetch("http://localhost:8080/api/chat", {
+    const API_URL = "https://improving-jb-production.up.railway.app";
+
+    const res = await fetch(`${API_URL}/api/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
