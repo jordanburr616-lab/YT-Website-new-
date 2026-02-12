@@ -74,6 +74,7 @@ function Chat({ onSave }) {
   setBandsState("thinking");
 
   try {
+    //when testing locally pls update this
     const API_URL = "https://improving-jb-production.up.railway.app";
 
     const res = await fetch(`${API_URL}/api/chat`, {
