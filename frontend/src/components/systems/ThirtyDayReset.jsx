@@ -124,7 +124,7 @@ function ThirtyDayReset({ onBack }) {
           }}
         >
           <a
-            href="https://www.notion.so/The-30-Day-Reset-2e15f1ba8b5080e4b8c9f28a00774468?source=copy_link"
+            href="https://jordanburr.gumroad.com/l/xirdsb"
             target="_blank"
             rel="noreferrer"
             style={{ textDecoration: "none" }}
@@ -244,7 +244,7 @@ function ThirtyDayReset({ onBack }) {
           </p>
 
           <a
-            href="https://www.notion.so/The-30-Day-reset-Free-Version-2d35f1ba8b50805dadadd697450021cd?source=copy_link"
+            href="https://square-dream-039.notion.site/The-30-Day-reset-Free-Version-2d35f1ba8b50805dadadd697450021cd"
             target="_blank"
             rel="noreferrer"
             style={{ textDecoration: "none" }}
