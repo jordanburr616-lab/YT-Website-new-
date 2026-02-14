@@ -168,24 +168,30 @@ function ThirtyDayReset({ onBack }) {
 
 
         {/* VIDEO PLACEHOLDER */}
-        <div
-        style={{
-            background: "#ffffff",
+        <img
+          src="/images/30 day img 1.png"
+          alt="Description"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
             borderRadius: "16px",
-            height: "420px",
-            marginBottom: "64px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#777",
-            boxShadow: `
-            0 0 24px rgba(45, 166, 218, 0.45),
-            0 0 48px rgba(45, 166, 218, 0.25)
-            `,
-        }}
-        >
-        VIDEO EXPLANATION (COMING SOON)
-        </div>
+            marginBottom: "20px",
+          }}
+        />
+
+        <img
+          src="/images/30 day img 2.png"
+          alt="Description"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "16px",
+          }}
+        />
+
+
 
 
         {/* WHAT THIS IS */}

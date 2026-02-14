@@ -10,27 +10,27 @@ function Home({ setActiveTab, setActiveSystem }) {
   const youtubeVideos = [
 
   {
-    id: "o9YNEvila8M",
-    title: "Waking Up Early Is Easy (Once You Understand This)",
+    id: "yIpBMFLH07I",
+    title: "Waking Up Early Is Easy Once You Understand This",
   },
   {
-    id: "nSEYiBpRexE",
+    id: "O1VHA9tMiJQ",
     title: "Why making friends feels impossible (what actually works)"
   },
   {
-    id: "7HQlAXvbhG8",
+    id: "XWVzAFrYZek",
     title: "Why discipline isn't sticking (even when giving your all)"
   },
   {
-    id: "-nJkg6gsJRM",
+    id: "LN0puitH2Ro",
     title: "Confidence seems unattainable (until you understand this)",
   },
   {
-    id: "HYTLAPSd3Wk",
+    id: "-PBSyXuRS5c",
     title: "Why you can't stop scrolling (it's simpler than you think)",
   },
   {
-    id: "vEsGoaE5Ffo",
+    id: "UCbVHlHjXnM",
     title: "Why you can't lose weight (even tho you're trying)",
   },
   
@@ -458,7 +458,7 @@ const heroStyles = {
           {/* SUBSCRIBE BUTTON */}
           <div style={{ textAlign: "center" }}>
             <a
-              href="https://www.youtube.com/@improvingjb"
+              href="https://www.youtube.com/@improvingjb?sub_confirmation=1"
               target="_blank"
               rel="noreferrer"
             >
@@ -554,7 +554,7 @@ function SocialLinks() {
 
       {/* TIKTOK */}
       <a
-        href="https://www.tiktok.com/@animedriven"
+        href="https://www.tiktok.com/@improvingjb"
         target="_blank"
         rel="noreferrer"
         style={iconStyle}

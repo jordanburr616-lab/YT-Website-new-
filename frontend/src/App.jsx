@@ -514,7 +514,7 @@ function App() {
             </a>
 
             <a
-              href="https://www.tiktok.com/@animedriven"
+              href="https://www.tiktok.com/@improvingjb"
               target="_blank"
               rel="noreferrer"
               style={{ display: "flex", alignItems: "center" }}
