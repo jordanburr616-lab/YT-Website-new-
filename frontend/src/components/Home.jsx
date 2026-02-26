@@ -10,6 +10,14 @@ function Home({ setActiveTab, setActiveSystem }) {
   const youtubeVideos = [
 
   {
+    id: "zDd8vLlyhRo",
+    title: "How To Unf*ck Your Life in 30 Days",
+  },
+  {
+    id: "cX26koGRujA",
+    title: "Why You Can’t Get a Girlfriend... Yet",
+  },
+  {
     id: "yIpBMFLH07I",
     title: "Waking Up Early Is Easy Once You Understand This",
   },
@@ -24,14 +32,6 @@ function Home({ setActiveTab, setActiveSystem }) {
   {
     id: "LN0puitH2Ro",
     title: "Confidence seems unattainable (until you understand this)",
-  },
-  {
-    id: "-PBSyXuRS5c",
-    title: "Why you can't stop scrolling (it's simpler than you think)",
-  },
-  {
-    id: "UCbVHlHjXnM",
-    title: "Why you can't lose weight (even tho you're trying)",
   },
   
 
