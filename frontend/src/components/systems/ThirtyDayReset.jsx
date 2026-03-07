@@ -155,15 +155,6 @@ function ThirtyDayReset({ onBack }) {
               GET THE FULL SYSTEM →
             </button>
           </a>
-
-          <span
-            style={{
-              fontSize: "0.75rem", // 🔽 slightly smaller
-              opacity: 0.6,
-            }}
-          >
-            Free version available below.
-          </span>
         </div>
 
 
@@ -231,55 +222,7 @@ function ThirtyDayReset({ onBack }) {
           <li>Structured day counter with complete/incomplete buttons</li>
         </ul>
 
-        {/* FREE VERSION */}
-        <div
-          style={{
-            background: "#35a4cf",
-            padding: "48px",
-            borderRadius: "20px",
-            color: "white",
-          }}
-        >
-          <h3 style={{ fontSize: "1.75rem", fontWeight: "800", marginBottom: "16px" }}>
-            Start with the free version
-          </h3>
-
-          <p style={{ maxWidth: "520px", marginBottom: "24px", opacity: 0.95 }}>
-            You can start using the original version of the 30 Day Reset for free.
-            No signup just give it a go!
-          </p>
-
-          <a
-            href="https://square-dream-039.notion.site/The-30-Day-reset-Free-Version-2d35f1ba8b50805dadadd697450021cd"
-            target="_blank"
-            rel="noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <button
-              style={{
-                background: "white",
-                color: "#111",
-                border: "none",
-                padding: "14px 28px",
-                borderRadius: "8px",
-                fontWeight: "700",
-                cursor: "pointer",
-                transition: "transform 0.2s ease, opacity 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateX(4px)";
-                e.currentTarget.style.opacity = "0.9";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateX(0)";
-                e.currentTarget.style.opacity = "1";
-              }}
-            >
-              FREE VERSION →
-            </button>
-
-          </a>
-        </div>
+        
       </section>
     </div>
   );
