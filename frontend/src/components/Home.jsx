@@ -299,6 +299,9 @@ const heroStyles = {
               <h3 style={{ fontWeight: "700" }}>
                 More Systems Coming
               </h3>
+              <h1 style={{ fontWeight: "700" }}>
+                coming soon
+              </h1>
             </div>
 
           </div>
