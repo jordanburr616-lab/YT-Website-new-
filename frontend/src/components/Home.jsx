@@ -297,11 +297,11 @@ const heroStyles = {
               </div>
 
               <h3 style={{ fontWeight: "700" }}>
-                More Systems Coming
+                10 Week Workout Plan
               </h3>
-              <h1 style={{ fontWeight: "700" }}>
+              <p style={{ fontWeight: "700" }}>
                 coming soon
-              </h1>
+              </p>
             </div>
 
           </div>
