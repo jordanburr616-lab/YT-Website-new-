@@ -286,20 +286,23 @@ const heroStyles = {
             <div style={{ textAlign: "center" }}>
               <div className="reset-image systems-size">
                 <img
-                  src="/images/coming-soon-1.png"
+                  src="/images/bands-workout-1.png"
                   alt="Coming Soon"
                   className="reset-img"
                 />
                 <img
-                  src="/images/coming-soon-2.png"
+                  src="/images/bands-workout-2.png"
                   alt="Coming Soon Active"
                   className="reset-img reset-img-2"
                 />
               </div>
 
               <h3 style={{ fontWeight: "700" }}>
-                More Systems Coming
+                10 Week Workout Plan
               </h3>
+              <p style={{ fontWeight: "700" }}>
+                coming soon
+              </p>
             </div>
 
           </div>
