@@ -10,6 +10,18 @@ function Home({ setActiveTab, setActiveSystem }) {
   const youtubeVideos = [
 
   {
+    id: "XqFfUQ4zMS0",
+    title: "the 7 levels of nicotine addiction"
+  },
+  {
+    id: "TBAsxOtjPCU",
+    title: "the uncomfortable truth about your 20s"
+  },
+  {
+    id: "QoztRuB86U0",
+    title: "if you're stuck but ambitious, pls watch this",
+  },
+  {
     id: "zDd8vLlyhRo",
     title: "How To Unf*ck Your Life in 30 Days",
   },
@@ -21,18 +33,7 @@ function Home({ setActiveTab, setActiveSystem }) {
     id: "yIpBMFLH07I",
     title: "Waking Up Early Is Easy Once You Understand This",
   },
-  {
-    id: "O1VHA9tMiJQ",
-    title: "Why making friends feels impossible (what actually works)"
-  },
-  {
-    id: "XWVzAFrYZek",
-    title: "Why discipline isn't sticking (even when giving your all)"
-  },
-  {
-    id: "LN0puitH2Ro",
-    title: "Confidence seems unattainable (until you understand this)",
-  },
+  
   
 
 ];
