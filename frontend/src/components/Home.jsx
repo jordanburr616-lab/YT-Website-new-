@@ -10,6 +10,10 @@ function Home({ setActiveTab, setActiveSystem }) {
   const youtubeVideos = [
 
   {
+    id: "7cdjkpQghl0",
+    title: "how to get addicted to NOT using your phone",
+  },
+  {
     id: "XqFfUQ4zMS0",
     title: "the 7 levels of nicotine addiction"
   },
@@ -29,10 +33,7 @@ function Home({ setActiveTab, setActiveSystem }) {
     id: "cX26koGRujA",
     title: "Why You Can’t Get a Girlfriend... Yet",
   },
-  {
-    id: "yIpBMFLH07I",
-    title: "Waking Up Early Is Easy Once You Understand This",
-  },
+  
   
   
 
