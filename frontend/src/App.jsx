@@ -425,7 +425,7 @@ function App() {
         style={{
           backgroundColor: "#e8e9e9ff",
           borderTop: "1px solid #646464ff",
-          padding: "48px 0",
+          padding: "72px 0",
         }}
       >
         <div
@@ -435,6 +435,20 @@ function App() {
             padding: "0 24px",
           }}
         >
+          <div className="footer-newsletter">
+            <h3>Get Future Systems & Weekly Updates</h3>
+
+            <p>
+              Be the first to know new system releases, video uploads,
+              and important updates from Improving JB.
+            </p>
+
+            <div className="newsletter-form">
+              <input />
+              <button>JOIN</button>
+            </div>
+          </div>
+          
           {/* Intentionally left blank */}
           <div className="footer-socials"
           >

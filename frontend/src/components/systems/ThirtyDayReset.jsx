@@ -152,7 +152,7 @@ function ThirtyDayReset({ onBack }) {
                 e.currentTarget.style.opacity = "1";
               }}
             >
-              GET THE FULL SYSTEM →
+              GET THE RESET →
             </button>
           </a>
         </div>

@@ -187,7 +187,7 @@ const heroStyles = {
               e.currentTarget.style.transform = "translateX(0)";
             }}
           >
-            EXPLORE →
+            GET THE RESET →
           </button>
 
       </div>
