@@ -15,7 +15,7 @@ export async function handleSignup(req, res) {
       .insert([
         {
           email,
-          source,
+          source: source || "unknown",
         },
       ]);
 
