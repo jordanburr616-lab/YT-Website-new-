@@ -72,7 +72,11 @@ function Systems() {
 };
 
 if (activeSystem === "30-day-reset") {
-  return <ThirtyDayReset onBack={() => setActiveSystem(null)} />;
+  return (
+    <div className="page-shell" key={activeSystem || "systems"}>
+      <ThirtyDayReset onBack={() => setActiveSystem(null)} />
+    </div>
+  );
 }
 
 

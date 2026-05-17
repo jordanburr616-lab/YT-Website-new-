@@ -1,79 +1,155 @@
 const systemsKnowledge = {
   overview: {
     philosophy:
-      "JB’s systems are designed to reduce friction and make consistent action easier through structure, not motivation.",
+      "JB’s systems are designed to help people reduce chaos, rebuild structure, and make consistent action easier through systems instead of relying purely on motivation or willpower.",
+
     intent:
-      "Systems focus on organizing actions and priorities rather than relying on willpower or intensity.",
+      "The focus is long-term execution, self-awareness, and creating an environment that supports consistency over time.",
+
+    framingNotes: [
+      "The systems are built around practical execution rather than empty motivation.",
+
+      "They are designed to support people who feel stuck, inconsistent, distracted, overwhelmed, or lacking structure.",
+
+      "The goal is progress through repeated action, not perfection.",
+    ],
   },
 
   systems: [
     {
       name: "30 Day Reset",
+
       status: "available",
-      type: "Planner / template",
+
+      type: "Planner / structure system",
+
       purpose:
-        "A structured planning system intended to help users reset routines and focus on daily execution.",
+        "A 30-day system designed to help users reset routines, rebuild structure, and focus on consistent daily execution.",
+
+      whoItsFor: [
+        "People who feel stuck or inconsistent",
+
+        "People trying to regain discipline and structure",
+
+        "People overwhelmed by distractions, bad habits, or lack of direction",
+
+        "People who want a simpler system focused on execution",
+      ],
+
       whatItIs: [
         "A structured daily planning template",
-        "A way to organize priorities but mainly non-negotiables",
-        "A system focused on short-term structure (30 days)",
-        "a program that expects you to make mistakes and build off of it",
-        "30 day challenge of execution with a clear purpose",
+
+        "A system centered around non-negotiables and execution",
+
+        "A short-term reset focused on consistency and awareness",
+
+        "A framework that expects mistakes and focuses on continuing forward instead of being perfect",
+
+        "A tool for helping users organize priorities and reduce chaos",
       ],
+
       whatItIsNot: [
-        "A habit coaching program",
-        "A motivational challenge",
-        "A guarantee of results",
+        "A motivational gimmick",
+
+        "A replacement for professional help",
+
+        "A guaranteed transformation",
+
+        "A magic productivity fix",
       ],
+
       connections: [
-        "Often referenced alongside discipline/consistency-related YouTube videos (will be soon)",
-        "Designed to complement JB’s systems-first philosophy",
+        "Connected to JB’s YouTube content around discipline, consistency, distractions, addictions, and self-control",
+
+        "Built around JB’s systems-first philosophy",
+
+        "Designed to complement the broader Improving JB ecosystem",
       ],
     },
+
     {
-      name: "10 week workout plan",
+      name: "10 Week Workout Plan",
+
       status: "in progress",
-      type: "Planner / program",
+
+      type: "Workout structure system",
+
       purpose:
-        "A structured workout system that will guarentee you will not burn out while reaching your fitness goals.",
+        "A structured fitness system focused on sustainable training, consistency, and long-term physical progress.",
+
+      whoItsFor: [
+        "People trying to build consistency in the gym",
+
+        "People who struggle with burnout or unrealistic expectations",
+
+        "People looking for more structure around fitness goals",
+
+        "People who want a more disciplined training approach",
+      ],
+
       whatItIs: [
-        "A structured daily workout template",
-        "A way to better understanding your lifting goals and what you can achieve in a 10 week window",
-        "setting up goals for the 10 weeks",
-        "a program that expects you to make mistakes and build off of it",
-        "a 10 week challenge that will push you",
+        "A structured multi-week workout framework",
+
+        "A system focused on sustainable progress instead of random workouts",
+
+        "A way to organize fitness goals within a realistic time window",
+
+        "A program designed around progression, consistency, and execution",
+
+        "A challenge intended to push users while remaining structured",
       ],
+
       whatItIsNot: [
-        "A habit coaching program",
-        "A motivational challenge",
+        "An instant body transformation program",
+
+        "A motivational fitness challenge",
+
         "A guarantee of results",
+
+        "A substitute for professional medical or training advice",
       ],
+
       connections: [
-        "Often referenced alongside workout/diet-related YouTube videos (will be soon)",
-        "Designed to complement JB’s systems-first philosophy",
+        "Will connect closely to future fitness, discipline, and self-improvement content",
+
+        "Built around the same systems-first philosophy used throughout Improving JB",
       ],
     },
   ],
 
   futureSystems: {
     status: "planned",
+
     notes: [
-      "Additional systems and templates are planned for the future.",
-      "Details may change as new systems are developed.",
+      "Additional systems, templates, and tools are planned for future versions of the ecosystem.",
+
+      "Future systems may expand into other areas of discipline, productivity, self-improvement, and personal structure.",
+
+      "Details may evolve as the platform continues developing.",
     ],
   },
 
   guardrails: {
     truthPolicy: [
-      "Do not explain step-by-step usage unless explicitly provided.",
-      "Do not personalize or customize systems for the user.",
-      "Do not claim outcomes or transformations from using systems.",
+      "Do not promise transformations or guaranteed outcomes.",
+
+      "Do not customize systems for individual users unless customization features officially exist.",
+
+      "Do not invent features, templates, or systems that are not provided in the knowledge base.",
+
+      "Do not explain step-by-step implementation unless that information exists in the provided knowledge.",
     ],
+
     allowedHelp: [
-      "Explain what a system is",
+      "Explain what each system is",
+
       "Explain who a system is generally for",
-      "Explain how systems fit into JB’s ecosystem",
-      "Direct users to where systems can be found on the site",
+
+      "Explain how systems connect to JB’s content and philosophy",
+
+      "Help users understand where systems fit into the broader ecosystem",
+
+      "Direct users to where systems can be accessed on the site",
     ],
   },
 };

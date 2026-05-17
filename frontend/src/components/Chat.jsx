@@ -5,7 +5,6 @@ function Chat({ onSave }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(null);
 
 
   useEffect(() => {
@@ -37,6 +36,32 @@ function Chat({ onSave }) {
     onSave(messages);
   };
 
+  function inferCategory(text) {
+  const lower = text.toLowerCase();
+
+  if (lower.includes("youtube") || lower.includes("video") || lower.includes("channel") || lower.includes("watch")) {
+    return "youtube";
+  }
+
+  if (lower.includes("system") || lower.includes("program") || lower.includes("template") || lower.includes("reset") || lower.includes("30 day") || lower.includes("workout")) {
+    return "systems";
+  }
+
+  if (lower.includes("community") || lower.includes("discord") || lower.includes("feedback") || lower.includes("membership")) {
+    return "community";
+  }
+
+  if (lower.includes("about") || lower.includes("jb") || lower.includes("who are you") || lower.includes("who is jb")) {
+    return "about";
+  }
+
+  if (lower.includes("website") || lower.includes("site") || lower.includes("page") || lower.includes("where") || lower.includes("link")) {
+    return "website";
+  }
+
+  return null;
+}
+
   async function handleSend() {
   if (!input.trim() || loading) return;
 
@@ -49,26 +74,13 @@ function Chat({ onSave }) {
     { role: "user", text: userText },
   ]);
 
-  let inferredCategory = activeCategory;
+  const inferredCategory = inferCategory(userText);
 
-  // ✅ INFERENCE HAPPENS AFTER userText EXISTS
-  if (!activeCategory) {
-    const lower = userText.toLowerCase();
+  const chatHistory = messages.slice(-8).map((msg) => ({
+    role: msg.role,
+    content: msg.text,
+  }));
 
-    if (lower.includes("youtube") || lower.includes("video")) {
-      inferredCategory = "youtube";
-      setActiveCategory("youtube");
-    } else if (lower.includes("system") || lower.includes("template")) {
-      inferredCategory = "systems";
-      setActiveCategory("systems");
-    }else if (lower.includes("community") || lower.includes("feedback")) {
-      inferredCategory = "community";
-      setActiveCategory("about");
-    } else if (lower.includes("about") || lower.includes("jb")) {
-      inferredCategory = "about";
-      setActiveCategory("about");
-    }
-  }
 
   setLoading(true);
   setBandsState("thinking");
@@ -83,6 +95,8 @@ function Chat({ onSave }) {
       body: JSON.stringify({
         message: userText,
         context: inferredCategory,
+        page: window.location.pathname,
+        history: chatHistory,
       }),
     });
 

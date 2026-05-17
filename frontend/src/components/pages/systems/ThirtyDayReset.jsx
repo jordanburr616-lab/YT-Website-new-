@@ -5,6 +5,15 @@ function ThirtyDayReset({ onBack }) {
     padding: "120px 24px",
   };
 
+  const handleBack = () => {
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+      onBack();
+      document.body.classList.remove("page-exit");
+    }, 200);
+  };
+
   const heroStyles = {
   titleWrap: {
     display: "inline-block",
@@ -65,7 +74,7 @@ function ThirtyDayReset({ onBack }) {
 };
 
   return (
-    <div style={{ background: "#afb1b3ff", minHeight: "100vh" }}>
+    <div className="page-shell" style={{ background: "#afb1b3ff", minHeight: "100vh" }}>
       <section style={containerStyle}>
         {/* BACK LINK */}
         <div
@@ -76,8 +85,10 @@ function ThirtyDayReset({ onBack }) {
             marginTop: "40px"
         }}
         >
+
+          
         <button
-            onClick={onBack}
+            onClick={handleBack}
             style={{
             background: "none",
             border: "none",

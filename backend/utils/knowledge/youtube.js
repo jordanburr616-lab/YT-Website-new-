@@ -1,62 +1,127 @@
 const youtubeKnowledge = {
   channel: {
     name: "Improving JB",
+
     url: "https://www.youtube.com/@improvingjb",
+
     focus: [
-      "Discipline through systems, not motivation",
-      "Reducing friction to take action",
-      "Consistency over intensity",
-      "Documenting personal growth honestly",
-      "Not being afraid to step outside of your comfort",
-      "believe that you can achieve anything through consistent effort"
+      "Rebuilding discipline through systems and structure",
+
+      "Reducing chaos, distractions, and self-destructive habits",
+
+      "Consistency over short bursts of motivation",
+
+      "Documenting personal growth honestly while still improving",
+
+      "Stepping outside comfort zones and confronting difficult habits",
+
+      "Helping people unf*ck their lives through awareness, execution, and long-term growth",
     ],
+
     formatNotes: [
-      "Videos are primarily long-form explainers on topics that aren't so easily explained but JB does his best ot explain them.",
-      "Content focuses on practical systems and mindset framing, not hype.",
+      "Videos are primarily long-form explainers focused on difficult self-improvement topics that are often oversimplified online.",
+
+      "Content combines personal experiences, systems thinking, observations, and practical framing.",
+
+      "The tone is intended to feel honest and grounded rather than hype-driven or fake motivational.",
+
+      "Many videos connect directly to systems, routines, discipline struggles, addictions, distractions, and rebuilding structure.",
     ],
   },
 
   contentCategories: [
     {
       category: "Discipline & Consistency",
+
       description:
-        "Videos focused on why discipline fails and how systems make consistency easier.",
+        "Videos exploring why consistency is difficult and how structure, systems, and environment affect long-term discipline.",
+
       exampleTopics: [
         "Why motivation fades",
-        "Why discipline feels hard",
-        "Why systems work better than willpower",
-        "Waking up early"
+
+        "Why discipline feels difficult",
+
+        "Why systems outperform willpower",
+
+        "The reality of rebuilding consistency",
+
+        "Waking up early and daily structure",
       ],
     },
+
     {
-      category: "Productivity & Phone Use",
+      category: "Phone Addiction & Distractions",
+
       description:
-        "Videos about reducing distractions and managing attention.",
+        "Videos focused on attention, overstimulation, phone addiction, scrolling habits, and reducing digital chaos.",
+
       exampleTopics: [
+        "Why scrolling is hard to stop",
+
         "Getting off your phone",
-        "Reducing digital friction",
-        "Creating better daily structure",
+
+        "Reducing digital distractions",
+
+        "How overstimulation affects consistency",
+
+        "Creating a healthier environment for focus",
       ],
     },
+
     {
-      category: "Improving Social Skills",
+      category: "Self-Improvement & Personal Growth",
+
       description:
-        "Videos exploring social confidence, connection, and common challenges in making friends.",
+        "Videos about identity, self-awareness, discomfort, personal growth, and rebuilding direction over time.",
+
       exampleTopics: [
-        "Why making friends is hard",
-        "Personal realizations",
-        "Perspective shifts around conversations",
-        "Getting a girlfriend",
+        "Changing your habits and environment",
+
+        "Getting out of comfort zones",
+
+        "The reality of self-improvement",
+
+        "Learning through failure and setbacks",
+
+        "Rebuilding confidence through action",
       ],
     },
+
     {
-      category: "Habit Building",
+      category: "Fitness & Health",
+
       description:
-        "Videos explaining JB’s daily structure and habits that support consistency and health.",
+        "Videos focused on physical health, gym consistency, routines, recovery, and sustainable improvement.",
+
       exampleTopics: [
-        "Ice baths",
-        "Best workouts",
-        "How to lose weight the right way",
+        "Workout structure",
+
+        "Building gym consistency",
+
+        "Weight loss and health habits",
+
+        "Recovery and burnout",
+
+        "Long-term fitness progress",
+      ],
+    },
+
+    {
+      category: "Relationships & Social Growth",
+
+      description:
+        "Videos exploring loneliness, confidence, relationships, social discomfort, and connection.",
+
+      exampleTopics: [
+        "Why making friends feels harder",
+
+        "Social confidence",
+
+        "Overthinking conversations",
+
+        "Relationships and self-worth",
+
+        "Personal reflections and realizations",
       ],
     },
   ],
@@ -64,31 +129,65 @@ const youtubeKnowledge = {
   recommendedStartingPoints: [
     {
       reason: "New to the channel",
+
       suggestion:
-        "Start with videos that explain JB’s views on discipline and confidence.",
+        "Start with videos focused on discipline, consistency, and rebuilding structure.",
     },
+
     {
-      reason: "Struggling with consistency",
+      reason: "Struggling with distractions or phone use",
+
       suggestion:
-        "Watch videos focused on discipline systems and consistency friction.",
+        "Explore videos about scrolling, attention, digital overstimulation, and environment design.",
     },
+
     {
-      reason: "Interested in JB’s journey",
+      reason: "Interested in JB’s personal growth journey",
+
       suggestion:
-        "Explore older videos on the channel to see JB’s longer-term growth and reflections.",
+        "Watch older videos to see how JB’s mindset, systems, and content evolved over time.",
+    },
+
+    {
+      reason: "Interested in systems and practical execution",
+
+      suggestion:
+        "Explore videos connected to the 30 Day Reset and other systems-focused topics.",
     },
   ],
 
+  ecosystemConnection: {
+    role:
+      "The YouTube channel acts as the main storytelling and idea-sharing layer of the Improving JB ecosystem.",
+
+    connections: [
+      "Videos introduce struggles, lessons, systems, and mindset shifts.",
+
+      "Programs and templates help turn ideas into structured action.",
+
+      "The website connects videos, systems, updates, and future community features together.",
+    ],
+  },
+
   guardrails: {
     truthPolicy: [
-      "Do not summarize or quote a video unless it is explicitly listed.",
-      "Do not claim outcomes or guarantees from watching videos.",
-      "If unsure about a specific video, suggest exploring the channel page.",
+      "Do not invent video titles, summaries, or lessons that are not provided in the knowledge base.",
+
+      "Do not guarantee outcomes from watching content.",
+
+      "If unsure whether a video exists, direct users toward the YouTube channel instead of guessing.",
+
+      "Do not present JB as a perfect expert with all the answers.",
     ],
+
     allowedHelp: [
-      "Explain what types of videos exist",
-      "Suggest themes to explore",
-      "Point users to the YouTube channel or video list",
+      "Explain the types of videos on the channel",
+
+      "Suggest content categories or themes to explore",
+
+      "Explain how videos connect to systems and the website",
+
+      "Direct users toward the YouTube channel or recent uploads",
     ],
   },
 };

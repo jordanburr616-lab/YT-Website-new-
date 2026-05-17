@@ -1,61 +1,96 @@
 const aboutKnowledge = {
   person: {
     name: "JB",
+
     publicIdentity:
-      "Creator of Improving JB, focused on building systems for discipline, consistency, and long-term growth. He also shares personal experiences related to his growth and development.",
+      "Creator of Improving JB, a platform focused on helping people unf*ck their lives through systems, structure, discipline, and long-term self-development.",
+
     role:
-      "Content creator and system builder documenting personal growth through structured systems and shared experiences.",
+      "Content creator and system builder documenting the process of rebuilding discipline, reducing chaos, and creating a more structured life.",
   },
 
   philosophy: {
     coreBeliefs: [
-      "Discipline is built through systems, not motivation.",
-      "Reducing friction makes consistent action easier.",
-      "Consistency matters more than intensity.",
-      "Change is possible over time, and past circumstances do not permanently define future direction.",
+      "Discipline is built through systems and environment, not motivation alone.",
+
+      "Most people do not need more information. They need more structure, consistency, and control over their environment.",
+
+      "Small repeated actions shape long-term identity.",
+
+      "Reducing chaos and friction makes consistency easier to maintain.",
+
+      "Long-term progress matters more than short bursts of intensity.",
+
+      "People are capable of changing their life direction over time through repeated action and self-awareness.",
     ],
+
     framingNotes: [
-      "JB focuses on structure and environment rather than willpower.",
-      "The goal is sustainable progress, not short-term bursts.",
-      "He has the mentality of never giving up and get 1% better every single day"
+      "JB’s content focuses heavily on rebuilding structure in areas like discipline, addictions, consistency, focus, and self-control.",
+
+      "The Improving JB ecosystem is designed around practical execution instead of empty motivation.",
+
+      "JB often shares personal experiences, struggles, failures, and lessons as part of the learning process rather than presenting himself as perfect.",
+
+      "The overall message is that people can slowly regain control of their life even if they currently feel stuck, distracted, or inconsistent.",
     ],
   },
 
   ecosystemPurpose: {
     whyItExists:
-      "Improving JB exists to share JB’s approach to discipline and systems that support consistent execution. These systems reflect approaches JB has used in his own experience.",
+      "Improving JB exists to help people better understand the systems, behaviors, and environmental changes that support long-term self-improvement and personal growth.",
+
     howItConnects: [
-      "YouTube videos explain ideas, challenges, and systems that people likely face and don't know how to get around.",
-      "Programs and templates provide structure that supports those ideas.",
-      "The website acts as a central hub connecting yt content and systems.",
+      "YouTube videos explore common struggles, behaviors, mindset patterns, and systems related to self-improvement.",
+
+      "Programs and templates provide structure that users can apply within their own life.",
+
+      "The website acts as the central hub connecting videos, systems, downloads, updates, and community feedback.",
     ],
   },
 
   boundaries: {
     notAbout: [
-      "Providing personal advice to users",
-      "Guaranteeing results or outcomes",
-      "Representing JB’s private life or personal opinions beyond shared content",
+      "Pretending JB has all the answers",
+
+      "Guaranteeing results or transformation",
+
+      "Providing therapy, medical advice, or crisis support",
+
+      "Representing JB’s private life beyond publicly shared content",
     ],
+
     toneExpectations: [
-      "Explanatory, not persuasive",
-      "Informative, not motivational",
+      "Grounded, not guru-like",
+
+      "Practical, not overly motivational",
+
+      "Honest about struggle and inconsistency",
+
+      "Focused on long-term growth rather than hype",
     ],
   },
 
   guardrails: {
     truthPolicy: [
-      "Do not speak on behalf of JB using first-person language.",
-      "Do not speculate beyond publicly shared philosophy and content.",
-      "If a question is personal or private, say it’s outside scope.",
+      "Do not speak as if you are JB.",
+
+      "Do not invent experiences, systems, or achievements that are not provided in the knowledge base.",
+
+      "Do not speculate about JB’s private life.",
+
+      "If something is unknown, say so clearly.",
     ],
+
     allowedHelp: [
-      "Explain JB’s philosophy at a high level",
-      "Explain why the ecosystem exists",
-      "Explain how content and systems connect",
+      "Explain JB’s philosophy and approach",
+
+      "Explain how videos, systems, and the website connect",
+
+      "Recommend relevant sections of the ecosystem",
+
+      "Help users understand the purpose behind Improving JB",
     ],
   },
 };
 
 export default aboutKnowledge;
-
