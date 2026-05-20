@@ -650,6 +650,32 @@ button {
   pointer-events: none;
 }
 
+.chat-link {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.chat-link:hover {
+  opacity: 0.75;
+}
+
+.chat-link-button {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #2b2b2b;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.chat-link-button:hover {
+  opacity: 0.85;
+}
+
 @media (max-width: 600px) {
   .chat-container {
     width: calc(100vw - 24px) !important;
