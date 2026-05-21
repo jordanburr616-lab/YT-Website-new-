@@ -1,4 +1,8 @@
+import { trackEvent } from "../../../utils/analytics";
+import { usePageView } from "../../../hooks/usePageView";
+
 function ThirtyDayReset({ onBack }) {
+  usePageView("thirty_day_reset");
   const containerStyle = {
     maxWidth: "900px",
     margin: "0 auto",
@@ -139,6 +143,13 @@ function ThirtyDayReset({ onBack }) {
             target="_blank"
             rel="noreferrer"
             style={{ textDecoration: "none" }}
+            onClick={() => {
+              trackEvent("program_download_click", "thirty_day_reset", {
+                program: "30_day_reset",
+                destination: "gumroad",
+                cta_text: "GET THE RESET",
+              });
+            }}
           >
             <button
               style={{

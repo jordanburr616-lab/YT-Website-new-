@@ -1,8 +1,12 @@
 import { useState } from "react";
 import ThirtyDayReset from "./systems/ThirtyDayReset";
+import { usePageView } from "../../hooks/usePageView";
 
 
 function Systems() {
+
+  usePageView("systems");
+  
   const containerStyle = {
     maxWidth: "1100px",
     margin: "0 auto",
@@ -78,6 +82,8 @@ if (activeSystem === "30-day-reset") {
     </div>
   );
 }
+
+
 
 
   return (

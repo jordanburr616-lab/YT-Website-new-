@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { trackEvent } from "../../utils/analytics";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -24,6 +25,11 @@ function Footer() {
       if (!res.ok) {
         throw new Error(data.error || "Signup failed");
       }
+
+      trackEvent("email_signup", "footer", {
+        location: "footer",
+        form: "footer_newsletter",
+      });
 
       setSignupStatus("Thank you for signing up!");
       setEmail("");

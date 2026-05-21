@@ -1,4 +1,9 @@
+import { usePageView } from "../../hooks/usePageView";
+
 function Community() {
+
+  usePageView("community");
+
   return (
     <div
       className="page-content"
