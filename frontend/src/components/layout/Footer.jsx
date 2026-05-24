@@ -84,6 +84,15 @@ function Footer() {
               target="_blank"
               rel="noreferrer"
               style={{ display: "flex", alignItems: "center" }}
+              onClick={() =>
+                trackEvent("social_link_clicked", {
+                  page: window.location.pathname,
+                  metadata: {
+                    platform: "youtube",
+                    location: "footer",
+                  },
+                })
+              }
             >
               <div
                 style={{
@@ -121,6 +130,15 @@ function Footer() {
               target="_blank"
               rel="noreferrer"
               style={{ display: "flex", alignItems: "center" }}
+              onClick={() =>
+                trackEvent("social_link_clicked", {
+                  page: window.location.pathname,
+                  metadata: {
+                    platform: "instagram",
+                    location: "footer",
+                  },
+                })
+              }
             >
               <div
                 style={{
@@ -158,6 +176,15 @@ function Footer() {
               target="_blank"
               rel="noreferrer"
               style={{ display: "flex", alignItems: "center" }}
+              onClick={() =>
+                trackEvent("social_link_clicked", {
+                  page: window.location.pathname,
+                  metadata: {
+                    platform: "tiktok",
+                    location: "footer",
+                  },
+                })
+              }
             >
               <div
                 style={{

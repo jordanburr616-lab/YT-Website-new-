@@ -1,3 +1,7 @@
+const ANALYTICS_ENABLED =
+  //true;
+  window.location.hostname !== "localhost";
+
 function getSessionId() {
   let sessionId = localStorage.getItem("jb_session_id");
 
@@ -18,6 +22,18 @@ export async function trackEvent(
   page,
   metadata = {}
 ) {
+
+  if (!ANALYTICS_ENABLED) {
+    console.log(
+      "[Analytics Disabled]",
+      event_name,
+      page,
+      metadata
+    );
+
+    return;
+  }
+
   try {
     await fetch("http://localhost:8080/api/analytics", {
       method: "POST",

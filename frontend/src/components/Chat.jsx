@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { trackEvent } from "../utils/analytics";
 
 function Chat() {
   const [bandsState, setBandsState] = useState("waiting");
@@ -6,6 +7,7 @@ function Chat() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+  const firstTopicTrackedRef = useRef(false);
 
 
   useEffect(() => {
@@ -58,6 +60,16 @@ function Chat() {
           <a
             key={index}
             href={cleanUrl}
+            onClick={() =>
+              trackEvent("chat_link_clicked", {
+                page: window.location.pathname,
+                metadata: {
+                  url: cleanUrl,
+                  label: getLinkLabel(cleanUrl),
+                  topic: activeCategory || "unknown",
+                },
+              })
+            }
             target="_blank"
             rel="noreferrer"
             className="chat-link-button"
@@ -148,6 +160,25 @@ function Chat() {
   const inferredCategory = inferCategory(userText);
   const finalCategory = inferredCategory || activeCategory;
 
+  trackEvent("chat_message_sent", {
+    page: window.location.pathname,
+    metadata: {
+      topic: finalCategory || "unknown",
+    },
+  });
+
+  if (finalCategory && !firstTopicTrackedRef.current) {
+    trackEvent("chat_first_topic_selected", {
+      page: window.location.pathname,
+      metadata: {
+        topic: finalCategory,
+        source: inferredCategory ? "typed_message" : "active_category",
+      },
+    });
+
+    firstTopicTrackedRef.current = true;
+  }
+
   if (!finalCategory) {
     setMessages((prev) => [
       ...prev,
@@ -212,6 +243,13 @@ function Chat() {
 }
 
 function handleStarterClick(text) {
+  trackEvent("chat_starter_clicked", {
+    page: window.location.pathname,
+    metadata: {
+      topic: text,
+    },
+  });
+
   setInput(text);
 }
 

@@ -1,4 +1,5 @@
 import { usePageView } from "../../hooks/usePageView";
+import { trackEvent } from "../../utils/analytics";
 
 function Community() {
 
@@ -28,6 +29,14 @@ function Community() {
           href="https://docs.google.com/forms/d/e/1FAIpQLSe_aSVEgy0P2xGBYJBnK_ONROAqKFjkx6V5i7dzeE8efgPN4A/viewform?usp=publish-editor"
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            trackEvent("feedback_form_clicked", {
+              page: window.location.pathname,
+              metadata: {
+                location: "community_page",
+              },
+            })
+          }
         >
           <button
             style={{

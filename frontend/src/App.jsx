@@ -80,7 +80,10 @@ function App() {
         return <Reset onBack={() => setActiveSystem(null)} />;
       }
 
-      return <Systems setActiveSystem={setActiveSystem} />;
+      return <Systems
+        activeSystem={activeSystem}
+        setActiveSystem={setActiveSystem}
+      />;
     }
 
     switch (activeTab) {

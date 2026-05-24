@@ -1,9 +1,11 @@
-import { useState } from "react";
-import ThirtyDayReset from "./systems/ThirtyDayReset";
+// import { useState } from "react";
 import { usePageView } from "../../hooks/usePageView";
 
+import ThirtyDayReset from "./systems/ThirtyDayReset";
+import BuildPhase from "./systems/BuildPhase";
 
-function Systems() {
+
+function Systems({ activeSystem, setActiveSystem }) {
 
   usePageView("systems");
   
@@ -12,8 +14,6 @@ function Systems() {
     margin: "0 auto",
     padding: "0 24px",
   };
-
-  const [activeSystem, setActiveSystem] = useState(null);
 
 
   const heroStyles = {
@@ -83,7 +83,13 @@ if (activeSystem === "30-day-reset") {
   );
 }
 
-
+if (activeSystem === "build-phase") {
+  return (
+    <div className="page-shell" key={activeSystem}>
+      <BuildPhase onBack={() => setActiveSystem(null)} />
+    </div>
+  );
+}
 
 
   return (
@@ -143,67 +149,59 @@ if (activeSystem === "30-day-reset") {
             }}
           >
             {[
-              { title: "30 Day Reset", live: true },
-              { title: "10 Week Workout Planner", live: false },
-              { title: "Laser Focus", live: false },
+              {
+                title: "30 Day Reset",
+                live: true,
+                systemKey: "30-day-reset",
+                image1: "/images/bands-refresh-1.png",
+                image2: "/images/bands-refresh-2.png",
+              },
+              {
+                title: "The 10 Week Build",
+                live: true,
+                systemKey: "build-phase",
+                image1: "/images/bands-workout-1.png",
+                image2: "/images/bands-workout-2.png",
+              },
+              {
+                title: "Coming Soon",
+                live: false,
+                systemKey: null,
+                image1: "/images/coming-soon-1.png",
+                image2: "/images/coming-soon-2.png",
+              },
             ].map((system, i) => (
               <div key={i} style={{ textAlign: "center" }}>
-                {system.title === "30 Day Reset" ? (
-                  /* ================= LIVE SYSTEM ================= */
-                  <div className="reset-image systems-size systems-tab-img"
+                <div
+                  className="reset-image systems-size systems-tab-img"
+                  onClick={() => {
+                    if (!system.live) return;
+                    setActiveSystem(system.systemKey);
+                  }}
+                  style={{
+                    background: "#ffffff",
+                    height: "320px",
+                    borderRadius: "16px",
+                    marginBottom: "16px",
+                    overflow: "hidden",
+                    position: "relative",
+                    opacity: system.live ? 1 : 0.75,
+                    cursor: system.live ? "pointer" : "default",
+                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                  }}
+                >
+                  <img
+                    src={system.image1}
+                    alt={system.title}
+                    className="reset-img"
+                  />
 
-                    onClick={() => {
-                      setActiveSystem("30-day-reset");
-                    }}
-
-                    style={{
-                      background: "#ffffff",
-                      height: "320px",
-                      borderRadius: "16px",
-                      marginBottom: "16px",
-                      overflow: "hidden",
-                      position: "relative",
-                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                    }}
-                    >
-                    <img
-                      src="/images/bands-refresh-1.png"
-                      alt="Coming Soon"
-                      className="reset-img"
-                    />
-                    <img
-                      src="/images/bands-refresh-2.png"
-                      alt="Coming Soon Active"
-                      className="reset-img reset-img-2"
-                    />
-                  </div>
-                ) : (
-                  /* ================= COMING SOON SYSTEM ================= */
-                  <div
-                    className="reset-image systems-size systems-tab-img"
-                    style={{
-                      background: "#ffffff",
-                      height: "320px",
-                      borderRadius: "16px",
-                      marginBottom: "16px",
-                      overflow: "hidden",
-                      position: "relative",
-                      opacity: 0.75,
-                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                    }}
-                  >
-                    <img
-                      src="/images/coming-soon-1.png"
-                      alt="Coming Soon"
-                      className="reset-img"
-                    />
-                    <img
-                      src="/images/coming-soon-2.png"
-                      alt="Coming Soon Active"
-                      className="reset-img reset-img-2"
-                    />
-                  </div>
-                )}
+                  <img
+                    src={system.image2}
+                    alt={`${system.title} Active`}
+                    className="reset-img reset-img-2"
+                  />
+                </div>
 
                 <h3 style={{ fontWeight: "700", color: "white" }}>
                   {system.title}

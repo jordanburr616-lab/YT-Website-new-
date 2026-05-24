@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { usePageView } from "../../hooks/usePageView";
+import { trackEvent } from "../../utils/analytics";
 
 function Home({ setActiveTab, setActiveSystem }) {
 
@@ -46,20 +47,23 @@ function Home({ setActiveTab, setActiveSystem }) {
 const programs = [
   {
     title: "30 Day Reset",
+    systemKey: "30-day-reset",
     status: "",
     image1: "/images/bands-refresh-1.png",
     image2: "/images/bands-refresh-2.png",
     active: true,
   },
   {
-    title: "10 Week Workout Plan",
-    status: "coming soon",
+    title: "The 10 Week Build",
+    systemKey: "build-phase",
+    status: "",
     image1: "/images/bands-workout-1.png",
     image2: "/images/bands-workout-2.png",
-    active: false,
+    active: true,
   },
   {
     title: "Coming Soon",
+    systemKey: "",
     status: "coming soon",
     image1: "/images/coming-soon-1.png",
     image2: "/images/coming-soon-2.png",
@@ -244,49 +248,55 @@ const heroStyles = {
     <div className="reset-card">
       
       <div className="reset-content">
-        <p className="reset-eyebrow">NEW PRODUCTIVITY SYSTEM</p>
-        <h1 className="reset-title">30 Day Reset</h1>
+        <p className="reset-eyebrow">NEW PROGRAM</p>
+
+        <h1 className="reset-title">
+          The 10 Week Build
+        </h1>
 
         <p className="reset-description">
-          Improving JB's daily nonnegotiables tracker that turns discipline
-          into consistency and makes progress <strong>ACTUALLY</strong> achievable.
+          A structured physical transformation system focused on
+          building discipline, confidence, strength, and momentum
+          through progressive training and consistency.
         </p>
 
         <button
-            className="reset-button"
-            onClick={() => {
-                setActiveTab("systems");
-                setActiveSystem("reset");
-              }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateX(4px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateX(0)";
-            }}
-          >
-            GET THE RESET →
-          </button>
-
+          className="reset-button"
+          onClick={() => {
+            setActiveTab("systems");
+            setActiveSystem("build-phase");
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateX(4px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateX(0)";
+          }}
+        >
+          START THE BUILD →
+        </button>
       </div>
 
-      <div className="reset-image"
-      onClick={() => {
-                setActiveTab("systems");
-                setActiveSystem("reset");
-              }}
-              >
+      <div
+        className="reset-image"
+        onClick={() => {
+          setActiveTab("systems");
+          setActiveSystem("build-phase");
+        }}
+      >
 
         <img
-          src="/images/bands-refresh-1.png"
-          alt="30 Day Reset"
+          src="/images/bands-workout-1.png"
+          alt="The 10 Week Build"
           className="reset-img reset-img-1"
         />
+
         <img
-          src="/images/bands-refresh-2.png"
-          alt="30 Day Reset Active"
+          src="/images/bands-workout-2.png"
+          alt="The 10 Week Build Active"
           className="reset-img reset-img-2"
         />
+
       </div>
 
 
@@ -339,7 +349,7 @@ const heroStyles = {
                       if (!program.active) return;
 
                       setActiveTab("systems");
-                      setActiveSystem("30-day-reset");
+                      setActiveSystem(program.systemKey);
                     }}
                   >
                     <img
@@ -432,13 +442,23 @@ const heroStyles = {
               marginBottom: "80px",
             }}
           >
-            {youtubeVideos.map((video) => (
+            {youtubeVideos.map((video, index) => (
               <a
                 key={video.id}
                 href={`https://www.youtube.com/watch?v=${video.id}`}
                 target="_blank"
                 rel="noreferrer"
                 style={{ textDecoration: "none" }}
+                onClick={() =>
+                  trackEvent("video_clicked", {
+                    page: window.location.pathname,
+                    metadata: {
+                      video_title: video.title,
+                      position: index + 1,
+                      section: "youtube_grid",
+                    },
+                  })
+                }
               >
                 <div
                   style={{
@@ -528,6 +548,14 @@ const heroStyles = {
               href="https://www.youtube.com/@improvingjb?sub_confirmation=1"
               target="_blank"
               rel="noreferrer"
+              onClick={() =>
+                trackEvent("youtube_subscribe_clicked", {
+                  page: window.location.pathname,
+                  metadata: {
+                    location: "youtube_section",
+                  },
+                })
+              }
             >
               <button
                 style={{
@@ -587,6 +615,15 @@ function SocialLinks() {
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
+        onClick={() =>
+          trackEvent("social_link_clicked", {
+            page: window.location.pathname,
+            metadata: {
+              platform: "youtube",
+              location: "floating_sidebar",
+            },
+          })
+        }
       >
         <img
           src="/images/youtube-icon.png"
@@ -606,6 +643,15 @@ function SocialLinks() {
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
+        onClick={() =>
+          trackEvent("social_link_clicked", {
+            page: window.location.pathname,
+            metadata: {
+              platform: "instagram",
+              location: "floating_sidebar",
+            },
+          })
+        }
       >
         <img
           src="/images/instagram.png"
@@ -625,6 +671,15 @@ function SocialLinks() {
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
+        onClick={() =>
+          trackEvent("social_link_clicked", {
+            page: window.location.pathname,
+            metadata: {
+              platform: "tiktok",
+              location: "floating_sidebar",
+            },
+          })
+        }
       >
         <img
           src="/images/tiktok.png"
