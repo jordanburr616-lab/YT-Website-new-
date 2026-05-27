@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getTrainingMax, getSplit } from "./build/buildLogic";
-import { fiveDayBuildSplit } from "./build/buildSplit";
+import { getTrainingMax, getSplit } from "./buildProgram/buildLogic";
+import { fiveDayBuildSplit } from "./buildProgram/buildSplit";
 
 function BuildPhase({ onBack }) {
 
