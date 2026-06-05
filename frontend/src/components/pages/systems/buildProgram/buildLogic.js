@@ -2,8 +2,8 @@ export function roundToNearestFive(num) {
   return Math.round(num / 5) * 5;
 }
 
-export function getTrainingMax(value) {
-  return roundToNearestFive(Number(value) * 0.9);
+export function getGoalMax(max) {
+  return roundToNearestFive(Number(max) * 1.05);
 }
 
 export function getSplit(daysPerWeek) {
@@ -13,4 +13,10 @@ export function getSplit(daysPerWeek) {
   if (Number(daysPerWeek) === 6) return "6 Day PPL";
 
   return "Invalid Split";
+}
+
+export function getWorkoutWeight(max, percent) {
+  if (!max || !percent) return "";
+
+  return roundToNearestFive(Number(max) * percent);
 }

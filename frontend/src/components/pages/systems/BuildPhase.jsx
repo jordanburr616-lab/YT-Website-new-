@@ -1,15 +1,19 @@
-import { useState } from "react";
-import { getTrainingMax, getSplit } from "./buildProgram/buildLogic";
-import { fiveDayBuildSplit } from "./buildProgram/buildSplit";
+import { useState, useEffect } from "react";
+import { getSplit, getGoalMax } from "./buildProgram/buildLogic";
+import { generateSixDayBuild } from "./buildProgram/GenerateSixDayBuild";
+import * as XLSX from "xlsx";
 
 function BuildPhase({ onBack }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [buildData, setBuildData] = useState(null);
 
   const [form, setForm] = useState({
     experience: "Beginner",
     goal: "Build Muscle",
-    daysPerWeek: 5,
+    daysPerWeek: 6,
     cardio: "No",
 
     squat: "",
@@ -31,27 +35,103 @@ function BuildPhase({ onBack }) {
   }
 
   function handleGenerate() {
-    const squatTM = getTrainingMax(form.squat);
-    const benchTM = getTrainingMax(form.bench);
-    const deadliftTM = getTrainingMax(form.deadlift);
+    const squatMax = Number(form.squat);
+    const benchMax = Number(form.bench);
+    const deadliftMax = Number(form.deadlift);
+
+    const squatGoal = getGoalMax(squatMax);
+    const benchGoal = getGoalMax(benchMax);
+    const deadliftGoal = getGoalMax(deadliftMax);
 
     const split = getSplit(form.daysPerWeek);
 
     const workoutPlan =
-      split === "5 Day Build Split" ? fiveDayBuildSplit : null;
+      split === "6 Day PPL"
+        ? generateSixDayBuild({
+            squatMax,
+            benchMax,
+            deadliftMax,
+            squatGoal,
+            benchGoal,
+            deadliftGoal,
+            workoutLength: Number(form.workoutLength),
+          })
+        : null;
 
     const newBuildData = {
       ...form,
-      squatTM,
-      benchTM,
-      deadliftTM,
+      squatMax,
+      benchMax,
+      deadliftMax,
+      squatGoal,
+      benchGoal,
+      deadliftGoal,
       split,
       workoutPlan,
     };
 
     setBuildData(newBuildData);
-
     console.log("Build data:", newBuildData);
+  }
+
+  function exportToExcel(buildData) {
+    if (!buildData?.workoutPlan) return;
+
+    const rows = [];
+
+    rows.push({
+      Week: "Starting Maxes",
+      Day: "",
+      Workout: "",
+      Exercise: "Squat",
+      Sets: "",
+      Reps: "",
+      Weight: buildData.squatMax,
+      Notes: `Goal PR: ${buildData.squatGoal}`,
+    });
+
+    rows.push({
+      Week: "Starting Maxes",
+      Day: "",
+      Workout: "",
+      Exercise: "Bench",
+      Sets: "",
+      Reps: "",
+      Weight: buildData.benchMax,
+      Notes: `Goal PR: ${buildData.benchGoal}`,
+    });
+
+    rows.push({
+      Week: "Starting Maxes",
+      Day: "",
+      Workout: "",
+      Exercise: "Deadlift",
+      Sets: "",
+      Reps: "",
+      Weight: buildData.deadliftMax,
+      Notes: `Goal PR: ${buildData.deadliftGoal}`,
+    });
+
+    buildData.workoutPlan.forEach((day) => {
+      day.exercises.forEach((exercise) => {
+        rows.push({
+          Week: day.week,
+          Day: day.day,
+          Workout: day.title,
+          Exercise: exercise.name,
+          Sets: exercise.sets,
+          Reps: exercise.reps,
+          Weight: exercise.weight || "",
+          Notes: exercise.notes || "",
+        });
+      });
+    });
+
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+    const workbook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "10 Week Build");
+    XLSX.writeFile(workbook, "10-week-build.xlsx");
   }
 
   return (
@@ -67,8 +147,8 @@ function BuildPhase({ onBack }) {
       <h1>The 10 Week Build</h1>
 
       <p>
-        Enter your current training info and generate a custom 10-week lifting
-        program.
+        Enter your current maxes and generate a custom 10-week lifting program
+        built toward new PRs.
       </p>
 
       <div>
@@ -76,7 +156,11 @@ function BuildPhase({ onBack }) {
 
         <label>
           Experience
-          <select name="experience" value={form.experience} onChange={handleChange}>
+          <select
+            name="experience"
+            value={form.experience}
+            onChange={handleChange}
+          >
             <option>Beginner</option>
             <option>Intermediate</option>
             <option>Advanced</option>
@@ -94,7 +178,11 @@ function BuildPhase({ onBack }) {
 
         <label>
           Days Per Week
-          <select name="daysPerWeek" value={form.daysPerWeek} onChange={handleChange}>
+          <select
+            name="daysPerWeek"
+            value={form.daysPerWeek}
+            onChange={handleChange}
+          >
             <option value={3}>3</option>
             <option value={4}>4</option>
             <option value={5}>5</option>
@@ -103,27 +191,38 @@ function BuildPhase({ onBack }) {
         </label>
 
         <label>
-          Squat 5RM
-          <input name="squat" type="number" value={form.squat} onChange={handleChange} />
+          Squat 1RM
+          <input
+            name="squat"
+            type="number"
+            value={form.squat}
+            onChange={handleChange}
+          />
         </label>
 
         <label>
-          Bench 5RM
-          <input name="bench" type="number" value={form.bench} onChange={handleChange} />
+          Bench 1RM
+          <input
+            name="bench"
+            type="number"
+            value={form.bench}
+            onChange={handleChange}
+          />
         </label>
 
         <label>
-          Deadlift 5RM
-          <input name="deadlift" type="number" value={form.deadlift} onChange={handleChange} />
+          Deadlift 1RM
+          <input
+            name="deadlift"
+            type="number"
+            value={form.deadlift}
+            onChange={handleChange}
+          />
         </label>
 
         <label>
           Cardio?
-          <select
-            name="cardio"
-            value={form.cardio}
-            onChange={handleChange}
-          >
+          <select name="cardio" value={form.cardio} onChange={handleChange}>
             <option>No</option>
             <option>Yes</option>
           </select>
@@ -145,11 +244,7 @@ function BuildPhase({ onBack }) {
 
         <label>
           Access
-          <select
-            name="access"
-            value={form.access}
-            onChange={handleChange}
-          >
+          <select name="access" value={form.access} onChange={handleChange}>
             <option>Home</option>
             <option>Dumbbells</option>
             <option>Full Gym</option>
@@ -170,17 +265,29 @@ function BuildPhase({ onBack }) {
           </select>
         </label>
 
-        <button onClick={handleGenerate}>
-          Generate My Build
-        </button>
+        <button onClick={handleGenerate}>Generate My Build</button>
 
         {buildData && (
           <div>
-            <h2>Your Training Maxes</h2>
-            <p>Squat TM: {buildData.squatTM}</p>
-            <p>Bench TM: {buildData.benchTM}</p>
-            <p>Deadlift TM: {buildData.deadliftTM}</p>
+            <h2>Your Strength Targets</h2>
+
+            <p>
+              Squat: {buildData.squatMax} → {buildData.squatGoal}
+            </p>
+
+            <p>
+              Bench: {buildData.benchMax} → {buildData.benchGoal}
+            </p>
+
+            <p>
+              Deadlift: {buildData.deadliftMax} → {buildData.deadliftGoal}
+            </p>
+
             <p>Recommended Split: {buildData.split}</p>
+
+            <button onClick={() => exportToExcel(buildData)}>
+              Download Excel Plan
+            </button>
           </div>
         )}
       </div>
