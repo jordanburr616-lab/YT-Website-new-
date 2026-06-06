@@ -21,7 +21,7 @@ export function getExerciseLimit(workoutLength) {
   return 4;
 }
 
-export function trimWorkout(exercises, workoutLength) {
+export function trimWorkout(exercises = [], workoutLength) {
   return exercises.slice(0, getExerciseLimit(workoutLength));
 }
 

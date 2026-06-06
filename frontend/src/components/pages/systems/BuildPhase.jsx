@@ -14,15 +14,13 @@ function BuildPhase({ onBack }) {
     experience: "Beginner",
     goal: "Build Muscle",
     daysPerWeek: 6,
-    cardio: "No",
 
     squat: "",
     bench: "",
     deadlift: "",
 
     workoutLength: 60,
-    access: "Full Gym",
-    injuries: "None",
+    access: "FullGym",
   });
 
   function handleChange(e) {
@@ -39,24 +37,26 @@ function BuildPhase({ onBack }) {
     const benchMax = Number(form.bench);
     const deadliftMax = Number(form.deadlift);
 
-    const squatGoal = getGoalMax(squatMax);
-    const benchGoal = getGoalMax(benchMax);
-    const deadliftGoal = getGoalMax(deadliftMax);
+    const squatGoal = getGoalMax(squatMax, form.goal);
+    const benchGoal = getGoalMax(benchMax, form.goal);
+    const deadliftGoal = getGoalMax(deadliftMax, form.goal);
 
     const split = getSplit(form.daysPerWeek);
 
     const workoutPlan =
-      split === "6 Day PPL"
-        ? generateSixDayBuild({
-            squatMax,
-            benchMax,
-            deadliftMax,
-            squatGoal,
-            benchGoal,
-            deadliftGoal,
-            workoutLength: Number(form.workoutLength),
-          })
-        : null;
+    split === "6 Day PPL"
+      ? generateSixDayBuild({
+          squatMax,
+          benchMax,
+          deadliftMax,
+          squatGoal,
+          benchGoal,
+          deadliftGoal,
+          workoutLength: Number(form.workoutLength),
+          access: form.access,
+          goal: form.goal,
+        })
+      : null;
 
     const newBuildData = {
       ...form,
@@ -245,9 +245,9 @@ function BuildPhase({ onBack }) {
         <label>
           Access
           <select name="access" value={form.access} onChange={handleChange}>
-            <option>Home</option>
-            <option>Dumbbells</option>
-            <option>Full Gym</option>
+            <option value="fullGym">Full Gym</option>
+            <option value="dumbbells">Dumbbells</option>
+            <option value="bodyweight">Home / Bodyweight</option>
           </select>
         </label>
 

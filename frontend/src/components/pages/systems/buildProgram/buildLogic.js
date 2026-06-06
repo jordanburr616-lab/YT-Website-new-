@@ -2,8 +2,11 @@ export function roundToNearestFive(num) {
   return Math.round(num / 5) * 5;
 }
 
-export function getGoalMax(max) {
-  return roundToNearestFive(Number(max) * 1.05);
+export function getGoalMax(currentMax, goal) {
+  if (goal === "Lose Weight") return currentMax;
+  if (goal === "Maintain") return Math.round((currentMax * 1.025) / 5) * 5;
+
+  return Math.round((currentMax * 1.05) / 5) * 5;
 }
 
 export function getSplit(daysPerWeek) {
