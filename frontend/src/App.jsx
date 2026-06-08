@@ -103,6 +103,7 @@ function App() {
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        setActiveSystem={setActiveSystem}
         isMobile={isMobile}
         setMenuOpen={setMenuOpen}
       />
@@ -113,6 +114,7 @@ function App() {
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         setActiveTab={setActiveTab}
+        setActiveSystem={setActiveSystem}
       />
         
 

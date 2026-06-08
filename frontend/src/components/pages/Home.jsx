@@ -62,9 +62,9 @@ const programs = [
     active: true,
   },
   {
-    title: "Coming Soon",
+    title: "The Routine",
     systemKey: "",
-    status: "coming soon",
+    status: "",
     image1: "/images/coming-soon-1.png",
     image2: "/images/coming-soon-2.png",
     active: false,
@@ -224,7 +224,17 @@ const heroStyles = {
               <button
                 className="hero-cta"
                 style={heroStyles.button}
-                onClick={() => setActiveTab("systems")}
+                onClick={() => {
+                  trackEvent("home_cta_clicked", {
+                    page: window.location.pathname,
+                    metadata: {
+                      location: "hero",
+                      target: "systems",
+                    },
+                  });
+
+                  setActiveTab("systems");
+                }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateX(4px)";
                 }}
@@ -263,6 +273,14 @@ const heroStyles = {
         <button
           className="reset-button"
           onClick={() => {
+            trackEvent("home_cta_clicked", {
+              page: window.location.pathname,
+              metadata: {
+                location: "featured_build_section",
+                target: "build-phase",
+              },
+            });
+
             setActiveTab("systems");
             setActiveSystem("build-phase");
           }}
@@ -280,6 +298,16 @@ const heroStyles = {
       <div
         className="reset-image"
         onClick={() => {
+          trackEvent("home_program_clicked", {
+            page: window.location.pathname,
+            metadata: {
+              program_title: "The 10 Week Build",
+              program_key: "build-phase",
+              location: "featured_build_image",
+              active: true,
+            },
+          });
+
           setActiveTab("systems");
           setActiveSystem("build-phase");
         }}
@@ -346,10 +374,24 @@ const heroStyles = {
                   <div
                     className="reset-image systems-size"
                     onClick={() => {
+                      trackEvent("home_program_clicked", {
+                        page: window.location.pathname,
+                        metadata: {
+                          program_title: program.title,
+                          program_key: program.systemKey,
+                          active: program.active,
+                        },
+                      });
+
                       if (!program.active) return;
 
                       setActiveTab("systems");
                       setActiveSystem(program.systemKey);
+                    }}
+
+                    style={{
+                      opacity: program.active ? 1 : 0.75,
+                      cursor: program.active ? "pointer" : "default",
                     }}
                   >
                     <img
@@ -366,8 +408,6 @@ const heroStyles = {
                   </div>
 
                   <h3>{program.title}</h3>
-
-                  {program.status && <p>{program.status}</p>}
                 </div>
               ))}
             </div>
@@ -383,7 +423,17 @@ const heroStyles = {
           {/* VIEW ALL BUTTON */}
           <div style={{ textAlign: "center" }}>
             <button
-              onClick={() => setActiveTab("systems")}
+              onClick={() => {
+                trackEvent("home_cta_clicked", {
+                  page: window.location.pathname,
+                  metadata: {
+                    location: "systems_preview",
+                    target: "systems",
+                  },
+                });
+
+                setActiveTab("systems");
+              }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-4px)";
               }}

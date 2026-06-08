@@ -6,6 +6,8 @@ import {
   getAccessoryBlock,
   getAccessoryPhase,
   trimWorkout,
+  getExperienceModifiers,
+  adjustSets,
 } from "./workoutHelpers.js";
 
 const weeklyProgression = [
@@ -29,10 +31,12 @@ export function generateSixDayBuild({
   workoutLength,
   access = "fullGym",
   goal,
-}){
+  experience,
+}) {
 
   const plan = [];
   const goalMod = getGoalModifiers(goal);
+  const expMod = getExperienceModifiers(experience);
 
   console.log("ACCESS RECEIVED:", access);
   console.log("IS FULL GYM:", isFullGym(access));
@@ -40,39 +44,40 @@ export function generateSixDayBuild({
   weeklyProgression.forEach((weekPlan) => {
     const { week, percent, sets, reps } = weekPlan;
 
-    plan.push(createLegDay(week, 1, squatMax, percent, sets, reps, workoutLength, access, goalMod));
-    plan.push(createPullAccessoryDay(week, 2, workoutLength, access, goalMod));
-    plan.push(createPushDay(week, 3, benchMax, percent, sets, reps, workoutLength, access, goalMod));
+    plan.push(createLegDay(week, 1, squatMax, percent, sets, reps, workoutLength, access, goalMod, expMod));
+    plan.push(createPullAccessoryDay(week, 2, workoutLength, access, goalMod, expMod));
+    plan.push(createPushDay(week, 3, benchMax, percent, sets, reps, workoutLength, access, goalMod, expMod));
     plan.push(createRestDay(week, 4));
-    plan.push(createLegAccessoryDay(week, 5, workoutLength, access, goalMod));
-    plan.push(createPullDay(week, 6, deadliftMax, percent, sets, reps, workoutLength, access, goalMod));
-    plan.push(createPushAccessoryDay(week, 7, workoutLength, access, goalMod));
+    plan.push(createLegAccessoryDay(week, 5, workoutLength, access, goalMod, expMod));
+    plan.push(createPullDay(week, 6, deadliftMax, percent, sets, reps, workoutLength, access, goalMod, expMod));
+    plan.push(createPushAccessoryDay(week, 7, workoutLength, access, goalMod, expMod));
 
     if (week === 6) {
-      plan.push(createCurrentMaxTestDay(7, 1, "Squat", squatMax, workoutLength, access, goalMod));
-      plan.push(createRecoveryAccessoryDay(7, 2, "Pull Recovery", workoutLength, access, goalMod));
-      plan.push(createCurrentMaxTestDay(7, 3, "Bench", benchMax, workoutLength, access, goalMod));
+      plan.push(createCurrentMaxTestDay(7, 1, "Squat", squatMax, workoutLength, access, goalMod, expMod));
+      plan.push(createRecoveryAccessoryDay(7, 2, "Pull Recovery", workoutLength, access, goalMod, expMod));
+      plan.push(createCurrentMaxTestDay(7, 3, "Bench", benchMax, workoutLength, access, goalMod, expMod));
       plan.push(createRestDay(7, 4, workoutLength));
-      plan.push(createRecoveryAccessoryDay(7, 5, "Leg Recovery", workoutLength, access, goalMod));
-      plan.push(createCurrentMaxTestDay(7, 6, "Deadlift", deadliftMax, workoutLength, access, goalMod));
-      plan.push(createRecoveryAccessoryDay(7, 7, "Push Recovery", workoutLength, access, goalMod));
+      plan.push(createRecoveryAccessoryDay(7, 5, "Leg Recovery", workoutLength, access, goalMod, expMod));
+      plan.push(createCurrentMaxTestDay(7, 6, "Deadlift", deadliftMax, workoutLength, access, goalMod, expMod));
+      plan.push(createRecoveryAccessoryDay(7, 7, "Push Recovery", workoutLength, access, goalMod, expMod));
     }
   });
 
-  plan.push(createPRDay(10, 1, "Squat", squatMax, squatGoal, workoutLength, access, goalMod));
-  plan.push(createRecoveryAccessoryDay(10, 2, "Pull Recovery", workoutLength, access, goalMod));
-  plan.push(createPRDay(10, 3, "Bench", benchMax, benchGoal, workoutLength, access, goalMod));
+  plan.push(createPRDay(10, 1, "Squat", squatMax, squatGoal, workoutLength, access, goalMod, expMod));
+  plan.push(createRecoveryAccessoryDay(10, 2, "Pull Recovery", workoutLength, access, goalMod, expMod));
+  plan.push(createPRDay(10, 3, "Bench", benchMax, benchGoal, workoutLength, access, goalMod, expMod));
   plan.push(createRestDay(10, 4));
-  plan.push(createRecoveryAccessoryDay(10, 5, "Leg Recovery", workoutLength, access, goalMod));
-  plan.push(createPRDay(10, 6, "Deadlift", deadliftMax, deadliftGoal, workoutLength, access, goalMod));
-  plan.push(createRecoveryAccessoryDay(10, 7, "Push Recovery", workoutLength, access, goalMod));
+  plan.push(createRecoveryAccessoryDay(10, 5, "Leg Recovery", workoutLength, access, goalMod, expMod));
+  plan.push(createPRDay(10, 6, "Deadlift", deadliftMax, deadliftGoal, workoutLength, access, goalMod, expMod));
+  plan.push(createRecoveryAccessoryDay(10, 7, "Push Recovery", workoutLength, access, goalMod, expMod));
 
   return plan;
 }
 
-function createLegDay(week, day, squatMax, percent, sets, reps, workoutLength, access, goalMod) {
+export function createLegDay(week, day, squatMax, percent, sets, reps, workoutLength, access, goalMod, expMod) {
   const block = getHeavyBlock(week);
   const ex = getAccessExercises(access);
+  const volumeMultiplier = expMod.volumeMultiplier;
 
   const mainWeight = isFullGym(access)
     ? getWorkoutWeight(squatMax, percent)
@@ -82,49 +87,49 @@ function createLegDay(week, day, squatMax, percent, sets, reps, workoutLength, a
     A: [
       {
         name: ex.squat,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.quad, sets: 3, reps: week <= 3 ? 10 : 8, weight: "" },
-      { name: ex.hamstring, sets: 3, reps: week <= 3 ? 15 : 12, weight: "" },
-      { name: "Calf Raises", sets: 4, reps: week <= 6 ? 12 : 10, weight: "" },
-      { name: ex.lunge, sets: 3, reps: week <= 6 ? 12 : 10, weight: "" },
+      { name: ex.quad, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 10 : 8, weight: "" },
+      { name: ex.hamstring, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 15 : 12, weight: "" },
+      { name: "Calf Raises", sets: adjustSets(4, volumeMultiplier), reps: week <= 6 ? 12 : 10, weight: "" },
+      { name: ex.lunge, sets: adjustSets(3, volumeMultiplier), reps: week <= 6 ? 12 : 10, weight: "" },
     ],
 
     B: [
       {
         name: ex.squat,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.lunge, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.quad, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.hamstring, sets: 3, reps: week <= 6 ? 12 : 10, weight: "" },
-      { name: "Calf Raises", sets: 4, reps: week <= 6 ? 12 : 10, weight: "" },
+      { name: ex.lunge, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.quad, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.hamstring, sets: adjustSets(3, volumeMultiplier), reps: week <= 6 ? 12 : 10, weight: "" },
+      { name: "Calf Raises", sets: adjustSets(4, volumeMultiplier), reps: week <= 6 ? 12 : 10, weight: "" },
     ],
 
     C: [
       {
         name: ex.squat,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.hamstring, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.quad, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: "Calf Raises", sets: 4, reps: week <= 6 ? 12 : 10, weight: "" },
-      { name: ex.lunge, sets: 4, reps: week <= 6 ? 12 : 10, weight: "" },
+      { name: ex.hamstring, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.quad, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: "Calf Raises", sets: adjustSets(4, volumeMultiplier), reps: week <= 6 ? 12 : 10, weight: "" },
+      { name: ex.lunge, sets: adjustSets(4, volumeMultiplier), reps: week <= 6 ? 12 : 10, weight: "" },
     ],
   };
 
@@ -136,9 +141,10 @@ function createLegDay(week, day, squatMax, percent, sets, reps, workoutLength, a
   };
 }
 
-function createPushDay(week, day, benchMax, percent, sets, reps, workoutLength, access, goalMod) {
+export function createPushDay(week, day, benchMax, percent, sets, reps, workoutLength, access, goalMod, expMod) {
   const block = getHeavyBlock(week);
   const ex = getAccessExercises(access);
+  const volumeMultiplier = expMod.volumeMultiplier;
 
   const mainWeight = isFullGym(access)
     ? getWorkoutWeight(benchMax, percent)
@@ -148,49 +154,49 @@ function createPushDay(week, day, benchMax, percent, sets, reps, workoutLength, 
     A: [
       {
         name: ex.bench,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.press, sets: 3, reps: week <= 3 ? 10 : 8, weight: "" },
-      { name: ex.triceps, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.raise, sets: 4, reps: week <= 3 ? 15 : 12, weight: "" },
-      { name: "Pushups", sets: 3, reps: "AMRAP", weight: "" },
+      { name: ex.press, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 10 : 8, weight: "" },
+      { name: ex.triceps, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.raise, sets: adjustSets(4, volumeMultiplier), reps: week <= 3 ? 15 : 12, weight: "" },
+      { name: "Pushups", sets: adjustSets(3, volumeMultiplier), reps: "AMRAP", weight: "" },
     ],
 
     B: [
       {
         name: ex.bench,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.press, sets: 3, reps: week <= 6 ? 8 : 6, weight: "" },
-      { name: ex.triceps, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.raise, sets: 4, reps: week <= 3 ? 15 : 12, weight: "" },
-      { name: "Pushups", sets: 3, reps: "AMRAP", weight: "" },
+      { name: ex.press, sets: adjustSets(3, volumeMultiplier), reps: week <= 6 ? 8 : 6, weight: "" },
+      { name: ex.triceps, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.raise, sets: adjustSets(4, volumeMultiplier), reps: week <= 3 ? 15 : 12, weight: "" },
+      { name: "Pushups", sets: adjustSets(3, volumeMultiplier), reps: "AMRAP", weight: "" },
     ],
 
     C: [
       {
         name: ex.bench,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.press, sets: 3, reps: week <= 3 ? 10 : 8, weight: "" },
-      { name: ex.triceps, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.raise, sets: 4, reps: week <= 3 ? 15 : 12, weight: "" },
-      { name: "Pushups", sets: 3, reps: "AMRAP", weight: "" },
+      { name: ex.press, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 10 : 8, weight: "" },
+      { name: ex.triceps, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.raise, sets: adjustSets(4, volumeMultiplier), reps: week <= 3 ? 15 : 12, weight: "" },
+      { name: "Pushups", sets: adjustSets(3, volumeMultiplier), reps: "AMRAP", weight: "" },
     ],
   };
 
@@ -202,9 +208,10 @@ function createPushDay(week, day, benchMax, percent, sets, reps, workoutLength, 
   };
 }
 
-function createPullDay(week, day, deadliftMax, percent, sets, reps, workoutLength, access, goalMod) {
+export function createPullDay(week, day, deadliftMax, percent, sets, reps, workoutLength, access, goalMod, expMod) {
   const block = getHeavyBlock(week);
   const ex = getAccessExercises(access);
+  const volumeMultiplier = expMod.volumeMultiplier;
 
   const mainWeight = isFullGym(access)
     ? getWorkoutWeight(deadliftMax, percent)
@@ -214,49 +221,49 @@ function createPullDay(week, day, deadliftMax, percent, sets, reps, workoutLengt
     A: [
       {
         name: ex.deadlift,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.row, sets: 4, reps: week <= 3 ? 10 : 8, weight: "" },
-      { name: ex.hamstring, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.curl, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: "Shrugs", sets: 3, reps: week <= 3 ? 15 : 12, weight: "" },
+      { name: ex.row, sets: adjustSets(4, volumeMultiplier), reps: week <= 3 ? 10 : 8, weight: "" },
+      { name: ex.hamstring, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.curl, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: "Shrugs", sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 15 : 12, weight: "" },
     ],
 
     B: [
       {
         name: ex.deadlift,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.row, sets: 4, reps: week <= 3 ? 10 : 8, weight: "" },
-      { name: ex.curl, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.hamstring, sets: 3, reps: week <= 3 ? 10 : 8, weight: "" },
-      { name: "Shrugs", sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.row, sets: adjustSets(4, volumeMultiplier), reps: week <= 3 ? 10 : 8, weight: "" },
+      { name: ex.curl, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.hamstring, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 10 : 8, weight: "" },
+      { name: "Shrugs", sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
     ],
 
     C: [
       {
         name: ex.deadlift,
-        sets,
+        sets: adjustSets(sets, volumeMultiplier),
         reps,
         weight: mainWeight,
         notes: !isFullGym(access)
           ? "Use a challenging variation or load."
           : "",
       },
-      { name: ex.row, sets: 4, reps: week <= 3 ? 10 : 8, weight: "" },
-      { name: ex.curl, sets: 3, reps: week <= 3 ? 12 : 10, weight: "" },
-      { name: ex.hamstring, sets: 3, reps: week <= 3 ? 10 : 8, weight: "" },
-      { name: "Shrugs", sets: 3, reps: week <= 3 ? 15 : 12, weight: "" },
+      { name: ex.row, sets: adjustSets(4, volumeMultiplier), reps: week <= 3 ? 10 : 8, weight: "" },
+      { name: ex.curl, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 12 : 10, weight: "" },
+      { name: ex.hamstring, sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 10 : 8, weight: "" },
+      { name: "Shrugs", sets: adjustSets(3, volumeMultiplier), reps: week <= 3 ? 15 : 12, weight: "" },
     ],
   };
 
@@ -268,7 +275,7 @@ function createPullDay(week, day, deadliftMax, percent, sets, reps, workoutLengt
   };
 }
 
-function createCurrentMaxTestDay(week, day, liftName, currentMax, workoutLength, access, goalMod) {
+export function createCurrentMaxTestDay(week, day, liftName, currentMax, workoutLength, access, goalMod, expMod) {
   if (!isFullGym(access)) {
     return {
       week,
@@ -303,7 +310,7 @@ function createCurrentMaxTestDay(week, day, liftName, currentMax, workoutLength,
   };
 }
 
-function createPRDay(week, day, liftName, currentMax, goalMax, workoutLength, access, goalMod) {
+export function createPRDay(week, day, liftName, currentMax, goalMax, workoutLength, access, goalMod, expMod) {
   if (!isFullGym(access)) {
     return {
       week,
@@ -345,7 +352,7 @@ function createPRDay(week, day, liftName, currentMax, goalMax, workoutLength, ac
   };
 }
 
-function createRecoveryAccessoryDay(week, day, title) {
+export function createRecoveryAccessoryDay(week, day, title) {
   return {
     week,
     day,
@@ -357,7 +364,7 @@ function createRecoveryAccessoryDay(week, day, title) {
   };
 }
 
-function createRestDay(week, day) {
+export function createRestDay(week, day) {
   return {
     week,
     day,
@@ -374,7 +381,7 @@ function createRestDay(week, day) {
   };
 }
 
-function createLegAccessoryDay(week, day, workoutLength, access, goalMod) {
+export function createLegAccessoryDay(week, day, workoutLength, access, goalMod, expMod) {
   const block = getAccessoryBlock(week);
   const phase = getAccessoryPhase(week);
   const ex = getAccessExercises(access);
@@ -386,6 +393,8 @@ function createLegAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: ex.hamstring, ...phase.secondary, weight: "" },
       { name: "Calf Raises", ...phase.isolation, weight: "" },
       { name: ex.squat, ...phase.main, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
+      
     ],
 
     B: [
@@ -394,6 +403,7 @@ function createLegAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: "Calf Raises", ...phase.isolation, weight: "" },
       { name: ex.quad, ...phase.secondary, weight: "" },
       { name: ex.hamstring, ...phase.secondary, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
     ],
 
     C: [
@@ -402,14 +412,18 @@ function createLegAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: "Calf Raises", ...phase.isolation, weight: "" },
       { name: ex.lunge, ...phase.secondary, weight: "" },
       { name: ex.squat, ...phase.main, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
     ],
   };
 
   let finalExercises = legBlocks[block] || legBlocks.A;
 
-  finalExercises = finalExercises.map((exercise) =>
-    applyGoalReps(exercise, goalMod)
-  );
+  finalExercises = finalExercises
+    .map((exercise) => applyGoalReps(exercise, goalMod))
+    .map((exercise) => ({
+      ...exercise,
+      sets: adjustSets(exercise.sets, expMod.volumeMultiplier),
+    }));
 
   finalExercises = addConditioningIfNeeded(finalExercises, goalMod);
 
@@ -421,7 +435,7 @@ function createLegAccessoryDay(week, day, workoutLength, access, goalMod) {
   };
 }
 
-function createPullAccessoryDay(week, day, workoutLength, access, goalMod) {
+export function createPullAccessoryDay(week, day, workoutLength, access, goalMod, expMod) {
   const block = getAccessoryBlock(week);
   const phase = getAccessoryPhase(week);
   const ex = getAccessExercises(access);
@@ -438,6 +452,7 @@ function createPullAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: ex.curl, ...phase.secondary, weight: "" },
       { name: ex.hamstring, ...phase.secondary, weight: "" },
       { name: "Shrugs", ...phase.isolation, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
     ],
 
     B: [
@@ -446,6 +461,7 @@ function createPullAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: ex.deadlift, ...phase.secondary, weight: "" },
       { name: ex.hamstring, ...phase.secondary, weight: "" },
       { name: "Shrugs", ...phase.isolation, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
     ],
 
     C: [
@@ -454,14 +470,18 @@ function createPullAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: ex.curl, ...phase.secondary, weight: "" },
       { name: ex.deadlift, ...phase.secondary, weight: "" },
       { name: "Shrugs", ...phase.isolation, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
     ],
   };
 
   let finalExercises = pullBlocks[block] || pullBlocks.A;
 
-  finalExercises = finalExercises.map((exercise) =>
-    applyGoalReps(exercise, goalMod)
-  );
+  finalExercises = finalExercises
+    .map((exercise) => applyGoalReps(exercise, goalMod))
+    .map((exercise) => ({
+      ...exercise,
+      sets: adjustSets(exercise.sets, expMod.volumeMultiplier),
+    }));
 
   finalExercises = addConditioningIfNeeded(finalExercises, goalMod);
 
@@ -473,7 +493,7 @@ function createPullAccessoryDay(week, day, workoutLength, access, goalMod) {
   };
 }
 
-function createPushAccessoryDay(week, day, workoutLength, access, goalMod) {
+export function createPushAccessoryDay(week, day, workoutLength, access, goalMod, expMod) {
   const block = getAccessoryBlock(week);
   const phase = getAccessoryPhase(week);
   const ex = getAccessExercises(access);
@@ -485,6 +505,7 @@ function createPushAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: ex.raise, ...phase.isolation, weight: "" },
       { name: ex.triceps, ...phase.secondary, weight: "" },
       { name: "Pushups", ...phase.main, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
     ],
 
     B: [
@@ -493,6 +514,7 @@ function createPushAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: ex.raise, ...phase.isolation, weight: "" },
       { name: "Pushups", ...phase.main, weight: "" },
       { name: ex.bench, ...phase.secondary, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
     ],
 
     C: [
@@ -501,14 +523,18 @@ function createPushAccessoryDay(week, day, workoutLength, access, goalMod) {
       { name: ex.triceps, ...phase.secondary, weight: "" },
       { name: ex.press, ...phase.secondary, weight: "" },
       { name: "Pushups", ...phase.main, weight: "" },
+      { name: "Core Work", sets: 3, reps: "10-15", weight: "" },
     ],
   };
 
   let finalExercises = pushBlocks[block] || pushBlocks.A;
 
-  finalExercises = finalExercises.map((exercise) =>
-    applyGoalReps(exercise, goalMod)
-  );
+  finalExercises = finalExercises
+    .map((exercise) => applyGoalReps(exercise, goalMod))
+    .map((exercise) => ({
+      ...exercise,
+      sets: adjustSets(exercise.sets, expMod.volumeMultiplier),
+    }));
 
   finalExercises = addConditioningIfNeeded(finalExercises, goalMod);
 

@@ -901,3 +901,251 @@ button {
 
   margin-bottom: 10px;
 }
+
+/* =========================================================
+   10 WEEK BUILD PAGE
+========================================================= */
+
+.build-page {
+  min-height: 100vh;
+  background: #35a4cf;
+  padding: 150px 24px 120px;
+}
+
+.build-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.build-back {
+  background: white;
+  color: #111;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 800;
+  cursor: pointer;
+  margin-bottom: 32px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.build-hero {
+  text-align: center;
+  color: white;
+  margin-top: 28px;
+  margin-bottom: 48px;
+}
+
+.build-hero h1 {
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1;
+  margin: 8px 0 18px;
+  font-weight: 900;
+}
+
+.build-hero p {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.build-hero .reset-eyebrow {
+  color: #39393a;
+}
+
+.build-card {
+  background: white;
+  border-radius: 24px;
+  padding: 42px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+.build-form h2,
+.build-results h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #111;
+}
+
+.build-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.build-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #111;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.build-grid input,
+.build-grid select {
+  padding: 14px 14px;
+  border-radius: 10px;
+  border: 1px solid #cfd6dc;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #f7f9fb;
+  color: #111;
+}
+
+.build-grid input:focus,
+.build-grid select:focus {
+  outline: 2px solid #2da6da;
+  border-color: #2da6da;
+  background: white;
+}
+
+.build-generate,
+.build-download {
+  margin-top: 32px;
+  background: #2da6da;
+  color: white;
+  border: none;
+  padding: 16px 36px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.build-generate:hover,
+.build-download:hover {
+  transform: translateY(-3px);
+  opacity: 0.92;
+}
+
+.build-results {
+  margin-top: 42px;
+  padding-top: 36px;
+  border-top: 1px solid #e1e5e8;
+}
+
+.build-targets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.build-targets div {
+  background: #f4f8fb;
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid #d9e6ec;
+}
+
+.build-targets span {
+  display: block;
+  color: #7c8791;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.build-targets strong {
+  font-size: 1.35rem;
+  color: #111;
+}
+
+.build-split {
+  margin-top: 24px;
+  font-size: 1rem;
+  color: #222;
+}
+
+.build-back:hover {
+  transform: translateX(-6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.build-error {
+  background: #fff0f0;
+  border: 1px solid #ffb7b7;
+  color: #c62828;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .build-page {
+    padding: 92px 14px 80px;
+  }
+
+  .build-card {
+    padding: 26px 20px;
+  }
+
+  .build-form h2 {
+    font-size: 1.75rem;
+    line-height: 1.05;
+    margin-bottom: 26px;
+  }
+
+  .build-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 12px;
+  }
+
+  .build-grid label {
+    font-size: 0.68rem;
+    letter-spacing: 0.45px;
+    gap: 7px;
+  }
+
+  .build-grid input,
+  .build-grid select {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 9px;
+    font-size: 0.82rem;
+  }
+
+  .build-grid option {
+    font-size: 0.85rem;
+  }
+
+  .build-generate {
+    width: 100%;
+    padding: 15px 18px;
+    font-size: 0.82rem;
+    letter-spacing: 0.8px;
+  }
+
+  .build-hero {
+    margin-top: 26px;
+    margin-bottom: 40px;
+  }
+
+  .build-hero h1 {
+    font-size: 2.25rem;
+    line-height: 0.95;
+  }
+
+  .build-hero p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .build-error {
+    font-size: 0.78rem;
+    line-height: 1.35;
+    padding: 10px 12px;
+  }
+}

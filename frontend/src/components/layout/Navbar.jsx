@@ -1,11 +1,20 @@
 import Tab from "./Tab";
 
 function Navbar({
-  activeTab,
-  setActiveTab,
-  isMobile,
-  setMenuOpen,
-}) {
+    activeTab,
+    setActiveTab,
+    setActiveSystem,
+    isMobile,
+    setMenuOpen,
+  }) {
+
+    function handleTabClick(tab) {
+      if (tab === "systems") {
+        setActiveSystem(null);
+      }
+
+      setActiveTab(tab);
+    }
   return (
     <nav
         style={{
@@ -24,7 +33,10 @@ function Navbar({
       >
       {/* LOGO */}
       <div 
-        onClick={() => setActiveTab("home")}
+        onClick={() => {
+          setActiveSystem(null);
+          setActiveTab("home");
+        }}
         style={{
           display: "flex",
           alignItems: "center",
@@ -65,10 +77,10 @@ function Navbar({
 
     {!isMobile && (
       <div style={{ display: "flex", gap: "16px" }}>
-        <Tab label="Home" value="home" activeTab={activeTab} setActiveTab={setActiveTab} />
-        <Tab label="Systems" value="systems" activeTab={activeTab} setActiveTab={setActiveTab} />
-        <Tab label="About Me" value="about" activeTab={activeTab} setActiveTab={setActiveTab} />
-        <Tab label="Community" value="community" activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Tab label="Home" value="home" activeTab={activeTab} setActiveTab={handleTabClick} />
+        <Tab label="Systems" value="systems" activeTab={activeTab} setActiveTab={handleTabClick} />
+        <Tab label="About Me" value="about" activeTab={activeTab} setActiveTab={handleTabClick} />
+        <Tab label="Community" value="community" activeTab={activeTab} setActiveTab={handleTabClick} />
       </div>
     )}
 

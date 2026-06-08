@@ -1,4 +1,10 @@
-function MobileMenu({ isMobile, menuOpen, setMenuOpen, setActiveTab }) {
+function MobileMenu({
+    isMobile,
+    menuOpen,
+    setMenuOpen,
+    setActiveTab,
+    setActiveSystem,
+  }) {
   if (!isMobile) return null;
 
   const navItems = [
@@ -31,6 +37,10 @@ function MobileMenu({ isMobile, menuOpen, setMenuOpen, setActiveTab }) {
               key={item.value}
               className="mobile-menu-link"
               onClick={() => {
+                if (item.value === "systems") {
+                  setActiveSystem(null);
+                }
+
                 setActiveTab(item.value);
                 setMenuOpen(false);
               }}

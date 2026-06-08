@@ -22,6 +22,9 @@ export function getExerciseLimit(workoutLength) {
 }
 
 export function trimWorkout(exercises = [], workoutLength) {
+  console.log("WORKOUT LENGTH RECEIVED:", workoutLength);
+  console.log("LIMIT:", getExerciseLimit(workoutLength));
+
   return exercises.slice(0, getExerciseLimit(workoutLength));
 }
 
@@ -55,4 +58,24 @@ export function getAccessoryPhase(week) {
     secondary: { sets: 3, reps: 6 },
     isolation: { sets: 3, reps: 10 },
   };
+}
+
+export function getExperienceModifiers(experience) {
+  switch (experience) {
+    case "Beginner":
+      return { volumeMultiplier: 0.8, week7Type: "deload" };
+
+    case "Advanced":
+      return { volumeMultiplier: 1.2, week7Type: "test" };
+
+    case "Intermediate":
+    default:
+      return { volumeMultiplier: 1, week7Type: "test" };
+  }
+}
+
+export function adjustSets(sets, volumeMultiplier) {
+  if (!sets || typeof sets !== "number") return sets;
+
+  return Math.max(2, Math.round(sets * volumeMultiplier));
 }

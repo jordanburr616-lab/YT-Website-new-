@@ -1,5 +1,6 @@
 // import { useState } from "react";
 import { usePageView } from "../../hooks/usePageView";
+import { trackEvent } from "../../utils/analytics";
 
 import ThirtyDayReset from "./systems/ThirtyDayReset";
 import BuildPhase from "./systems/BuildPhase";
@@ -164,7 +165,7 @@ if (activeSystem === "build-phase") {
                 image2: "/images/bands-workout-2.png",
               },
               {
-                title: "Coming Soon",
+                title: "The Routine",
                 live: false,
                 systemKey: null,
                 image1: "/images/coming-soon-1.png",
@@ -175,7 +176,17 @@ if (activeSystem === "build-phase") {
                 <div
                   className="reset-image systems-size systems-tab-img"
                   onClick={() => {
+                    trackEvent("system_card_clicked", {
+                      page: window.location.pathname,
+                      metadata: {
+                        system_title: system.title,
+                        system_key: system.systemKey,
+                        live: system.live,
+                      },
+                    });
+
                     if (!system.live) return;
+
                     setActiveSystem(system.systemKey);
                   }}
                   style={{
@@ -206,18 +217,6 @@ if (activeSystem === "build-phase") {
                 <h3 style={{ fontWeight: "700", color: "white" }}>
                   {system.title}
                 </h3>
-
-                {!system.live && (
-                  <p
-                    style={{
-                      opacity: 0.8,
-                      fontSize: "0.85rem",
-                      color: "white",
-                    }}
-                  >
-                    Coming soon
-                  </p>
-                )}
               </div>
             ))}
           </div>

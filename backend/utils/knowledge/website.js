@@ -32,7 +32,7 @@ const websiteKnowledge = {
       mainSections: [
         "Hero section (Keep Building)",
 
-        "Featured system highlight (30 Day Reset)",
+        "Featured system highlight (The 10 Week Build)",
 
         "Programs preview section",
 
@@ -69,25 +69,20 @@ const websiteKnowledge = {
           summary:
             "A structured reset system focused on rebuilding consistency, structure, and daily execution.",
         },
+        {
+          name: "The 10 Week Build",
+          status: "available",
+          summary:
+            "A custom workout generator that creates a 10-week lifting program based on the user's maxes, schedule, goals, experience, workout length, and equipment access.",
+        },
       ],
 
       plannedPrograms: [
         {
-          name: "10 Week Workout Plan",
-
-          status: "in progress",
-
-          summary:
-            "A future fitness-focused system centered around consistency and sustainable progress.",
-        },
-
-        {
-          name: "Additional Systems",
-
+          name: "The Routine",
           status: "planned",
-
           summary:
-            "More systems and tools are planned as the ecosystem continues developing.",
+            "A future daily planning system focused on structure, prioritization, and execution.",
         },
       ],
 
@@ -200,9 +195,7 @@ const websiteKnowledge = {
 
   limitations: [
     "The Community section is still early in development.",
-
-    "Only the 30 Day Reset is currently fully available.",
-
+    "The Routine is planned for a future version.",
     "Some future systems and features are still being built.",
   ],
 

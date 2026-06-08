@@ -68,64 +68,110 @@ const systemsKnowledge = {
     },
 
     {
-      name: "10 Week Workout Plan",
+      name: "The 10 Week Build",
 
-      status: "in progress",
+      status: "available",
 
-      type: "Workout structure system",
+      type: "Strength and fitness progression system",
 
       purpose:
-        "A structured fitness system focused on sustainable training, consistency, and long-term physical progress.",
+      "A personalized 10-week training system designed to help users build strength, improve consistency, and work toward new personal records through structured progression.",
 
       whoItsFor: [
-        "People trying to build consistency in the gym",
+      "People looking for more structure in the gym",
 
-        "People who struggle with burnout or unrealistic expectations",
+      
+      "People who want a personalized training plan",
 
-        "People looking for more structure around fitness goals",
+      "People focused on improving squat, bench, and deadlift strength",
 
-        "People who want a more disciplined training approach",
+      "People trying to build discipline through consistent training",
+
+      "People training with full gym access, dumbbells, or bodyweight equipment",
+
       ],
 
       whatItIs: [
-        "A structured multi-week workout framework",
+      "A custom-generated 10-week workout plan",
 
-        "A system focused on sustainable progress instead of random workouts",
+      "A progression-based strength system",
 
-        "A way to organize fitness goals within a realistic time window",
+      "A program built around current squat, bench, and deadlift maxes",
 
-        "A program designed around progression, consistency, and execution",
+      "A structured framework designed to improve consistency and performance",
 
-        "A challenge intended to push users while remaining structured",
+      "A system that adapts based on training frequency, goals, experience level, workout length, and equipment access",
+
+      "A downloadable program that can be exported as an Excel file",
+
+      ],
+
+      keyFeatures: [
+      "Supports 3, 4, 5, and 6 day training schedules",
+
+      "Supports Full Gym, Dumbbell, and Home/Bodyweight training options",
+
+      "Generates personalized workout weights using user-entered maxes",
+
+      "Includes progressive overload across 10 weeks",
+
+      "Provides strength targets based on current performance",
+
+      "Exports directly to Excel for tracking and execution",
+
       ],
 
       whatItIsNot: [
-        "An instant body transformation program",
+      "A guaranteed body transformation",
 
-        "A motivational fitness challenge",
+      "A replacement for medical or professional coaching advice",
 
-        "A guarantee of results",
+      "A one-size-fits-all workout template",
 
-        "A substitute for professional medical or training advice",
+      "A shortcut to results without consistent effort",
+
       ],
 
       connections: [
-        "Will connect closely to future fitness, discipline, and self-improvement content",
+      "Built around JB's systems-first philosophy",
 
-        "Built around the same systems-first philosophy used throughout Improving JB",
+      "Designed to complement Improving JB content related to discipline, fitness, consistency, and self-improvement",
+
+      "Works alongside the 30 Day Reset as part of the Improving JB ecosystem",
+
       ],
-    },
+    }
+
   ],
 
   futureSystems: {
     status: "planned",
 
+    systems: [
+      {
+        name: "The Routine",
+
+        status: "planned",
+
+        type: "Daily planning and execution system",
+
+        purpose:
+          "A daily planning system designed to help users organize priorities, manage time intentionally, and execute consistently on what matters most.",
+
+        notes: [
+          "Planned for a future version of Improving JB.",
+
+          "Will focus on daily structure, prioritization, and execution.",
+
+          "Designed to complement the 30 Day Reset and The 10 Week Build.",
+
+          "Features and implementation may evolve during development.",
+        ],
+      },
+    ],
+
     notes: [
-      "Additional systems, templates, and tools are planned for future versions of the ecosystem.",
-
-      "Future systems may expand into other areas of discipline, productivity, self-improvement, and personal structure.",
-
-      "Details may evolve as the platform continues developing.",
+      "Additional systems and tools may be added in future versions of the ecosystem.",
     ],
   },
 
