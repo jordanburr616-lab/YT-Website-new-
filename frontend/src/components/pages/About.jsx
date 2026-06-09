@@ -1,9 +1,13 @@
+import { usePageView } from "../../hooks/usePageView";
+
 function About() {
   const containerStyle = {
     maxWidth: "900px",
     margin: "0 auto",
     padding: "120px 24px",
   };
+
+  usePageView("about");
 
   return (
     <div style={{ background: "#afb1b3ff", minHeight: "100vh" }}>

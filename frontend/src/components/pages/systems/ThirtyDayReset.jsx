@@ -1,8 +1,21 @@
+import { trackEvent } from "../../../utils/analytics";
+import { usePageView } from "../../../hooks/usePageView";
+
 function ThirtyDayReset({ onBack }) {
+  usePageView("thirty_day_reset");
   const containerStyle = {
     maxWidth: "900px",
     margin: "0 auto",
     padding: "120px 24px",
+  };
+
+  const handleBack = () => {
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+      onBack();
+      document.body.classList.remove("page-exit");
+    }, 200);
   };
 
   const heroStyles = {
@@ -65,7 +78,7 @@ function ThirtyDayReset({ onBack }) {
 };
 
   return (
-    <div style={{ background: "#afb1b3ff", minHeight: "100vh" }}>
+    <div className="page-shell" style={{ background: "#afb1b3ff", minHeight: "100vh" }}>
       <section style={containerStyle}>
         {/* BACK LINK */}
         <div
@@ -76,8 +89,10 @@ function ThirtyDayReset({ onBack }) {
             marginTop: "40px"
         }}
         >
+
+          
         <button
-            onClick={onBack}
+            onClick={handleBack}
             style={{
             background: "none",
             border: "none",
@@ -128,6 +143,13 @@ function ThirtyDayReset({ onBack }) {
             target="_blank"
             rel="noreferrer"
             style={{ textDecoration: "none" }}
+            onClick={() => {
+              trackEvent("program_download_click", "thirty_day_reset", {
+                program: "30_day_reset",
+                destination: "gumroad",
+                cta_text: "GET THE RESET",
+              });
+            }}
           >
             <button
               style={{
@@ -152,7 +174,7 @@ function ThirtyDayReset({ onBack }) {
                 e.currentTarget.style.opacity = "1";
               }}
             >
-              GET THE FULL SYSTEM →
+              GET THE RESET →
             </button>
           </a>
         </div>

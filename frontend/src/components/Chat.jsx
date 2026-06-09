@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { trackEvent } from "../utils/analytics";
 
-function Chat({ onSave }) {
+function Chat() {
   const [bandsState, setBandsState] = useState("waiting");
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+  const firstTopicTrackedRef = useRef(false);
 
 
   useEffect(() => {
@@ -15,7 +17,7 @@ function Chat({ onSave }) {
       setMessages([
         {
           role: "assistant",
-          text: "Hello there! My name's Bands. Whatever you have questions about, I can answer!\n\n• Systems & Programs\n• YouTube content\n• About JB\n• Community",
+          text: "Hello there! My name's Bands. \n \n What would you like to explore?",
           
         },
       ]);
@@ -27,15 +29,121 @@ function Chat({ onSave }) {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleNewChat = () => {
-      setMessages([]);
-    };
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
     
   const handleSave = () => {
     if (messages.length === 0) return;
 
     onSave(messages);
   };
+
+  function getLinkLabel(url) {
+    if (url.includes("youtube.com")) return "Watch on YouTube";
+    if (url.includes("instagram.com")) return "Visit Instagram";
+    if (url.includes("tiktok.com")) return "Visit TikTok";
+    if (url.includes("gumroad.com")) return "Open Download";
+    return "Open Link";
+  }
+
+  function linkifyText(text) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+    return text.split(urlRegex).map((part, index) => {
+      if (part.match(urlRegex)) {
+        const cleanUrl = part.replace(/[.,!?;:)]$/, "");
+
+        return (
+          <a
+            key={index}
+            href={cleanUrl}
+            onClick={() =>
+              trackEvent("chat_link_clicked", {
+                page: window.location.pathname,
+                metadata: {
+                  url: cleanUrl,
+                  label: getLinkLabel(cleanUrl),
+                  topic: activeCategory || "unknown",
+                },
+              })
+            }
+            target="_blank"
+            rel="noreferrer"
+            className="chat-link-button"
+          >
+            {getLinkLabel(cleanUrl)}
+          </a>
+        );
+      }
+
+      return part;
+    });
+  }
+
+  function inferCategory(text) {
+    const lower = text.toLowerCase();
+
+    // YOUTUBE
+    if (
+      lower.includes("youtube") ||
+      lower.includes("video") ||
+      lower.includes("channel") ||
+      lower.includes("watch")
+    ) {
+      return "youtube";
+    }
+
+    // SYSTEMS
+    if (
+      lower.includes("system") ||
+      lower.includes("program") ||
+      lower.includes("template") ||
+      lower.includes("reset") ||
+      lower.includes("30 day") ||
+      lower.includes("workout")
+    ) {
+      return "systems";
+    }
+
+    // COMMUNITY
+    if (
+      lower.includes("community") ||
+      lower.includes("discord") ||
+      lower.includes("feedback") ||
+      lower.includes("membership")
+    ) {
+      return "community";
+    }
+
+    // WEBSITE / SOCIALS
+    if (
+      lower.includes("website") ||
+      lower.includes("site") ||
+      lower.includes("page") ||
+      lower.includes("where") ||
+      lower.includes("link") ||
+      lower.includes("tiktok") ||
+      lower.includes("instagram") ||
+      lower.includes("insta") ||
+      lower.includes("social")
+    ) {
+      return "website";
+    }
+
+    // ABOUT
+    if (
+      lower.includes("who is jb") ||
+      lower.includes("who are you") ||
+      lower.includes("about jb")
+    ) {
+      return "about";
+    }
+
+    return null;
+  }
 
   async function handleSend() {
   if (!input.trim() || loading) return;
@@ -49,26 +157,44 @@ function Chat({ onSave }) {
     { role: "user", text: userText },
   ]);
 
-  let inferredCategory = activeCategory;
+  const inferredCategory = inferCategory(userText);
+  const finalCategory = inferredCategory || activeCategory;
 
-  // ✅ INFERENCE HAPPENS AFTER userText EXISTS
-  if (!activeCategory) {
-    const lower = userText.toLowerCase();
+  trackEvent("chat_message_sent", {
+    page: window.location.pathname,
+    metadata: {
+      topic: finalCategory || "unknown",
+    },
+  });
 
-    if (lower.includes("youtube") || lower.includes("video")) {
-      inferredCategory = "youtube";
-      setActiveCategory("youtube");
-    } else if (lower.includes("system") || lower.includes("template")) {
-      inferredCategory = "systems";
-      setActiveCategory("systems");
-    }else if (lower.includes("community") || lower.includes("feedback")) {
-      inferredCategory = "community";
-      setActiveCategory("about");
-    } else if (lower.includes("about") || lower.includes("jb")) {
-      inferredCategory = "about";
-      setActiveCategory("about");
-    }
+  if (finalCategory && !firstTopicTrackedRef.current) {
+    trackEvent("chat_first_topic_selected", {
+      page: window.location.pathname,
+      metadata: {
+        topic: finalCategory,
+        source: inferredCategory ? "typed_message" : "active_category",
+      },
+    });
+
+    firstTopicTrackedRef.current = true;
   }
+
+  if (!finalCategory) {
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        text: "What are you looking for? Choose a topic below or ask about Systems, YouTube, JB, or Community.",
+      },
+    ]);
+    return;
+  }
+
+  const chatHistory = messages.slice(-8).map((msg) => ({
+    role: msg.role,
+    content: msg.text,
+  }));
+
 
   setLoading(true);
   setBandsState("thinking");
@@ -82,13 +208,19 @@ function Chat({ onSave }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         message: userText,
-        context: inferredCategory,
+        context: finalCategory,
+        page: window.location.pathname,
+        history: chatHistory,
       }),
     });
 
     if (!res.ok) throw new Error("Request failed");
 
     const data = await res.json();
+
+    if (inferredCategory) {
+      setActiveCategory(inferredCategory);
+    }
 
     setBandsState("talking");
     setMessages((prev) => [
@@ -108,6 +240,17 @@ function Chat({ onSave }) {
     setLoading(false);           // ✅ THIS MUST ALWAYS RUN
     setTimeout(() => setBandsState("waiting"), 700);
   }
+}
+
+function handleStarterClick(text) {
+  trackEvent("chat_starter_clicked", {
+    page: window.location.pathname,
+    metadata: {
+      topic: text,
+    },
+  });
+
+  setInput(text);
 }
 
 
@@ -153,10 +296,73 @@ function Chat({ onSave }) {
                 whiteSpace: "pre-wrap",
               }}
             >
-              {msg.text}
+              {linkifyText(msg.text)}
             </div>
           </div>
         ))}
+
+        {loading && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              marginBottom: "12px",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "70%",
+                padding: "10px 14px",
+                borderRadius: "12px",
+                border: "1px solid #d1d5db",
+                background: "#ffffff",
+                fontSize: "14px",
+                fontStyle: "italic",
+                opacity: 0.7,
+              }}
+            >
+              Bands is thinking...
+            </div>
+          </div>
+        )}
+
+        <div ref={messagesEndRef} />
+
+        {messages.length === 1 && messages[0].role === "assistant" && (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "10px",
+              marginTop: "12px",
+              width: "fit-content",
+              maxWidth: "360px",
+              alignSelf: "flex-start",
+            }}
+          >
+            {["Systems & Programs", "YouTube", "About JB", "Community"].map((label) => (
+              <button
+                key={label}
+                onClick={() => handleStarterClick(label)}
+                style={{
+                  width: "100%",
+                  minHeight: "62px",
+                  borderRadius: "16px",
+                  border: "1px solid #4aabfa",
+                  background: "#dbeafe",
+                  color: "#255079",
+                  padding: "12px",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  textAlign: "left",
+                  cursor: "pointer",
+                }}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* INPUT BAR */}

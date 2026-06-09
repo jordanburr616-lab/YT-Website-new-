@@ -1,15 +1,20 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { usePageView } from "../../hooks/usePageView";
+import { trackEvent } from "../../utils/analytics";
+
 import ThirtyDayReset from "./systems/ThirtyDayReset";
+import BuildPhase from "./systems/BuildPhase";
 
 
-function Systems() {
+function Systems({ activeSystem, setActiveSystem }) {
+
+  usePageView("systems");
+  
   const containerStyle = {
     maxWidth: "1100px",
     margin: "0 auto",
     padding: "0 24px",
   };
-
-  const [activeSystem, setActiveSystem] = useState(null);
 
 
   const heroStyles = {
@@ -72,7 +77,19 @@ function Systems() {
 };
 
 if (activeSystem === "30-day-reset") {
-  return <ThirtyDayReset onBack={() => setActiveSystem(null)} />;
+  return (
+    <div className="page-shell" key={activeSystem || "systems"}>
+      <ThirtyDayReset onBack={() => setActiveSystem(null)} />
+    </div>
+  );
+}
+
+if (activeSystem === "build-phase") {
+  return (
+    <div className="page-shell" key={activeSystem}>
+      <BuildPhase onBack={() => setActiveSystem(null)} />
+    </div>
+  );
 }
 
 
@@ -133,83 +150,73 @@ if (activeSystem === "30-day-reset") {
             }}
           >
             {[
-              { title: "30 Day Reset", live: true },
-              { title: "10 Week Workout Planner", live: false },
-              { title: "Laser Focus", live: false },
+              {
+                title: "30 Day Reset",
+                live: true,
+                systemKey: "30-day-reset",
+                image1: "/images/bands-refresh-1.png",
+                image2: "/images/bands-refresh-2.png",
+              },
+              {
+                title: "The 10 Week Build",
+                live: true,
+                systemKey: "build-phase",
+                image1: "/images/bands-workout-1.png",
+                image2: "/images/bands-workout-2.png",
+              },
+              {
+                title: "The Routine",
+                live: false,
+                systemKey: null,
+                image1: "/images/coming-soon-1.png",
+                image2: "/images/coming-soon-2.png",
+              },
             ].map((system, i) => (
               <div key={i} style={{ textAlign: "center" }}>
-                {system.title === "30 Day Reset" ? (
-                  /* ================= LIVE SYSTEM ================= */
-                  <div className="reset-image systems-size systems-tab-img"
+                <div
+                  className="reset-image systems-size systems-tab-img"
+                  onClick={() => {
+                    trackEvent("system_card_clicked", {
+                      page: window.location.pathname,
+                      metadata: {
+                        system_title: system.title,
+                        system_key: system.systemKey,
+                        live: system.live,
+                      },
+                    });
 
-                    onClick={() => {
-                      setActiveSystem("30-day-reset");
-                    }}
+                    if (!system.live) return;
 
-                    style={{
-                      background: "#ffffff",
-                      height: "320px",
-                      borderRadius: "16px",
-                      marginBottom: "16px",
-                      overflow: "hidden",
-                      position: "relative",
-                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                    }}
-                    >
-                    <img
-                      src="/images/bands-refresh-1.png"
-                      alt="Coming Soon"
-                      className="reset-img"
-                    />
-                    <img
-                      src="/images/bands-refresh-2.png"
-                      alt="Coming Soon Active"
-                      className="reset-img reset-img-2"
-                    />
-                  </div>
-                ) : (
-                  /* ================= COMING SOON SYSTEM ================= */
-                  <div
-                    className="reset-image systems-size systems-tab-img"
-                    style={{
-                      background: "#ffffff",
-                      height: "320px",
-                      borderRadius: "16px",
-                      marginBottom: "16px",
-                      overflow: "hidden",
-                      position: "relative",
-                      opacity: 0.75,
-                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                    }}
-                  >
-                    <img
-                      src="/images/coming-soon-1.png"
-                      alt="Coming Soon"
-                      className="reset-img"
-                    />
-                    <img
-                      src="/images/coming-soon-2.png"
-                      alt="Coming Soon Active"
-                      className="reset-img reset-img-2"
-                    />
-                  </div>
-                )}
+                    setActiveSystem(system.systemKey);
+                  }}
+                  style={{
+                    background: "#ffffff",
+                    height: "320px",
+                    borderRadius: "16px",
+                    marginBottom: "16px",
+                    overflow: "hidden",
+                    position: "relative",
+                    opacity: system.live ? 1 : 0.75,
+                    cursor: system.live ? "pointer" : "default",
+                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                  }}
+                >
+                  <img
+                    src={system.image1}
+                    alt={system.title}
+                    className="reset-img"
+                  />
+
+                  <img
+                    src={system.image2}
+                    alt={`${system.title} Active`}
+                    className="reset-img reset-img-2"
+                  />
+                </div>
 
                 <h3 style={{ fontWeight: "700", color: "white" }}>
                   {system.title}
                 </h3>
-
-                {!system.live && (
-                  <p
-                    style={{
-                      opacity: 0.8,
-                      fontSize: "0.85rem",
-                      color: "white",
-                    }}
-                  >
-                    Coming soon
-                  </p>
-                )}
               </div>
             ))}
           </div>

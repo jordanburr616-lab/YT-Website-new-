@@ -1,143 +1,225 @@
 const websiteKnowledge = {
   site: {
     name: "Improving JB",
+
     tagline: "Keep Building.",
+
     purpose:
-      "A hub for JB’s YouTube content, community tab (coming soon), productivity systems.",
+      "A central hub connecting JB’s YouTube content, systems, programs, future community features, and tools focused on helping people unf*ck their lives through structure, discipline, and long-term self-improvement.",
   },
 
-  // How users move around the site
   navigation: {
-    primaryTabs: ["Home", "Programs", "About Me", "Community"],
+    primaryTabs: ["Home", "Systems", "About Me", "Community"],
+
     defaultLanding: "Home",
+
     notes: [
-      "The main navigation is the top tab bar.",
-      "The chat button on the bottom right is where users talk to Bands (me) for guidance.",
+      "The main navigation is located in the top tab bar.",
+
+      "The chat button in the bottom right allows users to talk to Bands for guidance around the site and ecosystem.",
+
+      "Different sections of the site connect together as part of the broader Improving JB ecosystem.",
     ],
   },
 
-  // What each page is for + what users can expect to see there
   pages: {
     home: {
       label: "Home",
-      purpose: "Quick overview of the ecosystem and featured content.",
+
+      purpose:
+        "Quick overview of the Improving JB ecosystem, featured systems, and recent content.",
+
       mainSections: [
         "Hero section (Keep Building)",
-        "Featured program highlight (30 Day Reset)",
-        "Programs preview",
-        "YouTube section with 6 of the most recent videos",
+
+        "Featured system highlight (The 10 Week Build)",
+
+        "Systems preview section",
+
+        "Recent YouTube videos section",
+
         "Social links (YouTube, Instagram, TikTok)",
+
+        "Newsletter and future ecosystem growth areas",
       ],
+
       commonUserGoals: [
-        "Find the newest YouTube videos",
-        "See what programs exist",
-        "Get a quick sense of what the site and this youtuber is",
+        "Find JB’s newest YouTube videos",
+
+        "Understand what the platform is about",
+
+        "Explore available systems and programs",
+
+        "Get introduced to the ecosystem quickly",
       ],
     },
 
-    programs: {
-      label: "Programs",
-      purpose: "Browse JB’s systems and programs (current and future).",
-      currentPrograms: [
+    Systems: {
+      label: "Systems",
+
+      purpose:
+        "Explore JB’s systems, templates, and structured programs designed around discipline, execution, and long-term growth.",
+
+      currentSystems: [
         {
           name: "30 Day Reset",
+
+          status: "available",
+
+          summary:
+            "A structured reset system focused on rebuilding consistency, structure, and daily execution.",
+        },
+        {
+          name: "The 10 Week Build",
           status: "available",
           summary:
-            "A structured planner/template intended to make consistent execution easier through daily structure.",
+            "A custom workout generator that creates a 10-week lifting program based on the user's maxes, schedule, goals, experience, workout length, and equipment access.",
         },
       ],
-      plannedPrograms: [
+
+      plannedSystems: [
         {
-          name: "More Systems Coming",
+          name: "The Routine",
           status: "planned",
-          summary: "Additional systems will be added over time.",
+          summary:
+            "A future daily planning system focused on structure, prioritization, and execution.",
         },
       ],
+
       commonUserGoals: [
         "Understand what the 30 Day Reset is",
-        "10 week workout program in the works",
-        "See what systems exist or are coming soon",
+
+        "Explore available systems and future plans",
+
+        "Find tools related to discipline, consistency, and self-improvement",
       ],
     },
 
     about: {
       label: "About Me",
-      purpose: "Learn who JB is and what the ecosystem is built around.",
+
+      purpose:
+        "Learn who JB is, what Improving JB stands for, and how the ecosystem connects together.",
+
       topics: [
-        "JB’s philosophy (systems win over motivation any day)",
-        "Why does this ecosystem exists",
-        "How the YouTube content and systems connect",
+        "JB’s systems-first philosophy",
+
+        "Why Improving JB was created",
+
+        "The connection between YouTube content, systems, and community",
+
+        "The overall mission of helping people rebuild structure and direction",
       ],
+
       commonUserGoals: [
-        "Understand JB’s approach and intent",
-        "Get context before using programs",
+        "Understand JB’s approach and philosophy",
+
+        "Learn the purpose behind the ecosystem",
+
+        "Get context before exploring systems or content",
       ],
     },
 
     chat: {
       label: "Chat",
-      purpose: "Talk to Bands for guidance around the site and JB’s ecosystem.",
+
+      purpose:
+        "Talk to Bands for help navigating the ecosystem and understanding JB’s content, systems, and website.",
+
       expectations: [
-        "Bands helps users navigate and understand content.",
-        "Bands stays within the supported categories (website, systems, YouTube, about, community).",
+        "Bands helps users navigate the site and ecosystem.",
+
+        "Bands explains systems, videos, pages, and overall platform direction.",
+
+        "Bands does not provide personal coaching or therapy.",
       ],
+
       commonUserGoals: [
-        "Ask where to find something",
-        "Ask what a program is for",
-        "Ask what video to start with",
+        "Find where something is located",
+
+        "Understand what a program is for",
+
+        "Figure out where to start",
+
+        "Learn how different parts of the ecosystem connect",
       ],
     },
 
     community: {
       label: "Community",
-      purpose: "Create a community of like minded people who all want to keep improving",
+
+      purpose:
+        "Support the long-term goal of building a community centered around growth, discipline, accountability, and shared self-improvement.",
+
       topics: [
-        "Provide feedback to JB for future changes to YT, Systems, and website",
-        "Future discord / youtube membership pages in the works",
+        "User feedback and ecosystem improvement",
+
+        "Future Discord and membership plans",
+
+        "Audience involvement in future systems and content",
+
+        "Building a healthier self-improvement culture online",
       ],
+
       commonUserGoals: [
-        "Understand the JB is trying to build a positive impact on youtube",
-        "Provide feedback to JB so that it's not just his channel but also his viewers",
+        "Share feedback with JB",
+
+        "Understand the future vision of the community",
+
+        "Stay connected to future updates and ecosystem growth",
       ],
     },
-
   },
 
-  // Useful fixed links or external destinations
   externalLinks: {
     youtubeChannel: "https://www.youtube.com/@improvingjb",
-    youtubeVideos: "https://www.youtube.com/@improvingjb/videos",
-    instagram: "https://www.instagram.com/improvingjb/?hl=en",
-    tiktok: "https://www.tiktok.com/@animedriven", //going to need a change in the future
-  },
 
-  // Guardrails to prevent the bot from confidently lying
-  guardrails: {
-    truthPolicy: [
-      "If information is not in the provided knowledge, do not guess just be honest and If information is not in the provided knowledge, say you don’t have enough information and suggest what you *can* help with.",
-      "If a feature is in development, say so clearly.",
-      "Prefer directing the user to the correct tab or section.",
-    ],
-    allowedHelp: [
-      "Navigation help (what tab/section to use)",
-      "Explaining what a page or section is for",
-      "Explaining what content exists on the site",
-    ],
+    youtubeVideos: "https://www.youtube.com/@improvingjb/videos",
+
+    instagram: "https://www.instagram.com/improvingjb/?hl=en",
+
+    tiktok: "https://www.tiktok.com/@improvingjb",
   },
 
   pageHints: {
     findingVideos: "Home → YouTube section",
-    findingPrograms: "Programs tab",
+
+    findingSystems: "Systems tab",
+
     learningAboutJB: "About Me tab",
-    futureWebsite: "Community tab",
-    gettingHelp: "Chat tab",
-    },
 
-    limitations: [
-    "Community tab is very minimal.",
-    "Only the 30 Day Reset is currently available.",
-    ]
+    futureCommunity: "Community tab",
 
+    gettingHelp: "Chat button",
+  },
+
+  limitations: [
+    "The Community section is still early in development.",
+    "The Routine is planned for a future version.",
+    "Some future systems and features are still being built.",
+  ],
+
+  guardrails: {
+    truthPolicy: [
+      "Do not invent features, pages, systems, or content that are not provided in the knowledge base.",
+
+      "If something is still in development, say so clearly.",
+
+      "If information is unknown, be honest instead of guessing.",
+
+      "Prefer directing users toward the correct section of the site.",
+    ],
+
+    allowedHelp: [
+      "Navigation guidance",
+
+      "Explaining what each page or section is for",
+
+      "Explaining how the ecosystem connects together",
+
+      "Helping users find systems, videos, or community areas",
+    ],
+  },
 };
 
 export default websiteKnowledge;

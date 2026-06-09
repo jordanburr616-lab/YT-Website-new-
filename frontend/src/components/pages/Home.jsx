@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { usePageView } from "../../hooks/usePageView";
+import { trackEvent } from "../../utils/analytics";
+
 function Home({ setActiveTab, setActiveSystem }) {
 
   const containerStyle = {
@@ -9,6 +13,10 @@ function Home({ setActiveTab, setActiveSystem }) {
 
   const youtubeVideos = [
 
+  {
+    id: "ZHRfDUs0QuM",
+    title: "the 7 levels of a glow up",
+  },
   {
     id: "bZ_UqzFKKNI",
     title: "the no fap timeline (what actually happens)",
@@ -29,15 +37,86 @@ function Home({ setActiveTab, setActiveSystem }) {
     id: "QoztRuB86U0",
     title: "if you're stuck but ambitious, pls watch this",
   },
-  {
-    id: "zDd8vLlyhRo",
-    title: "How To Unf*ck Your Life in 30 Days",
-  },
+  
   
   
   
 
 ];
+
+const programs = [
+  {
+    title: "30 Day Reset",
+    systemKey: "30-day-reset",
+    status: "",
+    image1: "/images/bands-refresh-1.png",
+    image2: "/images/bands-refresh-2.png",
+    active: true,
+  },
+  {
+    title: "The 10 Week Build",
+    systemKey: "build-phase",
+    status: "",
+    image1: "/images/bands-workout-1.png",
+    image2: "/images/bands-workout-2.png",
+    active: true,
+  },
+  {
+    title: "The Routine",
+    systemKey: "",
+    status: "",
+    image1: "/images/coming-soon-1.png",
+    image2: "/images/coming-soon-2.png",
+    active: false,
+  },
+];
+
+const [slideDirection, setSlideDirection] = useState("right");
+const [slideKey, setSlideKey] = useState(0);
+
+const [programIndex, setProgramIndex] = useState(0);
+const [visibleCount, setVisibleCount] = useState(
+  window.innerWidth <= 768 ? 1 : 2
+);
+
+useEffect(() => {
+  const handleResize = () => {
+    setVisibleCount(window.innerWidth <= 768 ? 1 : 2);
+  };
+
+  handleResize();
+
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
+
+usePageView("home");
+
+const visiblePrograms = Array.from({ length: visibleCount }, (_, i) => {
+  const index = (programIndex + i) % programs.length;
+  return programs[index];
+});
+
+const goPrev = () => {
+  setSlideDirection("left");
+  setSlideKey((prev) => prev + 1);
+
+  setProgramIndex((prev) =>
+    (prev - 1 + programs.length) % programs.length
+  );
+};
+
+const goNext = () => {
+  setSlideDirection("right");
+  setSlideKey((prev) => prev + 1);
+
+  setProgramIndex((prev) =>
+    (prev + 1) % programs.length
+  );
+};
 
 const heroStyles = {
   titleWrap: {
@@ -113,48 +192,61 @@ const heroStyles = {
         >
           <section className="hero-section">
 
-  <div className="hero-text">
+            <div className="hero-text">
 
-    {/* TOP ROW */}
-    <div className="hero-top-row">
+              {/* TOP ROW */}
+              <div className="hero-top-row">
 
-      <div className="hero-title-text">
-        <h1 className="hero-title">IMPROVE</h1>
-        <h1 className="hero-title">EVERYDAY</h1>
-      </div>
+                <div className="hero-title-image-wrap">
+                  <img
+                    src="/images/home-title.png"
+                    alt="Break The Cycle"
+                    className="hero-title-image"
+                  />
+                </div>
 
-      {/* BIG IMAGE MOVED HERE */}
-      <div className="hero-image-wrap">
-        <span className="hero-badge">IMPROVE EVERYDAY</span>
-        <img
-          src="/images/building.png"
-          alt="Building progress"
-          className="hero-main-image"
-        />
-      </div>
+                {/* BIG IMAGE MOVED HERE */}
+                <div className="hero-image-wrap">
+                  <span className="hero-badge">BREAK THE CYCLE</span>
+                  <img
+                    src="/images/building.png"
+                    alt="Building progress"
+                    className="hero-main-image"
+                  />
+                </div>
 
-    </div>
+              </div>
 
-    <p className="hero-subtitle">
-      Build Discipline. Stack Wins. Repeat.
-    </p>
+              <p className="hero-subtitle">
+                Build Discipline. Stack Wins. Repeat.
+              </p>
 
-    <button
-      className="hero-cta"
-      style={heroStyles.button}
-      onClick={() => setActiveTab("systems")}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateX(4px)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateX(0)";
-      }}
-    >
-      Start Improving →
-    </button>
+              <button
+                className="hero-cta"
+                style={heroStyles.button}
+                onClick={() => {
+                  trackEvent("home_cta_clicked", {
+                    page: window.location.pathname,
+                    metadata: {
+                      location: "hero",
+                      target: "systems",
+                    },
+                  });
 
-  </div>
-</section>
+                  setActiveTab("systems");
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateX(4px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateX(0)";
+                }}
+              >
+                Start Improving →
+              </button>
+
+            </div>
+          </section>
 
         </div>
       </div>
@@ -166,49 +258,71 @@ const heroStyles = {
     <div className="reset-card">
       
       <div className="reset-content">
-        <p className="reset-eyebrow">NEW PRODUCTIVITY SYSTEM</p>
-        <h1 className="reset-title">30 Day Reset</h1>
+        <p className="reset-eyebrow">NEW PROGRAM</p>
+
+        <h1 className="reset-title">
+          The 10 Week Build
+        </h1>
 
         <p className="reset-description">
-          Improving JB's daily nonnegotiables tracker that turns discipline
-          into consistency and makes progress <strong>ACTUALLY</strong> achievable.
+          A personalized 10-week training system designed to help users build strength, improve consistency, and work toward new personal records through structured progression.
         </p>
 
         <button
-            className="reset-button"
-            onClick={() => {
-                setActiveTab("systems");
-                setActiveSystem("reset");
-              }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateX(4px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateX(0)";
-            }}
-          >
-            EXPLORE →
-          </button>
+          className="reset-button"
+          onClick={() => {
+            trackEvent("home_cta_clicked", {
+              page: window.location.pathname,
+              metadata: {
+                location: "featured_build_section",
+                target: "build-phase",
+              },
+            });
 
+            setActiveTab("systems");
+            setActiveSystem("build-phase");
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateX(4px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateX(0)";
+          }}
+        >
+          START THE BUILD →
+        </button>
       </div>
 
-      <div className="reset-image"
-      onClick={() => {
-                setActiveTab("systems");
-                setActiveSystem("reset");
-              }}
-              >
+      <div
+        className="reset-image"
+        onClick={() => {
+          trackEvent("home_program_clicked", {
+            page: window.location.pathname,
+            metadata: {
+              program_title: "The 10 Week Build",
+              program_key: "build-phase",
+              location: "featured_build_image",
+              active: true,
+            },
+          });
+
+          setActiveTab("systems");
+          setActiveSystem("build-phase");
+        }}
+      >
 
         <img
-          src="/images/bands-refresh-1.png"
-          alt="30 Day Reset"
+          src="/images/bands-workout-1.png"
+          alt="The 10 Week Build"
           className="reset-img reset-img-1"
         />
+
         <img
-          src="/images/bands-refresh-2.png"
-          alt="30 Day Reset Active"
+          src="/images/bands-workout-2.png"
+          alt="The 10 Week Build Active"
           className="reset-img reset-img-2"
         />
+
       </div>
 
 
@@ -244,74 +358,80 @@ const heroStyles = {
             </div>
           </div>
 
-          {/* PROGRAM GRID */}
-          <div className="systems-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "40px",
-              marginBottom: "80px",
-            }}
-          >
-            {/* SYSTEM – 30 DAY RESET */}
-          <div style={{ textAlign: "center" }}>
-            {/* IMAGE CONTAINER */}
-            <div className="reset-image systems-size"
+          <div className="program-carousel">
+            <button
+              className="program-arrow"
+              onClick={goPrev}
+            >
+              <span>‹</span>
+            </button>
 
-              onClick={() => {
-                setActiveTab("systems");
-                setActiveSystem("reset");
-              }}
-              >
-                <img
-                  src="/images/bands-refresh-1.png"
-                  alt="Coming Soon"
-                  className="reset-img"
-                />
-                <img
-                  src="/images/bands-refresh-2.png"
-                  alt="Coming Soon Active"
-                  className="reset-img reset-img-2"
-                />
+            <div key={slideKey} className={`program-carousel-track slide-${slideDirection}`}>
+              {visiblePrograms.map((program) => (
+                <div className="program-card" key={program.title}>
+                  <div
+                    className="reset-image systems-size"
+                    onClick={() => {
+                      trackEvent("home_program_clicked", {
+                        page: window.location.pathname,
+                        metadata: {
+                          program_title: program.title,
+                          program_key: program.systemKey,
+                          active: program.active,
+                        },
+                      });
+
+                      if (!program.active) return;
+
+                      setActiveTab("systems");
+                      setActiveSystem(program.systemKey);
+                    }}
+
+                    style={{
+                      opacity: program.active ? 1 : 0.75,
+                      cursor: program.active ? "pointer" : "default",
+                    }}
+                  >
+                    <img
+                      src={program.image1}
+                      alt={program.title}
+                      className="reset-img"
+                    />
+
+                    <img
+                      src={program.image2}
+                      alt={`${program.title} Active`}
+                      className="reset-img reset-img-2"
+                    />
+                  </div>
+
+                  <h3>{program.title}</h3>
+                </div>
+              ))}
             </div>
 
-            {/* TEXT — STAYS PUT */}
-            <h3 style={{ fontWeight: "700" }}>
-              30 Day Reset
-            </h3>
-          </div>
-
-
-
-            {/* PROGRAM 2 – COMING SOON */}
-            <div style={{ textAlign: "center" }}>
-              <div className="reset-image systems-size">
-                <img
-                  src="/images/bands-workout-1.png"
-                  alt="Coming Soon"
-                  className="reset-img"
-                />
-                <img
-                  src="/images/bands-workout-2.png"
-                  alt="Coming Soon Active"
-                  className="reset-img reset-img-2"
-                />
-              </div>
-
-              <h3 style={{ fontWeight: "700" }}>
-                10 Week Workout Plan
-              </h3>
-              <p style={{ fontWeight: "700" }}>
-                coming soon
-              </p>
-            </div>
-
+            <button
+              className="program-arrow"
+              onClick={goNext}
+            >
+              <span>›</span>
+            </button>
           </div>
 
           {/* VIEW ALL BUTTON */}
           <div style={{ textAlign: "center" }}>
             <button
-              onClick={() => setActiveTab("systems")}
+              onClick={() => {
+                trackEvent("home_cta_clicked", {
+                  page: window.location.pathname,
+                  metadata: {
+                    location: "systems_preview",
+                    target: "systems",
+                  },
+                });
+
+                setActiveTab("systems");
+              }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-4px)";
               }}
@@ -370,13 +490,23 @@ const heroStyles = {
               marginBottom: "80px",
             }}
           >
-            {youtubeVideos.map((video) => (
+            {youtubeVideos.map((video, index) => (
               <a
                 key={video.id}
                 href={`https://www.youtube.com/watch?v=${video.id}`}
                 target="_blank"
                 rel="noreferrer"
                 style={{ textDecoration: "none" }}
+                onClick={() =>
+                  trackEvent("video_clicked", {
+                    page: window.location.pathname,
+                    metadata: {
+                      video_title: video.title,
+                      position: index + 1,
+                      section: "youtube_grid",
+                    },
+                  })
+                }
               >
                 <div
                   style={{
@@ -466,6 +596,14 @@ const heroStyles = {
               href="https://www.youtube.com/@improvingjb?sub_confirmation=1"
               target="_blank"
               rel="noreferrer"
+              onClick={() =>
+                trackEvent("youtube_subscribe_clicked", {
+                  page: window.location.pathname,
+                  metadata: {
+                    location: "youtube_section",
+                  },
+                })
+              }
             >
               <button
                 style={{
@@ -525,6 +663,15 @@ function SocialLinks() {
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
+        onClick={() =>
+          trackEvent("social_link_clicked", {
+            page: window.location.pathname,
+            metadata: {
+              platform: "youtube",
+              location: "floating_sidebar",
+            },
+          })
+        }
       >
         <img
           src="/images/youtube-icon.png"
@@ -544,6 +691,15 @@ function SocialLinks() {
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
+        onClick={() =>
+          trackEvent("social_link_clicked", {
+            page: window.location.pathname,
+            metadata: {
+              platform: "instagram",
+              location: "floating_sidebar",
+            },
+          })
+        }
       >
         <img
           src="/images/instagram.png"
@@ -563,6 +719,15 @@ function SocialLinks() {
         target="_blank"
         rel="noreferrer"
         style={iconStyle}
+        onClick={() =>
+          trackEvent("social_link_clicked", {
+            page: window.location.pathname,
+            metadata: {
+              platform: "tiktok",
+              location: "floating_sidebar",
+            },
+          })
+        }
       >
         <img
           src="/images/tiktok.png"
