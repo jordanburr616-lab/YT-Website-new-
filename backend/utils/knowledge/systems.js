@@ -91,6 +91,16 @@ const systemsKnowledge = {
 
       ],
 
+      howItWorks: [
+        "Users enter training details such as experience level, goal, training frequency, workout length, equipment access, and current squat, bench, and deadlift maxes",
+
+        "The system generates a 10-week program based on those inputs",
+
+        "The program uses structured progression across the weeks",
+
+        "The plan can be downloaded as an Excel file for tracking",
+      ],
+
       whatItIs: [
       "A custom-generated 10-week workout plan",
 

@@ -14,6 +14,10 @@ function Home({ setActiveTab, setActiveSystem }) {
   const youtubeVideos = [
 
   {
+    id: "ZHRfDUs0QuM",
+    title: "the 7 levels of a glow up",
+  },
+  {
     id: "bZ_UqzFKKNI",
     title: "the no fap timeline (what actually happens)",
   },
@@ -32,10 +36,6 @@ function Home({ setActiveTab, setActiveSystem }) {
   {
     id: "QoztRuB86U0",
     title: "if you're stuck but ambitious, pls watch this",
-  },
-  {
-    id: "zDd8vLlyhRo",
-    title: "How To Unf*ck Your Life in 30 Days",
   },
   
   
@@ -265,9 +265,7 @@ const heroStyles = {
         </h1>
 
         <p className="reset-description">
-          A structured physical transformation system focused on
-          building discipline, confidence, strength, and momentum
-          through progressive training and consistency.
+          A personalized 10-week training system designed to help users build strength, improve consistency, and work toward new personal records through structured progression.
         </p>
 
         <button

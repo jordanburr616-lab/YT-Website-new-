@@ -9,7 +9,7 @@ const websiteKnowledge = {
   },
 
   navigation: {
-    primaryTabs: ["Home", "Programs", "About Me", "Community"],
+    primaryTabs: ["Home", "Systems", "About Me", "Community"],
 
     defaultLanding: "Home",
 
@@ -34,7 +34,7 @@ const websiteKnowledge = {
 
         "Featured system highlight (The 10 Week Build)",
 
-        "Programs preview section",
+        "Systems preview section",
 
         "Recent YouTube videos section",
 
@@ -54,13 +54,13 @@ const websiteKnowledge = {
       ],
     },
 
-    programs: {
-      label: "Programs",
+    Systems: {
+      label: "Systems",
 
       purpose:
         "Explore JB’s systems, templates, and structured programs designed around discipline, execution, and long-term growth.",
 
-      currentPrograms: [
+      currentSystems: [
         {
           name: "30 Day Reset",
 
@@ -77,7 +77,7 @@ const websiteKnowledge = {
         },
       ],
 
-      plannedPrograms: [
+      plannedSystems: [
         {
           name: "The Routine",
           status: "planned",
@@ -184,7 +184,7 @@ const websiteKnowledge = {
   pageHints: {
     findingVideos: "Home → YouTube section",
 
-    findingPrograms: "Programs tab",
+    findingSystems: "Systems tab",
 
     learningAboutJB: "About Me tab",
 

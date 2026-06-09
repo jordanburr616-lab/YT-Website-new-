@@ -70,6 +70,27 @@ const aboutKnowledge = {
     ],
   },
 
+  commonTopics: [
+    "Discipline",
+    "Consistency",
+    "Habit change",
+    "Addiction recovery",
+    "Dopamine management",
+    "Weight loss",
+    "Fitness",
+    "Self-control",
+    "Focus",
+    "Personal growth",
+  ],
+
+  originStory: {
+    summary:
+      "Improving JB was created as a way for JB to document his own journey of becoming more disciplined, structured, and intentional while helping others who are trying to improve their lives as well.",
+
+    purpose:
+      "The project grew from the belief that many people struggle with consistency, distractions, bad habits, and lack of structure, and that sharing systems and lessons publicly could help others facing similar challenges.",
+  },
+
   guardrails: {
     truthPolicy: [
       "Do not speak as if you are JB.",
@@ -89,6 +110,15 @@ const aboutKnowledge = {
       "Recommend relevant sections of the ecosystem",
 
       "Help users understand the purpose behind Improving JB",
+    ],
+  },
+
+  positioning: {
+    differentiators: [
+      "Focuses on systems and execution rather than motivation alone.",
+      "Combines videos, systems, downloads, and tools into one ecosystem.",
+      "Documents ongoing growth instead of presenting a finished success story.",
+      "Emphasizes long-term consistency over quick fixes.",
     ],
   },
 };
