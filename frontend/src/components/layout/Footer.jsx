@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { trackEvent } from "../../utils/analytics";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -9,7 +11,7 @@ function Footer() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:8080/api/signup", {
+      const res = await fetch(`${API_BASE_URL}/api/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
