@@ -14,6 +14,10 @@ function Home({ setActiveTab, setActiveSystem }) {
   const youtubeVideos = [
 
   {
+    id: "wjeYESP8Uew",
+    title: "the 7 stages of weight loss",
+  },
+  {
     id: "ZHRfDUs0QuM",
     title: "the 7 levels of a glow up",
   },
@@ -33,10 +37,7 @@ function Home({ setActiveTab, setActiveSystem }) {
     id: "TBAsxOtjPCU",
     title: "the uncomfortable truth about your 20s"
   },
-  {
-    id: "QoztRuB86U0",
-    title: "if you're stuck but ambitious, pls watch this",
-  },
+  
   
   
   
