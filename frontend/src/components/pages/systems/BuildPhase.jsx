@@ -7,8 +7,12 @@ import { generateSixDayBuild } from "./buildProgram/GenerateSixDayBuild";
 import * as XLSX from "xlsx";
 import { trackEvent } from "../../../utils/analytics";
 import { usePageView } from "../../../hooks/usePageView";
+import { useNavigate } from "react-router-dom";
 
-function BuildPhase({ onBack }) {
+function BuildPhase() {
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -17,7 +21,6 @@ function BuildPhase({ onBack }) {
 
   const [buildData, setBuildData] = useState(null);
   const [error, setError] = useState("");
-  const [isExiting, setIsExiting] = useState(false);
 
   const [form, setForm] = useState({
     experience: "Beginner",
@@ -42,11 +45,7 @@ function BuildPhase({ onBack }) {
   }
 
   function handleBack() {
-    setIsExiting(true);
-
-    setTimeout(() => {
-      onBack();
-    }, 200);
+    navigate("/systems");
   }
 
   function handleGenerate() {
@@ -222,7 +221,7 @@ function BuildPhase({ onBack }) {
   }
 
   return (
-    <div className={`build-page page-shell ${isExiting ? "page-exit" : ""}`}>
+    <div className="build-page page-shell">
       <div className="build-container">
         <button className="build-back" onClick={handleBack}>
           ← Back to Systems

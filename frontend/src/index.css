@@ -83,6 +83,51 @@ button {
 }
 
 /* =========================================================
+   3. NAVBAR
+========================================================= */
+
+.navbar-link {
+  color: #7c7c7c;
+  text-decoration: none;
+
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 50;
+
+  padding-bottom: 8px;
+
+  border-bottom: 3px solid transparent;
+
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease,
+    font-weight 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.navbar-link:visited {
+  color: #6b6b6b;
+}
+
+.navbar-link:hover {
+  color: #3f3f3f;
+  transform: translateY(-2px);
+}
+
+.navbar-link.active {
+  color: #111;
+  font-weight: 700;
+
+  border-bottom-color: #111;
+
+  transform: translateY(-2px);
+}
+
+.navbar-link.active:hover {
+  color: #111;
+}
+
+/* =========================================================
    3. NAVBAR MOBILE OVERRIDES
 ========================================================= */
 
@@ -103,6 +148,19 @@ button {
   nav > div:last-child {
     gap: 10px !important;
   }
+}
+
+.mobile-menu-link {
+  display: block;
+  text-decoration: none;
+}
+
+.mobile-menu-link:visited {
+  color: #111;
+}
+
+.mobile-menu-link.active {
+  background: #f1f1f1;
 }
 
 /* =========================================================

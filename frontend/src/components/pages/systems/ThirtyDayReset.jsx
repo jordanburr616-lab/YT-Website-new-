@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { trackEvent } from "../../../utils/analytics";
 import { usePageView } from "../../../hooks/usePageView";
 
-function ThirtyDayReset({ onBack }) {
+function ThirtyDayReset() {
+
+  const navigate = useNavigate();
+
   usePageView("thirty_day_reset");
+
   const containerStyle = {
     maxWidth: "900px",
     margin: "0 auto",
@@ -10,12 +15,7 @@ function ThirtyDayReset({ onBack }) {
   };
 
   const handleBack = () => {
-    document.body.classList.add("page-exit");
-
-    setTimeout(() => {
-      onBack();
-      document.body.classList.remove("page-exit");
-    }, 200);
+    navigate("/systems");
   };
 
   const heroStyles = {

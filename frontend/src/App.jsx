@@ -1,22 +1,21 @@
-import { useState } from "react";
-import { useEffect } from "react";
-
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "./components/pages/Home";
 import Systems from "./components/pages/Systems";
 import About from "./components/pages/About";
 import Community from "./components/pages/Community";
 import Reset from "./components/pages/systems/ThirtyDayReset";
+import BuildPhase from "./components/pages/systems/BuildPhase";
 
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import MobileMenu from "./components/layout/MobileMenu";
 import ChatLauncher from "./components/layout/ChatLauncher";
 
+function AppContent() {
+  const location = useLocation();
 
-function App() {
-  const [activeSystem, setActiveSystem] = useState(null);
-  const [activeTab, setActiveTab] = useState("home");
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMinimized, setChatMinimized] = useState(false);
   const [chatHovered, setChatHovered] = useState(false);
@@ -62,68 +61,39 @@ function App() {
     });
   }, []);
 
-
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 900);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
   useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, [activeTab]);
-
-  const renderTab = () => {
-    if (activeTab === "systems") {
-      if (activeSystem === "reset") {
-        return <Reset onBack={() => setActiveSystem(null)} />;
-      }
-
-      return <Systems
-        activeSystem={activeSystem}
-        setActiveSystem={setActiveSystem}
-      />;
-    }
-
-    switch (activeTab) {
-      case "about":
-        return <About />;
-      case "community":
-        return <Community/>;
-      default:
-        return <Home setActiveTab={setActiveTab} setActiveSystem={setActiveSystem} />;
-    }
-  };
-
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f3f5f6ff" }}>
-
       <Navbar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        setActiveSystem={setActiveSystem}
         isMobile={isMobile}
         setMenuOpen={setMenuOpen}
       />
-      
 
       <MobileMenu
         isMobile={isMobile}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
-        setActiveTab={setActiveTab}
-        setActiveSystem={setActiveSystem}
       />
-        
 
-
-        
-      {/* CONTENT */}
       <main>
-        <div className="page-shell" key={activeTab}>
-          {renderTab()}
+        <div className="page-shell" key={location.pathname}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/systems" element={<Systems />} />
+            <Route path="/systems/build" element={<BuildPhase />} />
+            <Route path="/systems/reset" element={<Reset />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/community" element={<Community />} />
+          </Routes>
         </div>
 
         <ChatLauncher
@@ -136,16 +106,19 @@ function App() {
           chatSessionId={chatSessionId}
           setChatSessionId={setChatSessionId}
         />
-        
-
       </main>
 
       <Footer />
-      
     </div>
   );
 }
 
-
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
 
 export default App;

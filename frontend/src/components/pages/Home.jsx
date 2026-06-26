@@ -1,14 +1,29 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { usePageView } from "../../hooks/usePageView";
 import { trackEvent } from "../../utils/analytics";
 
-function Home({ setActiveTab, setActiveSystem }) {
+function Home() {
+  const navigate = useNavigate();
 
   const containerStyle = {
-  maxWidth: "1100px",
-  margin: "0 auto",
-  padding: "0 24px",
-  
+    maxWidth: "1100px",
+    margin: "0 auto",
+    padding: "0 24px",
+  };
+
+  const goToProgram = (systemKey) => {
+    if (systemKey === "build-phase") {
+      navigate("/systems/build");
+      return;
+    }
+
+    if (systemKey === "30-day-reset") {
+      navigate("/systems/reset");
+      return;
+    }
+
+    navigate("/systems");
   };
 
   const youtubeVideos = [
@@ -234,7 +249,7 @@ const heroStyles = {
                     },
                   });
 
-                  setActiveTab("systems");
+                  navigate("/systems");
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateX(4px)";
@@ -280,8 +295,7 @@ const heroStyles = {
               },
             });
 
-            setActiveTab("systems");
-            setActiveSystem("build-phase");
+            navigate("/systems/build");
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateX(4px)";
@@ -307,8 +321,7 @@ const heroStyles = {
             },
           });
 
-          setActiveTab("systems");
-          setActiveSystem("build-phase");
+          navigate("/systems/build");
         }}
       >
 
@@ -384,8 +397,7 @@ const heroStyles = {
 
                       if (!program.active) return;
 
-                      setActiveTab("systems");
-                      setActiveSystem(program.systemKey);
+                      goToProgram(program.systemKey);
                     }}
 
                     style={{
@@ -431,7 +443,7 @@ const heroStyles = {
                   },
                 });
 
-                setActiveTab("systems");
+                navigate("/systems");
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-4px)";

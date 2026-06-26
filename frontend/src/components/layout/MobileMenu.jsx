@@ -1,17 +1,19 @@
+import { NavLink, useNavigate } from "react-router-dom";
+
 function MobileMenu({
-    isMobile,
-    menuOpen,
-    setMenuOpen,
-    setActiveTab,
-    setActiveSystem,
-  }) {
+  isMobile,
+  menuOpen,
+  setMenuOpen,
+}) {
+  const navigate = useNavigate();
+
   if (!isMobile) return null;
 
   const navItems = [
-    { label: "Home", value: "home" },
-    { label: "Systems", value: "systems" },
-    { label: "About Me", value: "about" },
-    { label: "Community", value: "community" },
+    { label: "Home", path: "/" },
+    { label: "Systems", path: "/systems" },
+    { label: "About Me", path: "/about" },
+    { label: "Community", path: "/community" },
   ];
 
   return (
@@ -33,20 +35,19 @@ function MobileMenu({
 
         <div className="mobile-menu-links">
           {navItems.map((item) => (
-            <div
-              key={item.value}
-              className="mobile-menu-link"
-              onClick={() => {
-                if (item.value === "systems") {
-                  setActiveSystem(null);
-                }
-
-                setActiveTab(item.value);
-                setMenuOpen(false);
-              }}
+            <NavLink
+              key={item.path}
+              to={item.path}
+              end={item.path === "/"}
+              className={({ isActive }) =>
+                isActive
+                  ? "mobile-menu-link active"
+                  : "mobile-menu-link"
+              }
+              onClick={() => setMenuOpen(false)}
             >
               {item.label}
-            </div>
+            </NavLink>
           ))}
         </div>
 
@@ -55,7 +56,7 @@ function MobileMenu({
 
           <button
             onClick={() => {
-              setActiveTab("home");
+              navigate("/");
               setMenuOpen(false);
 
               setTimeout(() => {
