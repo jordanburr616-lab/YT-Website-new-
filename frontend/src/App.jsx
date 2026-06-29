@@ -7,6 +7,7 @@ import About from "./components/pages/About";
 import Community from "./components/pages/Community";
 import Reset from "./components/pages/systems/ThirtyDayReset";
 import BuildPhase from "./components/pages/systems/BuildPhase";
+import Routine from "./components/pages/systems/Routine";
 
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
@@ -53,6 +54,8 @@ function AppContent() {
       "/images/youtube-icon.png",
       "/images/youtube-logo.png",
       "/images/youtube-title.png",
+      "/images/bands-clock-1.png",
+      "/images/bands-clock-2.png",
     ];
 
     imagesToPreload.forEach((src) => {
@@ -91,6 +94,7 @@ function AppContent() {
             <Route path="/systems" element={<Systems />} />
             <Route path="/systems/build" element={<BuildPhase />} />
             <Route path="/systems/reset" element={<Reset />} />
+            <Route path="/systems/routine" element={<Routine />} />
             <Route path="/about" element={<About />} />
             <Route path="/community" element={<Community />} />
           </Routes>
