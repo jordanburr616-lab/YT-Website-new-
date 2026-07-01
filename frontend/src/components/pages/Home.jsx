@@ -14,6 +14,10 @@ function Home({ setActiveTab, setActiveSystem }) {
   const youtubeVideos = [
 
   {
+    id: "ILbDe687Fpk",
+    title: "why you care so much"
+  },
+  {
     id: "wjeYESP8Uew",
     title: "the 7 stages of weight loss",
   },
@@ -33,10 +37,7 @@ function Home({ setActiveTab, setActiveSystem }) {
     id: "XqFfUQ4zMS0",
     title: "the 7 levels of nicotine addiction"
   },
-  {
-    id: "TBAsxOtjPCU",
-    title: "the uncomfortable truth about your 20s"
-  },
+  
   
   
   
