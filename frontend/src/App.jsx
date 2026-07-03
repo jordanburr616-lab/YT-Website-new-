@@ -3,16 +3,21 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "./components/pages/Home";
 import Systems from "./components/pages/Systems";
-import About from "./components/pages/About";
+import Articles from "./components/pages/Articles";
 import Community from "./components/pages/Community";
+
 import Reset from "./components/pages/systems/ThirtyDayReset";
 import BuildPhase from "./components/pages/systems/BuildPhase";
 import Routine from "./components/pages/systems/Routine";
+
+import Video16Article from "./components/pages/articles/Video16Article";
 
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import MobileMenu from "./components/layout/MobileMenu";
 import ChatLauncher from "./components/layout/ChatLauncher";
+
+import About from "./components/pages/About";
 
 function AppContent() {
   const location = useLocation();
@@ -91,12 +96,18 @@ function AppContent() {
         <div className="page-shell" key={location.pathname}>
           <Routes>
             <Route path="/" element={<Home />} />
+
             <Route path="/systems" element={<Systems />} />
             <Route path="/systems/build" element={<BuildPhase />} />
             <Route path="/systems/reset" element={<Reset />} />
             <Route path="/systems/routine" element={<Routine />} />
-            <Route path="/about" element={<About />} />
+
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/why-you-care-so-much" element={<Video16Article />} />
+
             <Route path="/community" element={<Community />} />
+
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
 

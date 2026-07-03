@@ -12,7 +12,7 @@ function MobileMenu({
   const navItems = [
     { label: "Home", path: "/" },
     { label: "Systems", path: "/systems" },
-    { label: "About Me", path: "/about" },
+    { label: "Articles", path: "/articles" },
     { label: "Community", path: "/community" },
   ];
 

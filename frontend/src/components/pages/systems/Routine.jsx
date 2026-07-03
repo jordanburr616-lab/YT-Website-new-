@@ -292,7 +292,11 @@ function Routine() {
           </button>
         </form>
 
-        {dailyPlan && (
+        {dailyPlan?.error && (
+          <p className="routine-error">{dailyPlan.error}</p>
+        )}
+
+        {dailyPlan && !dailyPlan.error && (
           <section className="daily-plan-preview">
             <h2>Daily Plan</h2>
             <p>{dailyPlan.date}</p>
@@ -322,6 +326,17 @@ function Routine() {
                 </div>
               ))}
             </div>
+
+            {dailyPlan.warnings?.length > 0 && (
+              <>
+                <h3>Planner Notes</h3>
+                <ul>
+                  {dailyPlan.warnings.map((warning, index) => (
+                    <li key={index}>{warning}</li>
+                  ))}
+                </ul>
+              </>
+            )}
 
             <h3>Reflection</h3>
             <p>Today's Biggest Win: ____________________</p>

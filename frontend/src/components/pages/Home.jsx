@@ -79,10 +79,10 @@ const programs = [
   },
   {
     title: "The Routine",
-    systemKey: "",
-    status: "",
-    image1: "/images/coming-soon-1.png",
-    image2: "/images/coming-soon-2.png",
+    systemKey: "routine",
+    status: "In Development",
+    image1: "/images/bands-clock-1.png",
+    image2: "/images/bands-clock-2.png",
     active: false,
   },
 ];

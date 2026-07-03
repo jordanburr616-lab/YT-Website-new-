@@ -72,10 +72,10 @@ function Navbar({ isMobile, setMenuOpen }) {
             Systems
           </NavLink>
 
-          <NavLink to="/about" className={({ isActive }) =>
+          <NavLink to="/articles" className={({ isActive }) =>
             isActive ? "navbar-link active" : "navbar-link"
             }>
-            About Me
+            Articles
           </NavLink>
 
           <NavLink to="/community" className={({ isActive }) =>

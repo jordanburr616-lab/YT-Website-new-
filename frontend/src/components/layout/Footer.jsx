@@ -46,38 +46,9 @@ function Footer() {
         style={{
           backgroundColor: "#e8e9e9ff",
           borderTop: "1px solid #646464ff",
-          padding: "72px 0",
+          padding: "16px 0"
         }}
       >
-        <div
-          style={{
-            maxWidth: "1100px",
-            margin: "0 auto",
-            padding: "0 24px",
-          }}
-        >
-          <div className="footer-newsletter">
-            <h3>Get Future Systems & Weekly Updates</h3>
-
-            <p>
-              Be the first to know when new systems, videos, and updates drop.
-            </p>
-
-            <form className="newsletter-form" onSubmit={handleSignupSubmit}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <button type="submit">Join</button>
-            </form>
-
-            {signupStatus && <p>{signupStatus}</p>}
-          </div>
-          
-          {/* Intentionally left blank */}
           <div className="footer-socials"
           >
             {/* YOUTUBE */}
@@ -153,7 +124,7 @@ function Footer() {
               >
                 <img
                   src="/images/instagram.png"
-                  alt="YouTube"
+                  alt="Instagram"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -199,7 +170,7 @@ function Footer() {
               >
                 <img
                   src="/images/tiktok.png"
-                  alt="YouTube"
+                  alt="Tiktok"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -218,6 +189,51 @@ function Footer() {
                 />
               </div>
             </a>
+          </div>
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "0 24px",
+          }}
+        >
+          <div className="footer-newsletter">
+            <h3>Get Future Systems & Weekly Updates</h3>
+
+            <p>
+              Be the first to know when new systems, videos, and updates drop.
+            </p>
+
+            <form className="newsletter-form" onSubmit={handleSignupSubmit}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <button type="submit">Join</button>
+            </form>
+
+            {signupStatus && <p>{signupStatus}</p>}
+          </div>
+          
+          
+
+          <div className="footer-links">
+            <a href="/about">About JB</a>
+
+            <span className="footer-separator">•</span>
+
+            <a href="/contact">Contact</a>
+
+            <span className="footer-separator">•</span>
+
+            <a href="/privacy">Privacy</a>
+
+            <span className="footer-separator">•</span>
+
+            <a href="/terms">Terms</a>
           </div>
 
         </div>
