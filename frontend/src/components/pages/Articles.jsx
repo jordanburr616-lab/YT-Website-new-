@@ -18,7 +18,6 @@ function Articles() {
         title: "How to Get Out of a Rut",
         slug: "how-to-get-out-of-a-rut",
         category: "Mindset",
-        readTime: "8 min read",
         description:
         "7 practical shifts to rebuild momentum and escape the cycle of feeling stuck.",
         image: "/images/video17.png",
@@ -28,10 +27,18 @@ function Articles() {
         title: "Why You Care So Much What People Think",
         slug: "why-you-care-so-much",
         category: "Mindset",
-        readTime: "9 min read",
         description:
         "Understand why other people's opinions control you and the realizations that help you break free.",
         image: "/images/video16.png",
+        live: true,
+    },
+    {
+        title: "The 7 Stages of Weight Loss",
+        slug: "the-7-stages-of-weight-loss",
+        category: "Fitness",
+        description:
+          "Understand the seven stages nearly everyone experiences during a weight loss journey and how to keep moving forward.",
+        image: "/images/video15.png",
         live: true,
     },
     ];
@@ -89,7 +96,7 @@ function Articles() {
             {articles.map((article, i) => (
                 <div key={i} style={{ textAlign: "center" }}>
                     <div
-                    className="systems-size systems-tab-img"
+                    className="systems-size systems-tab-img article-card"
                     onClick={() => {
                         trackEvent("article_card_clicked", {
                         page: window.location.pathname,

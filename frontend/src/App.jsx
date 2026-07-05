@@ -11,6 +11,7 @@ import BuildPhase from "./components/pages/systems/BuildPhase";
 import Routine from "./components/pages/systems/Routine";
 
 import Video16Article from "./components/pages/articles/Video16Article";
+import Video15Article from "./components/pages/articles/Video15Article";
 
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
@@ -104,6 +105,7 @@ function AppContent() {
 
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/why-you-care-so-much" element={<Video16Article />} />
+            <Route path="/articles/the-7-stages-of-weight-loss" element={<Video15Article />}/>
 
             <Route path="/community" element={<Community />} />
 
