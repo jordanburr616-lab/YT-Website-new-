@@ -12,7 +12,8 @@ export function getStartTimeMinutes(scheduleItem) {
 }
 
 export function sortSchedule(schedule) {
-  return [...schedule].sort(
-    (a, b) => getStartTimeMinutes(a) - getStartTimeMinutes(b)
-  );
+  return [...schedule].sort((a, b) => {
+    return (a.sortTime ?? timeToMinutes(a.rawStart)) -
+      (b.sortTime ?? timeToMinutes(b.rawStart));
+  });
 }

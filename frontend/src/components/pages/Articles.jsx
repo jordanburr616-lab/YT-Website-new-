@@ -15,13 +15,13 @@ function Articles() {
 
   const articles = [
     {
-        title: "How to Get Out of a Rut",
-        slug: "how-to-get-out-of-a-rut",
-        category: "Mindset",
-        description:
+      title: "How to Get Out of a Rut",
+      slug: "how-to-get-out-of-a-rut",
+      category: "Mindset",
+      description:
         "7 practical shifts to rebuild momentum and escape the cycle of feeling stuck.",
-        image: "/images/video17.png",
-        live: false,
+      image: "/images/video17.png",
+      live: true,
     },
     {
         title: "Why You Care So Much What People Think",

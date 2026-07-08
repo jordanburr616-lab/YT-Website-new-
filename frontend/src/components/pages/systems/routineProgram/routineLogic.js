@@ -1,5 +1,5 @@
 import { sortSchedule } from "./scheduleHelpers";
-import { addMinutes, formatTime, timeToMinutes } from "./timeHelpers";
+import { addMinutes, formatTime, timeToMinutes, minutesToTime } from "./timeHelpers";
 
 const RULES = {
   deepWork: {
@@ -34,7 +34,25 @@ function getWorkCommitment(commitments) {
 }
 
 function getDurationMinutes(start, end) {
-  return timeToMinutes(end) - timeToMinutes(start);
+  let startMinutes = timeToMinutes(start);
+  let endMinutes = timeToMinutes(end);
+
+  if (endMinutes <= startMinutes) {
+    endMinutes += 1440;
+  }
+
+  return endMinutes - startMinutes;
+}
+
+function normalizeTimeForDay(time, wakeTime) {
+  let minutes = timeToMinutes(time);
+  const wakeMinutes = timeToMinutes(wakeTime);
+
+  if (minutes < wakeMinutes) {
+    minutes += 1440;
+  }
+
+  return minutes;
 }
 
 function overlapsRange(startA, endA, startB, endB) {
@@ -42,8 +60,10 @@ function overlapsRange(startA, endA, startB, endB) {
 }
 
 function getEventEnd(item, defaultDuration = 30) {
-  if (item.rawEnd) return item.rawEnd;
-  return addMinutes(item.rawStart, defaultDuration);
+  if (item.sortEnd !== undefined) return item.sortEnd;
+  if (item.sortTime !== undefined) return item.sortTime + defaultDuration;
+
+  return timeToMinutes(addMinutes(item.rawStart, defaultDuration));
 }
 
 function moveAfterScheduleConflict(start, durationMinutes, schedule, bufferMinutes = RULES.buffer) {
@@ -55,15 +75,20 @@ function moveAfterScheduleConflict(start, durationMinutes, schedule, bufferMinut
     const currentEnd = addMinutes(currentStart, durationMinutes);
 
     const conflict = schedule.find((item) => {
-      if (!item.rawStart) return false;
+      if (item.sortTime === undefined) return false;
 
       const itemEnd = getEventEnd(item);
 
-      return overlapsRange(currentStart, currentEnd, item.rawStart, itemEnd);
+      return overlapsRange(
+        getSortTime(currentStart, schedule[0].rawStart),
+        getSortTime(currentEnd, schedule[0].rawStart),
+        item.sortTime,
+        itemEnd
+      );
     });
 
     if (conflict) {
-      currentStart = addMinutes(getEventEnd(conflict), bufferMinutes);
+      currentStart = minutesToTime(getEventEnd(conflict) + bufferMinutes);
       moved = true;
     }
   }
@@ -108,22 +133,116 @@ function getFlexibleDurations({ wakeTime, bedTime, commitments }) {
   };
 }
 
-function getLunchTime(commitments) {
+function getLunchTime(commitments, wakeTime) {
   const work = getWorkCommitment(commitments);
 
   if (!work) return "12:00";
 
-  const workDuration = getDurationMinutes(work.start, work.end);
+  const workStart = timeToMinutes(work.start);
+  const workEnd = timeToMinutes(work.end);
 
-  if (workDuration >= 360) {
+  // If work starts after lunch window, eat before work
+  if (workStart >= timeToMinutes("15:00")) {
     return "12:00";
   }
 
-  return addMinutes(work.end, RULES.buffer);
+  // If work overlaps lunch window, eat after work
+  if (
+    workStart <= timeToMinutes("13:30") &&
+    workEnd >= timeToMinutes("11:30")
+  ) {
+    return addMinutes(work.end, RULES.buffer);
+  }
+
+  return "12:00";
 }
 
 function createWarning(message) {
   return message;
+}
+
+function getFreeTimeBlocks(schedule, wakeTime, bedTime) {
+  const sorted = sortSchedule([...schedule]);
+
+  const gaps = [];
+
+  let previousEnd = wakeTime;
+
+  for (const item of sorted) {
+    if (!item.rawStart) continue;
+
+    if (timeToMinutes(item.rawStart) > timeToMinutes(previousEnd)) {
+      gaps.push({
+        start: previousEnd,
+        end: item.rawStart,
+        duration:
+          timeToMinutes(item.rawStart) -
+          timeToMinutes(previousEnd),
+      });
+    }
+
+    previousEnd = item.rawEnd || item.rawStart;
+  }
+
+  if (timeToMinutes(previousEnd) < timeToMinutes(bedTime)) {
+    gaps.push({
+      start: previousEnd,
+      end: bedTime,
+      duration:
+        timeToMinutes(bedTime) -
+        timeToMinutes(previousEnd),
+    });
+  }
+
+  return gaps;
+}
+
+function fillFreeTimeWithDeepWork(schedule, includes) {
+  if (!includes.deepWork) return schedule;
+
+  const updatedSchedule = [...schedule];
+  const freeTimeBlocks = getFreeTimeBlocks(
+    updatedSchedule,
+    updatedSchedule[0].rawStart,
+    updatedSchedule[updatedSchedule.length - 1].rawStart
+  );
+
+  const usableBlock = freeTimeBlocks.find(
+    (block) => block.duration >= 45
+  );
+
+  if (!usableBlock) return updatedSchedule;
+
+  let duration = 45;
+
+  if (usableBlock.duration >= 90) {
+    duration = 90;
+  } else if (usableBlock.duration >= 60) {
+    duration = 60;
+  }
+
+  const end = addMinutes(usableBlock.start, duration);
+
+  updatedSchedule.push({
+    rawStart: usableBlock.start,
+    rawEnd: end,
+    time: `${formatTime(usableBlock.start)} - ${formatTime(end)}`,
+    title: "Deep Work Session",
+    note: `${duration} minutes. Use this block to make progress on your highest priority.`,
+  });
+
+  return updatedSchedule;
+}
+
+function getSortTime(time, wakeTime) {
+  let minutes = timeToMinutes(time);
+  const wakeMinutes = timeToMinutes(wakeTime);
+
+  if (minutes < wakeMinutes) {
+    minutes += 1440;
+  }
+
+  return minutes;
 }
 
 export function generateDailyPlan({
@@ -137,13 +256,21 @@ export function generateDailyPlan({
 }) {
   const warnings = [];
 
-  const invalidCommitment = commitments.find(
-    (item) =>
-      item.title &&
-      item.start &&
-      item.end &&
-      (item.start < wakeTime || item.end > bedTime || item.end <= item.start)
-  );
+  const invalidCommitment = commitments.find((item) => {
+    if (!item.title || !item.start || !item.end) return false;
+
+    const wake = timeToMinutes(wakeTime);
+    let bed = timeToMinutes(bedTime);
+
+    if (bed <= wake) {
+      bed += 1440;
+    }
+
+    const start = normalizeTimeForDay(item.start, wakeTime);
+    const end = normalizeTimeForDay(item.end, wakeTime);
+
+    return start < wake || end > bed || end <= start;
+  });
 
   if (invalidCommitment) {
     return {
@@ -168,6 +295,7 @@ export function generateDailyPlan({
 
   schedule.push({
     rawStart: wakeTime,
+    sortTime: getSortTime(wakeTime, wakeTime),
     time: formatTime(wakeTime),
     title: "Wake Up",
   });
@@ -178,6 +306,7 @@ export function generateDailyPlan({
     schedule.push({
       rawStart: breakfastTime,
       rawEnd: addMinutes(breakfastTime, RULES.meals.breakfast),
+      sortTime: getSortTime(breakfastTime, wakeTime),
       time: formatTime(breakfastTime),
       title: "Breakfast",
     });
@@ -187,6 +316,8 @@ export function generateDailyPlan({
     schedule.push({
       rawStart: item.start,
       rawEnd: item.end,
+      sortTime: getSortTime(item.start, wakeTime),
+      sortEnd: getSortTime(item.end, wakeTime),
       time: `${formatTime(item.start)} - ${formatTime(item.end)}`,
       title: item.title,
     });
@@ -206,6 +337,8 @@ export function generateDailyPlan({
       schedule.push({
         rawStart: deepWorkStart,
         rawEnd: deepWorkEnd,
+        sortTime: getSortTime(deepWorkStart, wakeTime),
+        sortEnd: getSortTime(deepWorkEnd, wakeTime),
         time: `${formatTime(deepWorkStart)} - ${formatTime(deepWorkEnd)}`,
         title: "Deep Work Session",
         note: `${deepWorkDuration} minutes of focused work before distractions take over.`,
@@ -226,6 +359,8 @@ export function generateDailyPlan({
           schedule.push({
             rawStart: breakStart,
             rawEnd: breakEnd,
+            sortTime: getSortTime(breakStart, wakeTime),
+            sortEnd: getSortTime(breakEnd, wakeTime),
             time: `${formatTime(breakStart)} - ${formatTime(breakEnd)}`,
             title: "Short Break",
             note: "15 minutes. Step away from the screen.",
@@ -240,7 +375,7 @@ export function generateDailyPlan({
   }
 
   if (includes.lunch) {
-    let lunchTime = getLunchTime(commitments);
+    let lunchTime = getLunchTime(commitments, wakeTime);
 
     lunchTime = moveAfterScheduleConflict(
       lunchTime,
@@ -252,6 +387,8 @@ export function generateDailyPlan({
       schedule.push({
         rawStart: lunchTime,
         rawEnd: addMinutes(lunchTime, RULES.meals.lunch),
+        sortTime: getSortTime(lunchTime, wakeTime),
+        sortEnd: getSortTime(addMinutes(lunchTime, RULES.meals.lunch), wakeTime),
         time: formatTime(lunchTime),
         title: "Lunch",
       });
@@ -285,6 +422,8 @@ export function generateDailyPlan({
       schedule.push({
         rawStart: workoutTime,
         rawEnd: workoutEnd,
+        sortTime: getSortTime(workoutTime, wakeTime),
+        sortEnd: getSortTime(workoutEnd, wakeTime),
         time: `${formatTime(workoutTime)} - ${formatTime(workoutEnd)}`,
         title: "Workout",
         note: `${workoutDuration} minutes. Move your body. Build momentum.`,
@@ -309,6 +448,8 @@ export function generateDailyPlan({
       schedule.push({
         rawStart: dinnerTime,
         rawEnd: addMinutes(dinnerTime, RULES.meals.dinner),
+        sortTime: getSortTime(dinnerTime, wakeTime),
+        sortEnd: getSortTime(addMinutes(dinnerTime, RULES.meals.dinner), wakeTime),
         time: formatTime(dinnerTime),
         title: "Dinner",
       });
@@ -320,28 +461,48 @@ export function generateDailyPlan({
   }
 
   if (includes.windDown) {
-    const windDownTime = addMinutes(bedTime, -RULES.windDown);
+    let windDownTime = addMinutes(bedTime, -RULES.windDown);
 
-    schedule.push({
-      rawStart: windDownTime,
-      rawEnd: bedTime,
-      time: formatTime(windDownTime),
-      title: "Wind Down",
-      note: "No chaos before sleep. Set tomorrow up clean.",
-    });
+    windDownTime = moveAfterScheduleConflict(
+      windDownTime,
+      RULES.windDown,
+      schedule,
+      0
+    );
+
+    if (fitsBeforeBed(windDownTime, RULES.windDown, bedTime)) {
+      schedule.push({
+        rawStart: windDownTime,
+        rawEnd: bedTime,
+        sortTime: getSortTime(windDownTime, wakeTime),
+        sortEnd: getSortTime(bedTime, wakeTime),
+        time: `${formatTime(windDownTime)} - ${formatTime(bedTime)}`,
+        title: "Wind Down",
+        note: "No chaos before sleep. Set tomorrow up clean.",
+      });
+    } else {
+      warnings.push("Wind Down could not fit before bedtime.");
+    }
   }
 
   schedule.push({
     rawStart: bedTime,
+    rawEnd: bedTime,
+    sortTime: getSortTime(bedTime, wakeTime),
     time: formatTime(bedTime),
     title: "Sleep",
   });
+
+  const finalSchedule = fillFreeTimeWithDeepWork(
+    schedule,
+    includes
+  );
 
   return {
     date,
     goal,
     priorities: priorities.filter(Boolean),
-    schedule: sortSchedule(schedule),
+    schedule: sortSchedule(finalSchedule),
     warnings,
     quote: "Small actions repeated daily become extraordinary results.",
   };

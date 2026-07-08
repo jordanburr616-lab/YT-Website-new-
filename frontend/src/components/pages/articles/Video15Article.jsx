@@ -185,35 +185,30 @@ function Video15Article() {
           </div>
         </section>
 
-        <section className="article-section"> //LEFT OFF HERE 7/5
+        <section className="article-section">
           <h2>Stage 4: Routine</h2>
 
           <p>
-            After showing up on the days you would have normally skipped, the gym
+            After showing up on the days you normally would have skipped, the gym
             starts becoming part of your life.
           </p>
 
           <p>
-            Missing a workout begins to feel weird. Your walks turn into runs.
-            Your lifts get more intense. Each week gives you a new goal to chase.
+            Missing a workout begins to feel strange. Your walks turn into runs.
+            Your lifts become more intense. Each week gives you a new goal to chase.
           </p>
 
           <p>
-            Your diet starts becoming more consistent too.
-          </p>
-
-          <p>
+            Your diet starts becoming more consistent as well.
             This is where you realize weight loss is not just about finding the
-            perfect workout. Calories matter. Consistency matters. Your daily
-            habits matter more than any random burst of motivation.
+            perfect workout because calories do matter also. On top of other factors (consistency & discipline) that matter more than any random burst of motivation.
           </p>
 
           <p>
-            And eventually, people around you start noticing. They no longer see
+            And eventually, people around you will begin to notice. They no longer see
             you as the person who keeps saying they are going to change.
+            They start seeing someone who is actually doing it.
           </p>
-
-          <p>They start seeing someone who is actually doing it.</p>
         </section>
 
         <section className="article-section">
@@ -224,18 +219,14 @@ function Video15Article() {
           </p>
 
           <p>
-            You start doing double takes in the mirror. Your clothes fit
-            differently. Your shoulders and arms look better. Your confidence
+            You start doing double takes in the mirror. Your out fitting your large clothes. Your shoulders and arms look better. Your confidence
             starts changing because you finally have proof that your work is
             paying off.
           </p>
 
           <p>
             This is also where attention begins to show up.
-          </p>
-
-          <p>
-            Some people will be impressed. Some people will be proud of you. And
+            Some people will be impressed... and
             some people will criticize you for taking things too seriously.
           </p>
 
@@ -246,16 +237,13 @@ function Video15Article() {
           <p>
             Compliments feel good, but they are not the finish line. Criticism
             might sting, but it does not mean you are doing something wrong.
-          </p>
-
-          <p>
             This stage is where you learn to keep improving even after people
             start noticing.
           </p>
 
           <div className="article-image">
             <img
-              src="/images/articles/the-7-stages-of-weight-loss/stage5.png"
+              src="/images/articles/the-7-stages-of-weight-loss/weight3.png"
               alt="Bands seeing visible results from weight loss"
             />
           </div>
@@ -265,37 +253,35 @@ function Video15Article() {
           <h2>Stage 6: The Plateau</h2>
 
           <p>
-            Eventually, beginner progress slows down.
+            Eventually, the beginner gains will slow down.
           </p>
 
           <p>
             The lifts that used to go up every week start flattening. The scale
-            stops moving. The mirror stops giving you that brand-new-person
+            stops moving. The mirror stops giving you that brand-new-person type of
             feeling.
           </p>
 
           <p>
-            You are still showing up. You are still eating well. You are still
-            putting in the work.
+            Even though you are still showing up, eating well, and
+            putting in the work. But nothing seems to be happening.
           </p>
-
-          <p>But nothing seems to be happening.</p>
 
           <p>
             This stage is frustrating because it feels like your effort stopped
-            working. A lot of people quit here because easier habits start
-            looking more rewarding again.
+            working. A lot of people quit here due to easier habits starting to
+            look more rewarding once again.
           </p>
 
           <p>
             But every strong, lean, athletic person you see has gone through
-            this stage.
+            this exact stage.
           </p>
 
           <p>
-            The difference is that they did not assume they were done growing.
-            They adjusted, stayed patient, and kept showing up long enough for
-            their body to catch up.
+            The difference is that they never assumed they were done growing.
+            They adjusted, remained patient, and kept showing up long enough for
+            their body to eventually catch up with their mentality.
           </p>
 
           <blockquote>
@@ -308,25 +294,22 @@ function Video15Article() {
           <h2>Stage 7: The New You</h2>
 
           <p>
-            After enough time, what started as a goal to lose weight becomes a
+            After enough time, what started as a goal to lose weight becomes a brand new
             lifestyle.
           </p>
 
           <p>
             You think healthier. You take care of yourself without needing to
             force it. People no longer see you as the same person you used to be.
-          </p>
-
-          <p>
-            But the biggest transformation is not the weight loss. It is not the
-            abs. It is not even the way other people treat you.
+            But the biggest transformation is not the weight loss, the
+            abs, or even the way other people treat you.
           </p>
 
           <p>The biggest transformation is mental.</p>
 
           <p>
             The discipline you built starts showing up in other areas of your
-            life. You start asking bigger questions.
+            life. So you start to ask bigger questions.
           </p>
 
           <p>
@@ -341,7 +324,7 @@ function Video15Article() {
 
           <div className="article-image">
             <img
-              src="/images/articles/the-7-stages-of-weight-loss/stage7.png"
+              src="/images/articles/the-7-stages-of-weight-loss/weight4.png"
               alt="Bands becoming the new version of himself"
             />
           </div>
@@ -351,12 +334,12 @@ function Video15Article() {
           <h2>Where Most People Go Wrong</h2>
 
           <p>
-            Most people treat weight loss like a short-term challenge instead of
-            a long-term identity shift.
+            Most people treat weight loss like a short term challenge instead of
+            a long term identity shift.
           </p>
 
           <p>
-            They want the results, but they do not want the boring middle part.
+            They want the results, but they do not want the boring stuff that's in the middle.
             They want the transformation, but they do not want the days where
             nothing exciting happens.
           </p>
@@ -368,10 +351,9 @@ function Video15Article() {
           </p>
 
           <p>
-            If you only chase the scale, you will eventually get frustrated. But
-            if you build the habits, routines, and discipline that create the
-            result, the weight loss becomes a side effect of becoming a better
-            version of yourself.
+            If you only chase the scale, you will eventually grow frustrated. But
+            if you build the habits, routines, and discipline that create the desired
+            result, then weight loss becomes a side effect of heading towards that better you.
           </p>
         </section>
 
@@ -379,24 +361,20 @@ function Video15Article() {
           <h2>Final Thoughts</h2>
 
           <p>
-            Weight loss is not one clean straight line. It is a process filled
-            with motivation, discomfort, progress, plateaus, doubt, and identity
-            change.
+            Weight loss is not one clear straight line. It is a process filled
+            with motivation, discomfort, progress, plateaus, doubt, and many other things.
           </p>
 
           <p>
-            The people who succeed are not the people who feel motivated every
+            The people who succeed are not the ones who feel motivated every
             day.
-          </p>
-
-          <p>
             They are the people who understand what stage they are in and refuse
             to let one bad week send them back to the beginning.
           </p>
 
           <blockquote>
             You do not need to become perfect. You just need to keep moving
-            forward long enough for the new version of you to become normal.
+            forward long enough for the new version of you to be the new normal.
           </blockquote>
         </section>
 
@@ -404,12 +382,12 @@ function Video15Article() {
           <h2>Take the Next Step</h2>
 
           <p>
-            If you&apos;re ready to stop guessing in the gym, check out the 10 Week
+            If you&apos;re ready to stop guessing what to do next in the gym, check out the 10 Week
             Build.
           </p>
 
           <p>
-            It helps you generate a personalized training plan based on your
+            It helps you generate a personalized training plan based on your own
             goals, experience, schedule, and current strength levels.
           </p>
 
@@ -422,8 +400,8 @@ function Video15Article() {
             <h3>The 10 Week Build</h3>
 
             <p>
-              Build a structured workout plan and test your strength over 10
-              weeks.
+              Build a structured workout plan and test your strength over a 10
+              week stretch.
             </p>
 
             <span className="next-arrow">View System →</span>

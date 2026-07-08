@@ -10,6 +10,7 @@ import Reset from "./components/pages/systems/ThirtyDayReset";
 import BuildPhase from "./components/pages/systems/BuildPhase";
 import Routine from "./components/pages/systems/Routine";
 
+import Video17Article from "./components/pages/articles/Video17Article";
 import Video16Article from "./components/pages/articles/Video16Article";
 import Video15Article from "./components/pages/articles/Video15Article";
 
@@ -19,6 +20,9 @@ import MobileMenu from "./components/layout/MobileMenu";
 import ChatLauncher from "./components/layout/ChatLauncher";
 
 import About from "./components/pages/About";
+import Contact from "./components/pages/Contact";
+import Privacy from "./components/pages/Privacy";
+import Terms from "./components/pages/Terms";
 
 function AppContent() {
   const location = useLocation();
@@ -104,12 +108,16 @@ function AppContent() {
             <Route path="/systems/routine" element={<Routine />} />
 
             <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/how-to-get-out-of-a-rut" element={<Video17Article />}/>
             <Route path="/articles/why-you-care-so-much" element={<Video16Article />} />
             <Route path="/articles/the-7-stages-of-weight-loss" element={<Video15Article />}/>
 
             <Route path="/community" element={<Community />} />
 
             <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </div>
 
