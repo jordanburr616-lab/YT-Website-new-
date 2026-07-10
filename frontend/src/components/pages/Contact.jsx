@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 function Contact() {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <main className="simple-page">
@@ -18,28 +17,21 @@ function Contact() {
         <h1>Contact</h1>
 
         <p>
-          Have a question, feedback, or want to reach out about Improving JB?
+          Got a question, feedback, a collaboration idea, or a business inquiry?
+          Well I'd love to hear from you!
         </p>
 
         <p>
-          The best way to contact JB right now is through Instagram or YouTube.
+          The best way to reach me is by email. I read every message (response time will vary based on my schedule, but I will get back to you eventually!).
         </p>
 
         <div className="simple-page-links">
           <a
-            href="https://www.instagram.com/improvingjb/?hl=en"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe_aSVEgy0P2xGBYJBnK_ONROAqKFjkx6V5i7dzeE8efgPN4A/viewform?usp=publish-editor"
             target="_blank"
             rel="noreferrer"
           >
-            Message on Instagram →
-          </a>
-
-          <a
-            href="https://www.youtube.com/@improvingjb"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Visit YouTube →
+            Email JB →
           </a>
         </div>
       </section>

@@ -56,14 +56,13 @@ function MobileMenu({
 
           <button
             onClick={() => {
-              navigate("/");
               setMenuOpen(false);
 
-              setTimeout(() => {
-                document
-                  .querySelector(".footer-newsletter")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }, 100);
+              navigate("/", {
+                state: {
+                  scrollToNewsletter: true,
+                },
+              });
             }}
           >
             Join →

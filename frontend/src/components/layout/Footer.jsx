@@ -49,6 +49,35 @@ function Footer() {
           padding: "16px 0"
         }}
       >
+
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "0 24px",
+          }}
+        >
+          
+          
+
+          <div className="footer-links">
+            <a href="/about">About JB</a>
+
+            <span className="footer-separator">•</span>
+
+            <a href="/contact">Contact</a>
+
+            <span className="footer-separator">•</span>
+
+            <a href="/privacy">Privacy</a>
+
+            <span className="footer-separator">•</span>
+
+            <a href="/terms">Terms</a>
+          </div>
+
+        </div>
+        
           <div className="footer-socials"
           >
             {/* YOUTUBE */}
@@ -190,53 +219,7 @@ function Footer() {
               </div>
             </a>
           </div>
-        <div
-          style={{
-            maxWidth: "1100px",
-            margin: "0 auto",
-            padding: "0 24px",
-          }}
-        >
-          <div className="footer-newsletter">
-            <h3>Get Future Systems & Weekly Updates</h3>
-
-            <p>
-              Be the first to know when new systems, videos, and updates drop.
-            </p>
-
-            <form className="newsletter-form" onSubmit={handleSignupSubmit}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <button type="submit">Join</button>
-            </form>
-
-            {signupStatus && <p>{signupStatus}</p>}
-          </div>
-          
-          
-
-          <div className="footer-links">
-            <a href="/about">About JB</a>
-
-            <span className="footer-separator">•</span>
-
-            <a href="/contact">Contact</a>
-
-            <span className="footer-separator">•</span>
-
-            <a href="/privacy">Privacy</a>
-
-            <span className="footer-separator">•</span>
-
-            <a href="/terms">Terms</a>
-          </div>
-
-        </div>
+        
       </footer>
   );
 }

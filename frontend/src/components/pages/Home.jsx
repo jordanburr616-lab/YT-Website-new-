@@ -1,10 +1,55 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { usePageView } from "../../hooks/usePageView";
 import { trackEvent } from "../../utils/analytics";
 
 function Home() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
+  const [email, setEmail] = useState("");
+  const [signupStatus, setSignupStatus] = useState("");
+
+  async function handleSignupSubmit(e) {
+    e.preventDefault();
+    setSignupStatus("");
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          source: "home",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Signup failed");
+      }
+
+      trackEvent("email_signup", {
+        page: window.location.pathname,
+        metadata: {
+          location: "home",
+          form: "home_newsletter",
+        },
+      });
+
+      setSignupStatus("Thank you for signing up!");
+      setEmail("");
+    } catch (err) {
+      setSignupStatus("Something went wrong. Try again.");
+      console.error(err);
+    }
+  }
 
   const containerStyle = {
     maxWidth: "1100px",
@@ -108,6 +153,24 @@ useEffect(() => {
     window.removeEventListener("resize", handleResize);
   };
 }, []);
+
+useEffect(() => {
+  if (!location.state?.scrollToNewsletter) return;
+
+  const newsletter = document.getElementById("home-newsletter");
+
+  if (newsletter) {
+    newsletter.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
+  navigate(location.pathname, {
+    replace: true,
+    state: {},
+  });
+}, [location, navigate]);
 
 usePageView("home");
 
@@ -472,6 +535,39 @@ const heroStyles = {
         </section>
       </div>
 
+
+          {/* NEWSLETTER SECTION */}
+          <section
+            id="home-newsletter"
+            style={{
+              background: "#2da6da",
+              padding: "72px 24px",
+              borderTop: "1px solid rgba(0, 0, 0, 0.08)",
+              borderBottom: "1px solid rgba(0, 0, 0, 0.08)",
+            }}
+          >
+            <div className="footer-newsletter">
+              <h3>Get Future Systems & Weekly Updates</h3>
+
+              <p>
+                Be the first to know when new systems, videos, and updates drop
+              </p>
+
+              <form className="newsletter-form" onSubmit={handleSignupSubmit}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+
+                <button type="submit">Join</button>
+              </form>
+
+              {signupStatus && <p>{signupStatus}</p>}
+            </div>
+          </section>
 
 
 

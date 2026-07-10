@@ -1,7 +1,53 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { trackEvent } from "../../../utils/analytics";
 
 function Video16Article() {
   const navigate = useNavigate();
+
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
+  const [email, setEmail] = useState("");
+  const [signupStatus, setSignupStatus] = useState("");
+
+  async function handleSignupSubmit(e) {
+    e.preventDefault();
+    setSignupStatus("");
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          source: "article_16",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Signup failed");
+      }
+
+      trackEvent("email_signup", {
+        page: window.location.pathname,
+        metadata: {
+          location: "article_16",
+          form: "article_newsletter",
+        },
+      });
+
+      setSignupStatus("Thank you for signing up!");
+      setEmail("");
+    } catch (err) {
+      setSignupStatus("Something went wrong. Try again.");
+      console.error(err);
+    }
+  }
 
   return (
     <main className="article-page">
@@ -352,6 +398,28 @@ function Video16Article() {
           </blockquote>
 
           <p>Now get back to building your own life.</p>
+        </section>
+
+        <section className="article-newsletter">
+          <h2>Get Future Systems & Weekly Updates</h2>
+
+          <p>
+            Be the first to know when new systems, videos, and updates drop
+          </p>
+
+          <form className="newsletter-form" onSubmit={handleSignupSubmit}>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <button type="submit">Join</button>
+          </form>
+
+          {signupStatus && <p>{signupStatus}</p>}
         </section>
 
           <div

@@ -597,6 +597,73 @@ button {
   z-index: 1;
 }
 
+.system-newsletter {
+  margin-top: 64px;
+  padding: 44px 32px;
+  background: #2da6da;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.system-newsletter h2 {
+  margin: 0 0 14px;
+  color: #111;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.system-newsletter p {
+  max-width: 560px;
+  margin: 0 auto 22px;
+  color: #111;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .system-newsletter {
+    padding: 36px 20px;
+  }
+}
+
+.build-newsletter {
+  margin-top: 42px;
+  padding-top: 36px;
+  border-top: 1px solid #d9e1e6;
+  text-align: center;
+}
+
+.build-newsletter h3 {
+  margin: 0 0 12px;
+  color: #111;
+  font-size: 1.65rem;
+  font-weight: 900;
+}
+
+.build-newsletter p {
+  max-width: 560px;
+  margin: 0 auto 22px;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.build-newsletter-status {
+  margin-top: 16px !important;
+  margin-bottom: 0 !important;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .build-newsletter {
+    margin-top: 34px;
+    padding-top: 30px;
+  }
+
+  .build-newsletter h3 {
+    font-size: 1.4rem;
+  }
+}
+
 @media (max-width: 768px) {
   .systems-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -772,10 +839,11 @@ button {
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(0,0,0,.1);
-  border-top: 1px solid rgba(0, 0, 0, 0.18);
+
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
 }
 
 .footer-links a {
@@ -1510,6 +1578,25 @@ button {
   margin-bottom: 26px;
 }
 
+.article-newsletter {
+  margin: 72px 0;
+  padding: 44px 32px;
+  background: #2da6da;
+  border-radius: 22px;
+  text-align: center;
+}
+
+.article-newsletter h2 {
+  color: #111;
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.article-newsletter p {
+  color: #111;
+  margin-bottom: 22px;
+}
+
 @media (max-width: 768px) {
   .article-page {
     padding: 72px 16px 70px;
@@ -1583,4 +1670,19 @@ button {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.simple-page-links a:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.simple-page-links a:active {
+  transform: translateY(0);
 }
