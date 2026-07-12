@@ -18,7 +18,10 @@ function About() {
         <button
           className="article-back-button"
           onClick={() => navigate("/")}
-          style={{ marginBottom: "36px" }}
+          style={{
+            marginTop: "36px",
+            marginBottom: "36px",
+          }}
         >
           ← Back
         </button>

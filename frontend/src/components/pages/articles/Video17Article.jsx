@@ -211,12 +211,6 @@ function Video17Article() {
             into the same cycle if you aren't careful enough to notice.
           </p>
 
-          <div className="article-image">
-            <img
-              src="/images/articles/how-to-get-out-of-a-rut/rut2.png"
-              alt="Bands building momentum with small actions"
-            />
-          </div>
         </section>
 
         <section className="article-section">
@@ -250,7 +244,7 @@ function Video17Article() {
 
           <div className="article-image">
             <img
-              src="/images/articles/how-to-get-out-of-a-rut/rut3.png"
+              src="/images/articles/how-to-get-out-of-a-rut/rut2.png"
               alt="Bands making success easier by removing distractions"
             />
           </div>
@@ -308,12 +302,6 @@ function Video17Article() {
             Easy habits help you start out. Slightly harder only will help you continue to grow.
           </blockquote>
 
-          <div className="article-image">
-            <img
-              src="/images/articles/how-to-get-out-of-a-rut/rut4.png"
-              alt="Bands increasing the difficulty through progressive overload"
-            />
-          </div>
         </section>
 
         <section className="article-section">
@@ -345,7 +333,7 @@ function Video17Article() {
 
           <div className="article-image">
             <img
-              src="/images/articles/how-to-get-out-of-a-rut/rut5.png"
+              src="/images/articles/how-to-get-out-of-a-rut/rut3.png"
               alt="Bands reflecting and repeating the 7 day reset"
             />
           </div>

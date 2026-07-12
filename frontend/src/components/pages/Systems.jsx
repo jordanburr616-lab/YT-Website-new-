@@ -149,7 +149,8 @@ function Systems() {
               },
               {
                 title: "The Routine",
-                live: true,
+                live: false,
+                status: "Coming Soon",
                 systemKey: "routine",
                 image1: "/images/bands-clock-1.png",
                 image2: "/images/bands-clock-2.png",
@@ -210,6 +211,20 @@ function Systems() {
                 <h3 style={{ fontWeight: "700", color: "white" }}>
                   {system.title}
                 </h3>
+                {system.status && (
+                  <p
+                    style={{
+                      marginTop: "6px",
+                      fontSize: "0.85rem",
+                      fontWeight: "700",
+                      color: "rgba(255, 255, 255, 0.8)",
+                      letterSpacing: "0.8px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {system.status}
+                  </p>
+                )}
               </div>
             ))}
           </div>

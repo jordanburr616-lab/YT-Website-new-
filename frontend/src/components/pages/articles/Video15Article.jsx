@@ -478,15 +478,15 @@ function Video15Article() {
 
         <div
           className="article-next-card"
-          onClick={() => navigate("/articles/why-you-care-so-much")}
+          onClick={() => navigate("/articles/how-to-get-out-of-a-rut")}
         >
           <span>Next Article</span>
 
-          <h3>Why You Care So Much What People Think</h3>
+          <h3>How to Get Out of a Rut (in 7 Days)</h3>
 
           <p>
-            Understand why judgment controls so many people and how to stop
-            letting opinions drive your life.
+            Follow a simple seven-day framework designed to help you rebuild momentum,
+            break the cycle, and start moving forward again.
           </p>
 
           <span className="next-arrow">Read Article →</span>

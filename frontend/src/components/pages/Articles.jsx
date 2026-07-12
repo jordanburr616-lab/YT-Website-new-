@@ -21,7 +21,7 @@ function Articles() {
       description:
         "7 practical shifts to rebuild momentum and escape the cycle of feeling stuck.",
       image: "/images/video17.png",
-      live: true,
+      live: false,
     },
     {
         title: "Why You Care So Much What People Think",
@@ -94,7 +94,7 @@ function Articles() {
             }}
           >
             {articles.map((article, i) => (
-                <div key={i} style={{ textAlign: "center" }}>
+                <div key={i} className="article-grid-item" style={{ textAlign: "center" }}>
                     <div
                     className="systems-size systems-tab-img article-card"
                     onClick={() => {

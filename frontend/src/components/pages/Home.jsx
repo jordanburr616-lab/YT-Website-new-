@@ -74,6 +74,10 @@ function Home() {
   const youtubeVideos = [
 
   {
+    id: "ILbDe687Fpk",
+    title: "why you care so much (and how to stop)"
+  },
+  {
     id: "wjeYESP8Uew",
     title: "the 7 stages of weight loss",
   },
@@ -93,10 +97,7 @@ function Home() {
     id: "XqFfUQ4zMS0",
     title: "the 7 levels of nicotine addiction"
   },
-  {
-    id: "TBAsxOtjPCU",
-    title: "the uncomfortable truth about your 20s"
-  },
+  
   
   
   
@@ -125,7 +126,7 @@ const programs = [
   {
     title: "The Routine",
     systemKey: "routine",
-    status: "In Development",
+    status: "Coming Soon",
     image1: "/images/bands-clock-1.png",
     image2: "/images/bands-clock-2.png",
     active: false,
@@ -253,6 +254,7 @@ const heroStyles = {
       
       {/* HERO – FULL WIDTH */}
       <div
+        className="home-hero"
         style={{
           background: "#afb1b3ff",
           width: "100%",
@@ -415,6 +417,7 @@ const heroStyles = {
 
       {/* PROGRAMS PREVIEW */}
       <div
+        className="home-systems-preview"
         style={{
           backgroundColor: "#afb1b3ff",
           padding: "40px 0",
@@ -422,7 +425,7 @@ const heroStyles = {
       >
         <section style={{ ...containerStyle }}>
           {/* SECTION HEADER */}
-          <div style={{ marginBottom: "64px" }}>
+          <div className="home-section-header" style={{ marginBottom: "64px" }}>
             <div style={{ display: "inline-block" }}>
               <div className="systems-title-image">
                 <img
@@ -482,6 +485,21 @@ const heroStyles = {
                   </div>
 
                   <h3>{program.title}</h3>
+
+                  {program.status && (
+                    <p
+                      style={{
+                        marginTop: "6px",
+                        fontSize: "0.85rem",
+                        fontWeight: "600",
+                        color: "#6b6b6b",
+                        letterSpacing: "0.5px",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {program.status}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -539,6 +557,7 @@ const heroStyles = {
           {/* NEWSLETTER SECTION */}
           <section
             id="home-newsletter"
+            className="home-newsletter-section"
             style={{
               background: "#2da6da",
               padding: "72px 24px",
@@ -573,6 +592,7 @@ const heroStyles = {
 
       {/* YOUTUBE SECTION */}
       <div
+        className="home-youtube-section"
         style={{
           backgroundColor: "#afb1b3ff",
           padding: "40px 0",
@@ -593,7 +613,7 @@ const heroStyles = {
           </div>
 
           {/* VIDEO GRID */}
-          <div className="youtube-grid"
+          <div className="youtube-grid home-youtube-grid"
             style={{
 
               marginBottom: "80px",
