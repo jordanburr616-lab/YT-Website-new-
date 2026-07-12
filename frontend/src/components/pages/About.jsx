@@ -1,4 +1,5 @@
 import { usePageView } from "../../hooks/usePageView";
+import { useNavigate } from "react-router-dom";
 
 function About() {
   const containerStyle = {
@@ -7,11 +8,24 @@ function About() {
     padding: "120px 24px",
   };
 
+  const navigate = useNavigate();
+
   usePageView("about");
 
   return (
     <div style={{ background: "#afb1b3ff", minHeight: "100vh" }}>
       <section style={containerStyle}>
+        <button
+          className="article-back-button"
+          onClick={() => navigate("/")}
+          style={{
+            marginTop: "36px",
+            marginBottom: "36px",
+          }}
+        >
+          ← Back
+        </button>
+        
         {/* IMAGE */}
         <img
           src="/images/about-me.png"

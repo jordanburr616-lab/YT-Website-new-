@@ -1,12 +1,11 @@
-// import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { usePageView } from "../../hooks/usePageView";
 import { trackEvent } from "../../utils/analytics";
 
-import ThirtyDayReset from "./systems/ThirtyDayReset";
-import BuildPhase from "./systems/BuildPhase";
 
+function Systems() {
 
-function Systems({ activeSystem, setActiveSystem }) {
+  const navigate = useNavigate();
 
   usePageView("systems");
   
@@ -75,22 +74,6 @@ function Systems({ activeSystem, setActiveSystem }) {
     transition: "transform 0.2s ease",
   },
 };
-
-if (activeSystem === "30-day-reset") {
-  return (
-    <div className="page-shell" key={activeSystem || "systems"}>
-      <ThirtyDayReset onBack={() => setActiveSystem(null)} />
-    </div>
-  );
-}
-
-if (activeSystem === "build-phase") {
-  return (
-    <div className="page-shell" key={activeSystem}>
-      <BuildPhase onBack={() => setActiveSystem(null)} />
-    </div>
-  );
-}
 
 
   return (
@@ -167,9 +150,10 @@ if (activeSystem === "build-phase") {
               {
                 title: "The Routine",
                 live: false,
-                systemKey: null,
-                image1: "/images/coming-soon-1.png",
-                image2: "/images/coming-soon-2.png",
+                status: "Coming Soon",
+                systemKey: "routine",
+                image1: "/images/bands-clock-1.png",
+                image2: "/images/bands-clock-2.png",
               },
             ].map((system, i) => (
               <div key={i} style={{ textAlign: "center" }}>
@@ -187,7 +171,17 @@ if (activeSystem === "build-phase") {
 
                     if (!system.live) return;
 
-                    setActiveSystem(system.systemKey);
+                    if (system.systemKey === "30-day-reset") {
+                      navigate("/systems/reset");
+                    }
+
+                    if (system.systemKey === "build-phase") {
+                      navigate("/systems/build");
+                    }
+
+                    if (system.systemKey === "routine") {
+                      navigate("/systems/routine");
+                    }
                   }}
                   style={{
                     background: "#ffffff",
@@ -217,6 +211,20 @@ if (activeSystem === "build-phase") {
                 <h3 style={{ fontWeight: "700", color: "white" }}>
                   {system.title}
                 </h3>
+                {system.status && (
+                  <p
+                    style={{
+                      marginTop: "6px",
+                      fontSize: "0.85rem",
+                      fontWeight: "700",
+                      color: "rgba(255, 255, 255, 0.8)",
+                      letterSpacing: "0.8px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {system.status}
+                  </p>
+                )}
               </div>
             ))}
           </div>

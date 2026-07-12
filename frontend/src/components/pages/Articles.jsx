@@ -1,0 +1,160 @@
+import { useNavigate } from "react-router-dom";
+import { usePageView } from "../../hooks/usePageView";
+import { trackEvent } from "../../utils/analytics";
+
+function Articles() {
+  const navigate = useNavigate();
+
+  usePageView("articles");
+
+  const containerStyle = {
+    maxWidth: "1100px",
+    margin: "0 auto",
+    padding: "0 24px",
+  };
+
+  const articles = [
+    {
+      title: "How to Get Out of a Rut",
+      slug: "how-to-get-out-of-a-rut",
+      category: "Mindset",
+      description:
+        "7 practical shifts to rebuild momentum and escape the cycle of feeling stuck.",
+      image: "/images/video17.png",
+      live: false,
+    },
+    {
+        title: "Why You Care So Much What People Think",
+        slug: "why-you-care-so-much",
+        category: "Mindset",
+        description:
+        "Understand why other people's opinions control you and the realizations that help you break free.",
+        image: "/images/video16.png",
+        live: true,
+    },
+    {
+        title: "The 7 Stages of Weight Loss",
+        slug: "the-7-stages-of-weight-loss",
+        category: "Fitness",
+        description:
+          "Understand the seven stages nearly everyone experiences during a weight loss journey and how to keep moving forward.",
+        image: "/images/video15.png",
+        live: true,
+    },
+    ];
+
+  return (
+    <>
+      {/* HERO */}
+      <div
+        style={{
+          background: "#afb1b3ff",
+          width: "100%",
+          padding: "70px 0 24px 0",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <section style={containerStyle}>
+          <div className="title-size">
+            <img
+              src="/images/articles-title.png"
+              alt="Articles"
+            />
+          </div>
+
+          <p
+            style={{
+              fontSize: "1.1rem",
+              opacity: 0.7,
+              marginBottom: "48px",
+              maxWidth: "560px",
+              color: "#000",
+              fontWeight: "600",
+            }}
+          >
+            Deeper breakdowns of the ideas behind Improving JB videos, systems, and lessons.
+          </p>
+        </section>
+      </div>
+
+      {/* ARTICLES SECTION */}
+      <div
+        style={{
+          background: "#35a4cf",
+          padding: "120px 0",
+        }}
+      >
+        <section style={containerStyle}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "40px",
+            }}
+          >
+            {articles.map((article, i) => (
+                <div key={i} className="article-grid-item" style={{ textAlign: "center" }}>
+                    <div
+                    className="systems-size systems-tab-img article-card"
+                    onClick={() => {
+                        trackEvent("article_card_clicked", {
+                        page: window.location.pathname,
+                        metadata: {
+                            article_title: article.title,
+                            article_slug: article.slug,
+                            live: article.live,
+                        },
+                        });
+
+                        if (!article.live) return;
+
+                        navigate(`/articles/${article.slug}`);
+                    }}
+                    style={{
+                        background: "#ffffff",
+                        height: "320px",
+                        borderRadius: "16px",
+                        marginBottom: "16px",
+                        overflow: "hidden",
+                        position: "relative",
+                        opacity: article.live ? 1 : 0.85,
+                        cursor: article.live ? "pointer" : "default",
+                    }}
+                    >
+                    <img
+                        src={article.image}
+                        alt={article.title}
+                        style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                        }}
+                    />
+                    </div>
+
+                    <h3 style={{ fontWeight: "700", color: "white" }}>
+                    {article.title}
+                    </h3>
+
+                    <p
+                    style={{
+                        color: "white",
+                        opacity: 0.85,
+                        fontWeight: "600",
+                        marginTop: "6px",
+                    }}
+                    >
+                    {article.live ? article.readTime : "Coming Soon"}
+                    </p>
+                </div>
+                ))}
+          </div>
+        </section>
+      </div>
+    </>
+  );
+}
+
+export default Articles;

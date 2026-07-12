@@ -1,21 +1,81 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { usePageView } from "../../hooks/usePageView";
 import { trackEvent } from "../../utils/analytics";
 
-function Home({ setActiveTab, setActiveSystem }) {
+function Home() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
+  const [email, setEmail] = useState("");
+  const [signupStatus, setSignupStatus] = useState("");
+
+  async function handleSignupSubmit(e) {
+    e.preventDefault();
+    setSignupStatus("");
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          source: "home",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Signup failed");
+      }
+
+      trackEvent("email_signup", {
+        page: window.location.pathname,
+        metadata: {
+          location: "home",
+          form: "home_newsletter",
+        },
+      });
+
+      setSignupStatus("Thank you for signing up!");
+      setEmail("");
+    } catch (err) {
+      setSignupStatus("Something went wrong. Try again.");
+      console.error(err);
+    }
+  }
 
   const containerStyle = {
-  maxWidth: "1100px",
-  margin: "0 auto",
-  padding: "0 24px",
-  
+    maxWidth: "1100px",
+    margin: "0 auto",
+    padding: "0 24px",
+  };
+
+  const goToProgram = (systemKey) => {
+    if (systemKey === "build-phase") {
+      navigate("/systems/build");
+      return;
+    }
+
+    if (systemKey === "30-day-reset") {
+      navigate("/systems/reset");
+      return;
+    }
+
+    navigate("/systems");
   };
 
   const youtubeVideos = [
 
   {
     id: "ILbDe687Fpk",
-    title: "why you care so much"
+    title: "why you care so much (and how to stop)"
   },
   {
     id: "wjeYESP8Uew",
@@ -65,10 +125,10 @@ const programs = [
   },
   {
     title: "The Routine",
-    systemKey: "",
-    status: "",
-    image1: "/images/coming-soon-1.png",
-    image2: "/images/coming-soon-2.png",
+    systemKey: "routine",
+    status: "Coming Soon",
+    image1: "/images/bands-clock-1.png",
+    image2: "/images/bands-clock-2.png",
     active: false,
   },
 ];
@@ -94,6 +154,24 @@ useEffect(() => {
     window.removeEventListener("resize", handleResize);
   };
 }, []);
+
+useEffect(() => {
+  if (!location.state?.scrollToNewsletter) return;
+
+  const newsletter = document.getElementById("home-newsletter");
+
+  if (newsletter) {
+    newsletter.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
+  navigate(location.pathname, {
+    replace: true,
+    state: {},
+  });
+}, [location, navigate]);
 
 usePageView("home");
 
@@ -176,6 +254,7 @@ const heroStyles = {
       
       {/* HERO – FULL WIDTH */}
       <div
+        className="home-hero"
         style={{
           background: "#afb1b3ff",
           width: "100%",
@@ -235,7 +314,7 @@ const heroStyles = {
                     },
                   });
 
-                  setActiveTab("systems");
+                  navigate("/systems");
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateX(4px)";
@@ -281,8 +360,7 @@ const heroStyles = {
               },
             });
 
-            setActiveTab("systems");
-            setActiveSystem("build-phase");
+            navigate("/systems/build");
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateX(4px)";
@@ -308,8 +386,7 @@ const heroStyles = {
             },
           });
 
-          setActiveTab("systems");
-          setActiveSystem("build-phase");
+          navigate("/systems/build");
         }}
       >
 
@@ -340,6 +417,7 @@ const heroStyles = {
 
       {/* PROGRAMS PREVIEW */}
       <div
+        className="home-systems-preview"
         style={{
           backgroundColor: "#afb1b3ff",
           padding: "40px 0",
@@ -347,7 +425,7 @@ const heroStyles = {
       >
         <section style={{ ...containerStyle }}>
           {/* SECTION HEADER */}
-          <div style={{ marginBottom: "64px" }}>
+          <div className="home-section-header" style={{ marginBottom: "64px" }}>
             <div style={{ display: "inline-block" }}>
               <div className="systems-title-image">
                 <img
@@ -385,8 +463,7 @@ const heroStyles = {
 
                       if (!program.active) return;
 
-                      setActiveTab("systems");
-                      setActiveSystem(program.systemKey);
+                      goToProgram(program.systemKey);
                     }}
 
                     style={{
@@ -408,6 +485,21 @@ const heroStyles = {
                   </div>
 
                   <h3>{program.title}</h3>
+
+                  {program.status && (
+                    <p
+                      style={{
+                        marginTop: "6px",
+                        fontSize: "0.85rem",
+                        fontWeight: "600",
+                        color: "#6b6b6b",
+                        letterSpacing: "0.5px",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {program.status}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -432,7 +524,7 @@ const heroStyles = {
                   },
                 });
 
-                setActiveTab("systems");
+                navigate("/systems");
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-4px)";
@@ -462,10 +554,45 @@ const heroStyles = {
       </div>
 
 
+          {/* NEWSLETTER SECTION */}
+          <section
+            id="home-newsletter"
+            className="home-newsletter-section"
+            style={{
+              background: "#2da6da",
+              padding: "72px 24px",
+              borderTop: "1px solid rgba(0, 0, 0, 0.08)",
+              borderBottom: "1px solid rgba(0, 0, 0, 0.08)",
+            }}
+          >
+            <div className="footer-newsletter">
+              <h3>Get Future Systems & Weekly Updates</h3>
+
+              <p>
+                Be the first to know when new systems, videos, and updates drop
+              </p>
+
+              <form className="newsletter-form" onSubmit={handleSignupSubmit}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+
+                <button type="submit">Join</button>
+              </form>
+
+              {signupStatus && <p>{signupStatus}</p>}
+            </div>
+          </section>
+
 
 
       {/* YOUTUBE SECTION */}
       <div
+        className="home-youtube-section"
         style={{
           backgroundColor: "#afb1b3ff",
           padding: "40px 0",
@@ -486,7 +613,7 @@ const heroStyles = {
           </div>
 
           {/* VIDEO GRID */}
-          <div className="youtube-grid"
+          <div className="youtube-grid home-youtube-grid"
             style={{
 
               marginBottom: "80px",

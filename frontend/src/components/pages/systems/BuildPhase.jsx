@@ -7,8 +7,15 @@ import { generateSixDayBuild } from "./buildProgram/GenerateSixDayBuild";
 import * as XLSX from "xlsx";
 import { trackEvent } from "../../../utils/analytics";
 import { usePageView } from "../../../hooks/usePageView";
+import { useNavigate } from "react-router-dom";
 
-function BuildPhase({ onBack }) {
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
+function BuildPhase() {
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -17,7 +24,8 @@ function BuildPhase({ onBack }) {
 
   const [buildData, setBuildData] = useState(null);
   const [error, setError] = useState("");
-  const [isExiting, setIsExiting] = useState(false);
+  const [email, setEmail] = useState("");
+  const [signupStatus, setSignupStatus] = useState("");
 
   const [form, setForm] = useState({
     experience: "Beginner",
@@ -42,11 +50,7 @@ function BuildPhase({ onBack }) {
   }
 
   function handleBack() {
-    setIsExiting(true);
-
-    setTimeout(() => {
-      onBack();
-    }, 200);
+    navigate("/systems");
   }
 
   function handleGenerate() {
@@ -152,6 +156,44 @@ function BuildPhase({ onBack }) {
     });
   }
 
+  async function handleSignupSubmit(e) {
+    e.preventDefault();
+    setSignupStatus("");
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          source: "ten_week_build",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Signup failed");
+      }
+
+      trackEvent("email_signup", {
+        page: window.location.pathname,
+        metadata: {
+          location: "ten_week_build_results",
+          form: "build_newsletter",
+        },
+      });
+
+      setSignupStatus("Thank you for signing up!");
+      setEmail("");
+    } catch (err) {
+      setSignupStatus("Something went wrong. Try again.");
+      console.error(err);
+    }
+  }
+
   function exportToExcel(buildData) {
     if (!buildData?.workoutPlan) return;
 
@@ -222,7 +264,7 @@ function BuildPhase({ onBack }) {
   }
 
   return (
-    <div className={`build-page page-shell ${isExiting ? "page-exit" : ""}`}>
+    <div className="build-page page-shell">
       <div className="build-container">
         <button className="build-back" onClick={handleBack}>
           ← Back to Systems
@@ -342,9 +384,36 @@ function BuildPhase({ onBack }) {
                 Recommended Split: <strong>{buildData.split}</strong>
               </p>
 
-              <button className="build-download" onClick={() => exportToExcel(buildData)}>
+              <button
+                className="build-download"
+                onClick={() => exportToExcel(buildData)}
+              >
                 Download Excel Plan
               </button>
+
+              <section className="build-newsletter">
+                <h3>Your Build Is Only The Beginning</h3>
+
+                <p>
+                  Be the first to know when new systems, videos, and updates drop
+                </p>
+
+                <form className="newsletter-form" onSubmit={handleSignupSubmit}>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+
+                  <button type="submit">Join</button>
+                </form>
+
+                {signupStatus && (
+                  <p className="build-newsletter-status">{signupStatus}</p>
+                )}
+              </section>
             </div>
           )}
         </div>

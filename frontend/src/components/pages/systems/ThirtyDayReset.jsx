@@ -1,8 +1,58 @@
+import { useNavigate } from "react-router-dom";
 import { trackEvent } from "../../../utils/analytics";
 import { usePageView } from "../../../hooks/usePageView";
+import { useState } from "react";
 
-function ThirtyDayReset({ onBack }) {
+function ThirtyDayReset() {
+
+  const navigate = useNavigate();
+
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
+  const [email, setEmail] = useState("");
+  const [signupStatus, setSignupStatus] = useState("");
+
+  async function handleSignupSubmit(e) {
+    e.preventDefault();
+    setSignupStatus("");
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          source: "thirty_day_reset",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Signup failed");
+      }
+
+      trackEvent("email_signup", {
+        page: window.location.pathname,
+        metadata: {
+          location: "thirty_day_reset",
+          form: "system_newsletter",
+        },
+      });
+
+      setSignupStatus("Thank you for signing up!");
+      setEmail("");
+    } catch (err) {
+      setSignupStatus("Something went wrong. Try again.");
+      console.error(err);
+    }
+  }
+
   usePageView("thirty_day_reset");
+
   const containerStyle = {
     maxWidth: "900px",
     margin: "0 auto",
@@ -10,12 +60,7 @@ function ThirtyDayReset({ onBack }) {
   };
 
   const handleBack = () => {
-    document.body.classList.add("page-exit");
-
-    setTimeout(() => {
-      onBack();
-      document.body.classList.remove("page-exit");
-    }, 200);
+    navigate("/systems");
   };
 
   const heroStyles = {
@@ -243,6 +288,28 @@ function ThirtyDayReset({ onBack }) {
           <li>Fall back system when previous day is incomplete</li>
           <li>Structured day counter with complete/incomplete buttons</li>
         </ul>
+
+        <section className="system-newsletter">
+          <h2>Your Reset Is Only The Beginning</h2>
+
+          <p>
+            Be the first to know when new systems, videos, and updates drop
+          </p>
+
+          <form className="newsletter-form" onSubmit={handleSignupSubmit}>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <button type="submit">Join</button>
+          </form>
+
+          {signupStatus && <p>{signupStatus}</p>}
+        </section>
 
         
       </section>
