@@ -21,7 +21,7 @@ function Articles() {
       description:
         "7 practical shifts to rebuild momentum and escape the cycle of feeling stuck.",
       image: "/images/video17.png",
-      live: false,
+      live: true,
     },
     {
         title: "Why You Care So Much What People Think",

@@ -74,6 +74,10 @@ function Home() {
   const youtubeVideos = [
 
   {
+    id: "CnXSDZslcHU",
+    title: "how to get out of a rut in 7 days"
+  },
+  {
     id: "ILbDe687Fpk",
     title: "why you care so much (and how to stop)"
   },
@@ -93,10 +97,7 @@ function Home() {
     id: "7cdjkpQghl0",
     title: "how to get addicted to NOT using your phone",
   },
-  {
-    id: "XqFfUQ4zMS0",
-    title: "the 7 levels of nicotine addiction"
-  },
+  
   
   
   
