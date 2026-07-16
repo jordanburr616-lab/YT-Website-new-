@@ -21,7 +21,7 @@ function Articles() {
       description:
         "7 practical shifts to rebuild momentum and escape the cycle of feeling stuck.",
       image: "/images/video17.png",
-      live: false,
+      live: true,
     },
     {
         title: "Why You Care So Much What People Think",
@@ -40,6 +40,24 @@ function Articles() {
           "Understand the seven stages nearly everyone experiences during a weight loss journey and how to keep moving forward.",
         image: "/images/video15.png",
         live: true,
+    },
+    {
+      title: "The 7 Levels of a Glow Up",
+      slug: "the-7-levels-of-a-glow-up",
+      category: "Self-Improvement",
+      description:
+        "A seven-level breakdown of how real transformation develops—from basic appearance changes to building a stronger identity.",
+      image: "/images/video14.png",
+      live: true,
+    },
+    {
+      title: "The No Fap Timeline",
+      slug: "the-no-fap-timeline",
+      category: "Self-Control",
+      description:
+        "A realistic breakdown of what can happen when you quit porn and stop relying on constant sexual stimulation.",
+      image: "/images/video13.png",
+      live: true,
     },
     ];
 
