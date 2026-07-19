@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { usePageView } from "../../hooks/usePageView";
 import { trackEvent } from "../../utils/analytics";
+import { HiOutlineDocumentText } from "react-icons/hi2";
 
 function Articles() {
   const navigate = useNavigate();
@@ -98,76 +99,60 @@ function Articles() {
 
       {/* ARTICLES SECTION */}
       <div
+        className="articles-section"
         style={{
           background: "#35a4cf",
           padding: "120px 0",
         }}
       >
         <section style={containerStyle}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "40px",
-            }}
-          >
+          <div className="articles-grid">
             {articles.map((article, i) => (
-                <div key={i} className="article-grid-item" style={{ textAlign: "center" }}>
-                    <div
-                    className="systems-size systems-tab-img article-card"
-                    onClick={() => {
-                        trackEvent("article_card_clicked", {
-                        page: window.location.pathname,
-                        metadata: {
-                            article_title: article.title,
-                            article_slug: article.slug,
-                            live: article.live,
-                        },
-                        });
+              <div key={article.slug} className="article-grid-item">
+                <div
+                  className="article-card"
 
-                        if (!article.live) return;
+                  
+                  onClick={() => {
+                    trackEvent("article_card_clicked", {
+                      page: window.location.pathname,
+                      metadata: {
+                        article_title: article.title,
+                        article_slug: article.slug,
+                        live: article.live,
+                      },
+                    });
 
-                        navigate(`/articles/${article.slug}`);
-                    }}
-                    style={{
-                        background: "#ffffff",
-                        height: "320px",
-                        borderRadius: "16px",
-                        marginBottom: "16px",
-                        overflow: "hidden",
-                        position: "relative",
-                        opacity: article.live ? 1 : 0.85,
-                        cursor: article.live ? "pointer" : "default",
-                    }}
-                    >
-                    <img
-                        src={article.image}
-                        alt={article.title}
-                        style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                        }}
-                    />
-                    </div>
+                    if (!article.live) return;
 
-                    <h3 style={{ fontWeight: "700", color: "white" }}>
-                    {article.title}
-                    </h3>
+                    navigate(`/articles/${article.slug}`);
+                  }}
+                  style={{
+                    opacity: article.live ? 1 : 0.85,
+                    cursor: article.live ? "pointer" : "default",
+                  }}
+                >
 
-                    <p
-                    style={{
-                        color: "white",
-                        opacity: 0.85,
-                        fontWeight: "600",
-                        marginTop: "6px",
-                    }}
-                    >
-                    {article.live ? article.readTime : "Coming Soon"}
-                    </p>
+                  <div className="article-type-icon">
+                    <HiOutlineDocumentText />
+                  </div>
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                  />
                 </div>
-                ))}
+
+                <h3 className="article-card-title">
+                  {article.title}
+                </h3>
+
+                {!article.live && (
+                  <p className="article-card-status">
+                    Coming Soon
+                  </p>
+                )}
+              </div>
+            ))}
           </div>
         </section>
       </div>

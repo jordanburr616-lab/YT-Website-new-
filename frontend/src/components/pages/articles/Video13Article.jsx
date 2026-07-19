@@ -68,13 +68,13 @@ function Video13Article() {
 
           <p className="article-subtitle">
             A realistic breakdown of the first 90 days of quitting porn,
-            including the urges, setbacks, mental shifts, and practical changes
+            including the urges, setbacks, thoughts, and practical changes
             that can help you regain control.
           </p>
 
           <a
             className="article-video-link"
-            href="https://www.youtube.com/"
+            href="https://www.youtube.com/watch?v=bZ_UqzFKKNI"
             target="_blank"
             rel="noreferrer"
           >
@@ -88,20 +88,20 @@ function Video13Article() {
           <h2>Introduction</h2>
 
           <p>
-            Many people relapse before they ever experience what life feels
-            like without constantly returning to porn.
+            Many people relapse right before they ever experience what it truly feels
+            like to live without porn.
           </p>
 
           <p>
-            At first, motivation is high. You tell yourself that this time will
-            be different, resist for a few days, and begin feeling proud of the
+            At the start of many's journey, motivation is high. You tell yourself that this time will
+            be different and begin to feel proud of the
             progress you have made.
           </p>
 
           <p>
-            Then the urges become stronger. Boredom appears. Stress builds.
+            Then the urges continue to grow stronger. Your boredom will reappear and stress from the build up immenses.
             Your mind starts negotiating with you, and the idea of doing it
-            “just once” begins sounding reasonable again.
+            “just once” begins to sound reasonable again.
           </p>
 
           <p>
@@ -111,7 +111,7 @@ function Video13Article() {
           </p>
 
           <p>
-            However, several common stages tend to appear. Understanding them
+            However, several common stages (days 1-3... 4-6... etc) tend to appear. Understanding them
             can help you prepare for difficult moments instead of being caught
             off guard by them.
           </p>
@@ -119,7 +119,7 @@ function Video13Article() {
           <blockquote>
             The goal is not to become someone who never experiences an urge.
             The goal is to become someone who can experience one without
-            automatically obeying it.
+            automatically giving into it.
           </blockquote>
         </section>
 
@@ -127,21 +127,20 @@ function Video13Article() {
           <h2>Day 0: Understand Why You Are Quitting</h2>
 
           <p>
-            Before starting, you need an honest reason for why you want to
+            Before starting, you need to be honest with yourself on why you want to
             change.
           </p>
 
           <p>
-            Porn can provide fast pleasure, distraction, and temporary stress
-            relief. That is exactly why the habit can become difficult to
-            control. It offers an immediate reward without requiring much
+            Porn can provide fast pleasure, distract you from the busy-ness of life, and temporary stress
+            relief. That is exactly why the habit is the hardest to get under complete control. It offers an immediate reward without requiring any
             effort.
           </p>
 
           <p>
             The problem begins when it stops feeling like a choice. You might
             continue watching even when it interferes with your sleep,
-            relationships, confidence, work, or the way you view other people.
+            relationships, confidence, work, or the way you see people in day to day life.
           </p>
 
           <p>
@@ -153,12 +152,12 @@ function Video13Article() {
           <p>
             Clean your room. Move your phone away from your bed. Install website
             restrictions. Unfollow accounts that repeatedly trigger you. Stop
-            bringing your phone into places where you usually relapse.
+            bringing your phone into places where you regularly relapse.
           </p>
 
           <blockquote>
             Your environment should support the decision you made before your
-            willpower becomes weak.
+            willpower eventually weakens.
           </blockquote>
 
           <div className="article-image">
@@ -174,7 +173,7 @@ function Video13Article() {
 
           <p>
             I did not create this timeline as someone who was always in complete
-            control.
+            control. Instead I created it through my own experience.
           </p>
 
           <p>
@@ -185,7 +184,7 @@ function Video13Article() {
           <p>
             I lost control, but I eventually decided to stop hiding from the
             problem. I read about the psychology of lust, watched other people
-            explain their experiences, and began paying close attention to my
+            explain their experiences, and began paying closer attention to my very
             own triggers.
           </p>
 
@@ -196,10 +195,11 @@ function Video13Article() {
           </p>
 
           <p>
-            The process was still difficult. Some stages felt empowering, while
+            The process to this day, is still difficult. Some stages felt empowering, while
             others felt mentally exhausting. There were moments where the habit
             seemed completely behind me and others where one trigger brought
-            the temptation straight back.
+            the temptation straight back. The truth is, some urges don't ever fully go away,
+            but your self control can grow stronger.
           </p>
 
           <blockquote>
@@ -212,14 +212,14 @@ function Video13Article() {
           <h2>Days 1–3: The Beginning</h2>
 
           <p>
-            During the first few days, your mind may repeatedly attempt to pull
+            During the first few days, your mind will repeatedly attempt to pull
             you back toward the old routine.
           </p>
 
           <p>
-            The urges can feel constant because the habit is still fresh. You
+            The urges can feel constant because the habit is still fresh in your mind. You
             remember the websites, accounts, situations, and times of day that
-            previously led to porn.
+            previously led to watching porn.
           </p>
 
           <p>
@@ -231,11 +231,11 @@ function Video13Article() {
           <p>
             Do not mistake that early confidence for complete recovery. Your
             triggers have not disappeared, and relying entirely on motivation
-            leaves you exposed when that motivation eventually fades.
+            leaves you exposed when it eventually fades away.
           </p>
 
           <p>
-            Add friction while you are thinking clearly. Use blockers, disable
+            Here's what you can do: Add friction while you are thinking clearly. Use blockers, disable
             private browsing where possible, leave your phone outside your
             bedroom, and avoid scrolling alone late at night.
           </p>
@@ -254,7 +254,7 @@ function Video13Article() {
           </p>
 
           <p>
-            The excitement of starting fades, but the habit has not been
+            The excitement of starting fades, but the habit has not been mentally
             replaced yet. You may feel restless, distracted, irritable, or
             unusually sensitive to sexual content.
           </p>
@@ -267,12 +267,12 @@ function Video13Article() {
 
           <p>
             Instead of obsessing over every negative feeling, recognize what
-            each additional day proves. You are beginning to create distance
+            each additional day proves that you are creating distance
             between an impulse and your response.
           </p>
 
           <p>
-            Keep your days structured. Exercise, work on something meaningful,
+            Keep your days well structured. Exercise, work on something meaningful,
             spend time around other people, and avoid long stretches of
             unplanned isolation.
           </p>
@@ -293,13 +293,13 @@ function Video13Article() {
           <h2>Days 10–30: Mixed Progress</h2>
 
           <p>
-            This stage can feel unpredictable.
+            This stage can seem truly unpredictable.
           </p>
 
           <p>
-            Some days, you may feel focused, energetic, and proud of your
-            progress. On other days, the process feels exhausting and you begin
-            wondering whether continuing is worth the effort.
+            Some days, you may feel focused, energetic, and proud of the
+            progress up to this point. Yet on other days, the process feels exhausting and you begin
+            wondering whether continuing is even worth the effort.
           </p>
 
           <p>
@@ -315,7 +315,7 @@ function Video13Article() {
           </p>
 
           <p>
-            Accountability can help. Tell one or more trusted people that you
+            An accountability system can help. Tell one or more trusted people that you
             are trying to quit porn and explain why it matters to you. Choose
             people who will take your goal seriously rather than mock it or
             encourage you to give up.
@@ -324,11 +324,11 @@ function Video13Article() {
           <p>
             You should also begin tracking your triggers. Write down what
             happened before each major urge, including the time, location,
-            emotion, and activity.
+            emotion, and activity. May not seem like much but your brain will keep mental tabs on certain events.
           </p>
 
           <blockquote>
-            Do not only count the days. Study the pattern.
+            Do not only count the days. Study the patterns.
           </blockquote>
         </section>
 
@@ -336,7 +336,7 @@ function Video13Article() {
           <h2>Days 30–60: Regaining Control</h2>
 
           <p>
-            After a month, the habit may begin feeling less automatic.
+            After a month, the habit will start feeling less automatic.
           </p>
 
           <p>
@@ -345,14 +345,14 @@ function Video13Article() {
           </p>
 
           <p>
-            Many people describe having more energy or focus during this stage.
+            Many people say they have way more energy and focus during this stage.
             Part of that improvement may come from sleeping better, scrolling
             less, reducing shame, and redirecting time toward healthier
             activities.
           </p>
 
           <p>
-            Instead of thinking about “sexual energy” as something mystical,
+            Instead of thinking about “sexual energy” as something magical,
             think about all of the attention, time, and effort that was
             previously consumed by the habit.
           </p>
@@ -365,13 +365,13 @@ function Video13Article() {
 
           <p>
             Social interactions may also feel more natural if you are no longer
-            constantly viewing people through a sexualized lens. However, this
-            is not a guaranteed superpower. Confidence grows from your behavior,
+            constantly viewing people through a sexualized lens. However, don't think that this is a guarenteed superpower.
+             Confidence grows from your behavior,
             not simply from reaching a number on a streak.
           </p>
 
           <blockquote>
-            Removing a destructive habit creates space. You still have to decide
+            Removing a destructive habit creates space but you still have to decide
             what will fill it.
           </blockquote>
         </section>
@@ -385,26 +385,25 @@ function Video13Article() {
           </p>
 
           <p>
-            That self-trust may begin spreading into other areas of your life.
+            That self-trust will begin spreading into other areas of your life.
             You might reduce your phone use, procrastinate less, improve your
-            sleep, drink less, or become more consistent with your goals.
+            sleep, drink less, or become way more consistent with your goals.
           </p>
 
           <p>
             This is not because quitting porn automatically solves every
-            problem. It is because practicing self-control in one area can
-            change the way you approach other impulses.
+            problem you had. It is because practicing self-control in one area can
+            change the way you approach other hard impulses.
           </p>
 
           <p>
-            You may also start viewing yourself differently. Instead of seeing
+            You will likely start viewing yourself differently in this stage as well. Instead of seeing
             yourself as someone helpless against the habit, you begin seeing
             yourself as someone capable of making a different choice.
           </p>
 
           <p>
-            Avoid creating an overwhelming promise that you will never struggle
-            again. Continue approaching the process one day and one decision at
+            Avoid saying that you will never watch porn ever again though. Continue approaching the process one day and one decision at
             a time.
           </p>
 
@@ -422,10 +421,10 @@ function Video13Article() {
         </section>
 
         <section className="article-section">
-          <h2>Day 90 and Beyond: Long-Term Freedom</h2>
+          <h2>Day 90+: Long-Term Freedom</h2>
 
           <p>
-            Reaching 90 days does not make you permanently immune to relapse.
+            Reaching 90 days does not make you permanently immune to a relapse.
           </p>
 
           <p>
@@ -435,18 +434,18 @@ function Video13Article() {
 
           <p>
             Porn may cross your mind less frequently, and the urges may feel
-            easier to manage. However, old patterns can return when you stop
+            easier to manage. However, those old patterns can still return at anytime when you stop
             paying attention to the triggers that created them.
           </p>
 
           <p>
-            Those triggers might include alcohol, loneliness, stress, rejection,
+            Those triggers now might include alcohol, loneliness, stress, rejection,
             boredom, certain social media accounts, staying awake too late, or
             spending long periods alone.
           </p>
 
           <p>
-            Long-term freedom comes from understanding your personal pattern
+            Long-term freedom comes from understanding your own personal pattern
             and building a life where porn is no longer your main response to
             discomfort.
           </p>
@@ -461,29 +460,29 @@ function Video13Article() {
           <h2>What to Do When an Urge Hits</h2>
 
           <p>
-            Leave the room or environment where the urge began.
+            - Leave the room or environment where the urge began.
           </p>
 
           <p>
-            Put your phone somewhere that requires effort to retrieve.
+            - Put your phone somewhere that requires effort to retrieve.
           </p>
 
           <p>
-            Delay the decision by ten minutes instead of trying to defeat the
+            - Delay the decision by ten minutes instead of trying to defeat the
             urge forever.
           </p>
 
           <p>
-            Exercise, take a walk, shower, clean something, or begin a task that
+            - Exercise, take a walk, shower, clean something, or begin a task that
             requires your full attention.
           </p>
 
           <p>
-            Contact the person who knows you are trying to quit.
+            - Contact the person who knows you are trying to quit.
           </p>
 
           <p>
-            Write down what triggered the urge so you can prepare for the same
+            - Write down what triggered the urge so you can prepare for the same
             situation next time.
           </p>
 
@@ -494,7 +493,7 @@ function Video13Article() {
         </section>
 
         <section className="article-section">
-          <h2>If You Relapse</h2>
+          <h2>For If You Relapse...</h2>
 
           <p>
             One relapse does not erase every improvement you made.
@@ -526,30 +525,26 @@ function Video13Article() {
           <h2>Common Mistakes</h2>
 
           <p>
-            Depending entirely on motivation instead of changing your
+            - Depending entirely on motivation instead of changing your
             environment.
           </p>
 
           <p>
-            Spending every day obsessively checking your streak.
-          </p>
-
-          <p>
-            Replacing porn with endless scrolling or another source of constant
+            - Replacing porn with endless scrolling or another source of constant
             stimulation.
           </p>
 
           <p>
-            Believing that reaching a certain day will automatically transform
+            - Believing that reaching a certain day will automatically transform
             your confidence, dating life, or success.
           </p>
 
           <p>
-            Remaining isolated while trying to fight the habit alone.
+            - Remaining isolated while trying to fight the habit alone.
           </p>
 
           <p>
-            Treating one relapse as proof that the entire effort was worthless.
+            - Treating one relapse as proof that the entire effort was worthless.
           </p>
         </section>
 
@@ -557,8 +552,7 @@ function Video13Article() {
           <h2>Final Thoughts</h2>
 
           <p>
-            This journey was never only about reaching a large number on a
-            calendar.
+            This journey was never only about hitting a huge milestone.
           </p>
 
           <p>
@@ -567,14 +561,14 @@ function Video13Article() {
           </p>
 
           <p>
-            The beginning can feel impossible, but the process becomes more
+            The beginning can truly feel impossible, but the process becomes more
             manageable when you understand your triggers, change your
             environment, remain occupied, and continue through the uncomfortable
             stages.
           </p>
 
           <p>
-            Do not expect quitting porn to solve your entire life. Use the space
+            Do not expect quitting porn to solve all your life problems. Use the space
             it creates to become more present, disciplined, honest, and
             intentional.
           </p>
@@ -607,7 +601,7 @@ function Video13Article() {
           {signupStatus && <p>{signupStatus}</p>}
         </section>
 
-        <section className="article-section article-next">
+        {/* <section className="article-section article-next">
           <h2>Take the Next Step</h2>
 
           <p>
@@ -635,7 +629,7 @@ function Video13Article() {
 
             <span className="next-arrow">Read Article →</span>
           </div>
-        </section>
+        </section> */}
 
         <div
         className="article-next-card"
