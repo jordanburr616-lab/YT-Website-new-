@@ -653,6 +653,37 @@ button {
   line-height: 1.6;
 }
 
+.sleep-warning {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border: 1px solid #d99a32;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.sleep-warning strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sleep-warning p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.routine-section-description {
+  margin: -8px 0 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+.commitment-empty {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
 @media (max-width: 600px) {
   .system-newsletter {
     padding: 36px 20px;

@@ -1,17 +1,23 @@
 import { useState } from "react";
+import { useEffect } from "react";
 
 import { generateDailyPlan } from "./routineProgram/routineLogic";
+import { timeToMinutes } from "./routineProgram/timeHelpers";
 
 function Routine() {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const defaultDate = tomorrow.toISOString().split("T")[0];
+  const defaultDate = [
+    tomorrow.getFullYear(),
+    String(tomorrow.getMonth() + 1).padStart(2, "0"),
+    String(tomorrow.getDate()).padStart(2, "0"),
+  ].join("-");
 
   const [formData, setFormData] = useState({
     date: defaultDate,
     wakeTime: "07:30",
-    bedTime: "23:00",
+    bedTime: "23:30",
     goal: "",
     priority1: "",
     priority2: "",
@@ -21,7 +27,6 @@ function Routine() {
     includeDinner: true,
     includeWorkout: true,
     includeDeepWork: true,
-    includeBreaks: true,
     includeWindDown: true,
   });
 
@@ -41,9 +46,64 @@ function Routine() {
   }
 
   function handleCommitmentChange(index, field, value) {
-    const updatedCommitments = [...commitments];
-    updatedCommitments[index][field] = value;
-    setCommitments(updatedCommitments);
+    setCommitments((prev) =>
+      prev.map((commitment, i) =>
+        i === index
+          ? { ...commitment, [field]: value }
+          : commitment
+      )
+    );
+  }
+
+  useEffect(() => {
+    const saved = localStorage.getItem("routinePlanner");
+
+    if (!saved) return;
+
+    const data = JSON.parse(saved);
+
+    setFormData(data.formData);
+    setCommitments(data.commitments);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "routinePlanner",
+      JSON.stringify({
+        formData,
+        commitments,
+      })
+    );
+  }, [formData, commitments]);
+
+  function clearDay() {
+    setFormData({
+      date: defaultDate,
+      wakeTime: "07:30",
+      bedTime: "23:30",
+      goal: "",
+      priority1: "",
+      priority2: "",
+      priority3: "",
+      includeBreakfast: true,
+      includeLunch: true,
+      includeDinner: true,
+      includeWorkout: true,
+      includeDeepWork: true,
+      includeWindDown: true,
+    });
+
+    setCommitments([
+      {
+        title: "Work",
+        start: "",
+        end: "",
+      },
+    ]);
+
+    localStorage.removeItem("routinePlanner");
+
+    setDailyPlan(null);
   }
 
   function addCommitment() {
@@ -77,13 +137,26 @@ function Routine() {
         dinner: formData.includeDinner,
         workout: formData.includeWorkout,
         deepWork: formData.includeDeepWork,
-        breaks: formData.includeBreaks,
         windDown: formData.includeWindDown,
         },
     });
 
     setDailyPlan(plan);
     }
+
+    const wakeMinutes = timeToMinutes(formData.wakeTime);
+    const bedMinutes = timeToMinutes(formData.bedTime);
+
+    let awakeMinutes = bedMinutes - wakeMinutes;
+
+    if (awakeMinutes <= 0) {
+      awakeMinutes += 1440;
+    }
+
+    const sleepMinutes = 1440 - awakeMinutes;
+
+    const hasSleepWarning =
+      sleepMinutes < 390 || sleepMinutes > 480;
 
   return (
     <main className="routine-page">
@@ -128,7 +201,22 @@ function Routine() {
               value={formData.bedTime}
               onChange={handleChange}
             />
+
+            {hasSleepWarning && (
+              <div className="sleep-warning">
+                <strong>Check your sleep window.</strong>
+
+                <p>
+                  This schedule allows approximately{" "}
+                  {(sleepMinutes / 60).toFixed(1)} hours of sleep.
+                  Sleep is crucial for productivity, recovery, and
+                  focus. Aim for 6.5 to 8 hours each night.
+                </p>
+              </div>
+            )}
           </label>
+
+          
 
           <h2>Today's Goal</h2>
 
@@ -198,22 +286,31 @@ function Routine() {
                 }
               />
 
-              {commitments.length > 1 && (
-                <button
-                  type="button"
-                  onClick={() => removeCommitment(index)}
-                >
-                  Remove
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => removeCommitment(index)}
+              >
+                Remove
+              </button>
             </div>
           ))}
+
+          {commitments.length === 0 && (
+            <p className="commitment-empty">
+              No fixed commitments added.
+            </p>
+          )}
 
           <button type="button" onClick={addCommitment}>
             Add Commitment
           </button>
 
           <h2>Include</h2>
+
+          <p className="routine-section-description">
+            Deep Work blocks are focused sessions used to make progress on your
+            daily goal or top priorities, excluding workouts and fixed commitments.
+          </p>
 
           <div className="routine-checks">
             <label>
@@ -269,16 +366,6 @@ function Routine() {
             <label>
               <input
                 type="checkbox"
-                name="includeBreaks"
-                checked={formData.includeBreaks}
-                onChange={handleChange}
-              />
-              Breaks
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
                 name="includeWindDown"
                 checked={formData.includeWindDown}
                 onChange={handleChange}
@@ -287,9 +374,19 @@ function Routine() {
             </label>
           </div>
 
-          <button className="generate-button" type="submit">
-            Generate Daily Plan
-          </button>
+          <div className="routine-actions">
+            <button className="generate-button" type="submit">
+              {dailyPlan ? "Update Plan" : "Generate Daily Plan"}
+            </button>
+
+            <button
+              type="button"
+              className="clear-button"
+              onClick={clearDay}
+            >
+              Clear Day
+            </button>
+          </div>
         </form>
 
         {dailyPlan?.error && (

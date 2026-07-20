@@ -1,4 +1,7 @@
-import { sortSchedule } from "./scheduleHelpers";
+import {
+  getSortTime,
+  sortSchedule,
+} from "./scheduleHelpers";
 import { addMinutes, formatTime, timeToMinutes, minutesToTime } from "./timeHelpers";
 
 const RULES = {
@@ -96,8 +99,32 @@ function moveAfterScheduleConflict(start, durationMinutes, schedule, bufferMinut
   return currentStart;
 }
 
-function fitsBeforeBed(start, durationMinutes, bedTime) {
-  return addMinutes(start, durationMinutes) <= bedTime;
+function fitsBeforeBed(
+  start,
+  durationMinutes,
+  wakeTime,
+  bedTime
+) {
+  const startMinutes = normalizeTimeForDay(start, wakeTime);
+
+  let bedMinutes = normalizeTimeForDay(bedTime, wakeTime);
+
+  if (bedMinutes <= timeToMinutes(wakeTime)) {
+    bedMinutes += 1440;
+  }
+
+  const endMinutes = startMinutes + durationMinutes;
+
+  return endMinutes <= bedMinutes;
+}
+
+function getSleepDurationMinutes(wakeTime, bedTime) {
+  const awakeMinutes = getDurationMinutes(
+    wakeTime,
+    bedTime
+  );
+
+  return 1440 - awakeMinutes;
 }
 
 function getTotalCommitmentMinutes(commitments) {
@@ -161,88 +188,113 @@ function createWarning(message) {
   return message;
 }
 
-function getFreeTimeBlocks(schedule, wakeTime, bedTime) {
-  const sorted = sortSchedule([...schedule]);
+function fillProductiveGaps(schedule, includes) {
 
-  const gaps = [];
-
-  let previousEnd = wakeTime;
-
-  for (const item of sorted) {
-    if (!item.rawStart) continue;
-
-    if (timeToMinutes(item.rawStart) > timeToMinutes(previousEnd)) {
-      gaps.push({
-        start: previousEnd,
-        end: item.rawStart,
-        duration:
-          timeToMinutes(item.rawStart) -
-          timeToMinutes(previousEnd),
-      });
-    }
-
-    previousEnd = item.rawEnd || item.rawStart;
+  if (!includes.deepWork) {
+    return schedule;
   }
-
-  if (timeToMinutes(previousEnd) < timeToMinutes(bedTime)) {
-    gaps.push({
-      start: previousEnd,
-      end: bedTime,
-      duration:
-        timeToMinutes(bedTime) -
-        timeToMinutes(previousEnd),
-    });
-  }
-
-  return gaps;
-}
-
-function fillFreeTimeWithDeepWork(schedule, includes) {
-  if (!includes.deepWork) return schedule;
 
   const updatedSchedule = [...schedule];
-  const freeTimeBlocks = getFreeTimeBlocks(
-    updatedSchedule,
-    updatedSchedule[0].rawStart,
-    updatedSchedule[updatedSchedule.length - 1].rawStart
-  );
 
-  const usableBlock = freeTimeBlocks.find(
-    (block) => block.duration >= 45
-  );
+  const MAX_ADDITIONAL_BLOCKS = 6;
+  const MAX_TOTAL_DEEP_WORK_MINUTES = 360;
+  const MINIMUM_GAP = 45;
 
-  if (!usableBlock) return updatedSchedule;
+  let blocksAdded = 0;
 
-  let duration = 45;
+  while (blocksAdded < MAX_ADDITIONAL_BLOCKS) {
+    const sortedSchedule = [...updatedSchedule].sort(
+      (a, b) => a.sortTime - b.sortTime
+    );
 
-  if (usableBlock.duration >= 90) {
-    duration = 90;
-  } else if (usableBlock.duration >= 60) {
-    duration = 60;
+    const usableGaps = [];
+
+    for (
+      let index = 0;
+      index < sortedSchedule.length - 1;
+      index++
+    ) {
+      const currentItem = sortedSchedule[index];
+      const nextItem = sortedSchedule[index + 1];
+
+      if (
+        currentItem.sortTime === undefined ||
+        nextItem.sortTime === undefined
+      ) {
+        continue;
+      }
+
+      const currentEnd =
+        currentItem.sortEnd ??
+        currentItem.sortTime;
+
+      const gapStart =
+        currentEnd + RULES.buffer;
+
+      const gapEnd =
+        nextItem.sortTime - RULES.buffer;
+
+      const availableMinutes =
+        gapEnd - gapStart;
+
+      if (availableMinutes >= MINIMUM_GAP) {
+        usableGaps.push({
+          start: gapStart,
+          end: gapEnd,
+          duration: availableMinutes,
+        });
+      }
+    }
+
+    if (usableGaps.length === 0) {
+      break;
+    }
+
+    usableGaps.sort(
+      (a, b) => b.duration - a.duration
+    );
+
+    const bestGap = usableGaps[0];
+
+    let blockDuration;
+
+    if (bestGap.duration >= 120) {
+      blockDuration = 90;
+    } else if (bestGap.duration >= 75) {
+      blockDuration = 60;
+    } else {
+      blockDuration = 45;
+    }
+
+    const startTime =
+      minutesToTime(bestGap.start);
+
+    const endTime =
+      minutesToTime(
+        bestGap.start + blockDuration
+      );
+
+
+    const title = "Deep Work Session";
+
+    const note =
+      `${blockDuration} minutes. Use this block to make progress on your daily goal or top priorities.`;
+
+    updatedSchedule.push({
+      rawStart: startTime,
+      rawEnd: endTime,
+      sortTime: bestGap.start,
+      sortEnd:
+        bestGap.start + blockDuration,
+      time: `${formatTime(startTime)} - ${formatTime(endTime)}`,
+      title,
+      note,
+    });
+
+    blocksAdded += 1;
   }
-
-  const end = addMinutes(usableBlock.start, duration);
-
-  updatedSchedule.push({
-    rawStart: usableBlock.start,
-    rawEnd: end,
-    time: `${formatTime(usableBlock.start)} - ${formatTime(end)}`,
-    title: "Deep Work Session",
-    note: `${duration} minutes. Use this block to make progress on your highest priority.`,
-  });
 
   return updatedSchedule;
-}
-
-function getSortTime(time, wakeTime) {
-  let minutes = timeToMinutes(time);
-  const wakeMinutes = timeToMinutes(wakeTime);
-
-  if (minutes < wakeMinutes) {
-    minutes += 1440;
-  }
-
-  return minutes;
 }
 
 export function generateDailyPlan({
@@ -255,6 +307,22 @@ export function generateDailyPlan({
   includes = {},
 }) {
   const warnings = [];
+
+  const sleepDurationMinutes =
+    getSleepDurationMinutes(wakeTime, bedTime);
+
+  if (
+    sleepDurationMinutes < 390 ||
+    sleepDurationMinutes > 480
+  ) {
+    const sleepHours = (
+      sleepDurationMinutes / 60
+    ).toFixed(1);
+
+    warnings.push(
+      `Your selected schedule allows approximately ${sleepHours} hours of sleep. Sleep is crucial for productivity, recovery, and focus. Aim for 6.5 to 8 hours each night.`
+    );
+  }
 
   const invalidCommitment = commitments.find((item) => {
     if (!item.title || !item.start || !item.end) return false;
@@ -331,7 +399,12 @@ export function generateDailyPlan({
       schedule
     );
 
-    if (fitsBeforeBed(deepWorkStart, deepWorkDuration, bedTime)) {
+    if (fitsBeforeBed(
+        deepWorkStart,
+        deepWorkDuration,
+        wakeTime,
+        bedTime
+      )) {
       const deepWorkEnd = addMinutes(deepWorkStart, deepWorkDuration);
 
       schedule.push({
@@ -344,29 +417,6 @@ export function generateDailyPlan({
         note: `${deepWorkDuration} minutes of focused work before distractions take over.`,
       });
 
-      if (includes.breaks) {
-        let breakStart = deepWorkEnd;
-
-        breakStart = moveAfterScheduleConflict(
-          breakStart,
-          15,
-          schedule
-        );
-
-        const breakEnd = addMinutes(breakStart, 15);
-
-        if (breakEnd <= bedTime) {
-          schedule.push({
-            rawStart: breakStart,
-            rawEnd: breakEnd,
-            sortTime: getSortTime(breakStart, wakeTime),
-            sortEnd: getSortTime(breakEnd, wakeTime),
-            time: `${formatTime(breakStart)} - ${formatTime(breakEnd)}`,
-            title: "Short Break",
-            note: "15 minutes. Step away from the screen.",
-          });
-        }
-      }
     } else {
       warnings.push(
         createWarning("Deep Work could not fit into this schedule.")
@@ -383,7 +433,12 @@ export function generateDailyPlan({
       schedule
     );
 
-    if (fitsBeforeBed(lunchTime, RULES.meals.lunch, bedTime)) {
+    if (fitsBeforeBed(
+      lunchTime,
+      RULES.meals.lunch,
+      wakeTime,
+      bedTime
+    )) {
       schedule.push({
         rawStart: lunchTime,
         rawEnd: addMinutes(lunchTime, RULES.meals.lunch),
@@ -416,7 +471,12 @@ export function generateDailyPlan({
       schedule
     );
 
-    if (fitsBeforeBed(workoutTime, workoutDuration, bedTime)) {
+    if (fitsBeforeBed(
+      workoutTime,
+      workoutDuration,
+      wakeTime,
+      bedTime
+    )) {
       const workoutEnd = addMinutes(workoutTime, workoutDuration);
 
       schedule.push({
@@ -444,7 +504,12 @@ export function generateDailyPlan({
       schedule
     );
 
-    if (fitsBeforeBed(dinnerTime, RULES.meals.dinner, bedTime)) {
+    if (fitsBeforeBed(
+      dinnerTime,
+      RULES.meals.dinner,
+      wakeTime,
+      bedTime
+    )) {
       schedule.push({
         rawStart: dinnerTime,
         rawEnd: addMinutes(dinnerTime, RULES.meals.dinner),
@@ -470,7 +535,12 @@ export function generateDailyPlan({
       0
     );
 
-    if (fitsBeforeBed(windDownTime, RULES.windDown, bedTime)) {
+    if (fitsBeforeBed(
+      windDownTime,
+      RULES.windDown,
+      wakeTime,
+      bedTime
+    )) {
       schedule.push({
         rawStart: windDownTime,
         rawEnd: bedTime,
@@ -493,7 +563,7 @@ export function generateDailyPlan({
     title: "Sleep",
   });
 
-  const finalSchedule = fillFreeTimeWithDeepWork(
+  const finalSchedule = fillProductiveGaps(
     schedule,
     includes
   );
@@ -502,7 +572,7 @@ export function generateDailyPlan({
     date,
     goal,
     priorities: priorities.filter(Boolean),
-    schedule: sortSchedule(finalSchedule),
+    schedule: sortSchedule(finalSchedule, wakeTime),
     warnings,
     quote: "Small actions repeated daily become extraordinary results.",
   };
