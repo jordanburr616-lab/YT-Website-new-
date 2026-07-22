@@ -347,11 +347,13 @@ const heroStyles = {
         <p className="reset-eyebrow">NEW PROGRAM</p>
 
         <h1 className="reset-title">
-          The 10 Week Build
+          The Routine
         </h1>
 
         <p className="reset-description">
-          A personalized 10-week training system designed to help users build strength, improve consistency, and work toward new personal records through structured progression.
+          Build your entire day in under two minutes. Create a personalized schedule
+          focused around your commitments, priorities, workouts, and deep work so you always
+          know what to do next.
         </p>
 
         <button
@@ -360,12 +362,12 @@ const heroStyles = {
             trackEvent("home_cta_clicked", {
               page: window.location.pathname,
               metadata: {
-                location: "featured_build_section",
-                target: "build-phase",
+                location: "featured_routine_section",
+                target: "routine",
               },
             });
 
-            navigate("/systems/build");
+            navigate("/systems/routine");
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateX(4px)";
@@ -374,7 +376,7 @@ const heroStyles = {
             e.currentTarget.style.transform = "translateX(0)";
           }}
         >
-          START THE BUILD →
+          BUILD YOUR DAY →
         </button>
       </div>
 
@@ -384,25 +386,25 @@ const heroStyles = {
           trackEvent("home_program_clicked", {
             page: window.location.pathname,
             metadata: {
-              program_title: "The 10 Week Build",
-              program_key: "build-phase",
-              location: "featured_build_image",
+              program_title: "The Routine",
+              program_key: "routine",
+              location: "featured_routine_image",
               active: true,
             },
           });
 
-          navigate("/systems/build");
+          navigate("/systems/routine");
         }}
       >
 
         <img
-          src="/images/bands-workout-1.png"
+          src="/images/bands-clock-1.png"
           alt="The 10 Week Build"
           className="reset-img reset-img-1"
         />
 
         <img
-          src="/images/bands-workout-2.png"
+          src="/images/bands-clock-2.png"
           alt="The 10 Week Build Active"
           className="reset-img reset-img-2"
         />
