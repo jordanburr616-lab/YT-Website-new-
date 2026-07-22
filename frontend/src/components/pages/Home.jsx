@@ -68,6 +68,11 @@ function Home() {
       return;
     }
 
+    if (systemKey === "routine") {
+      navigate("/systems/routine");
+      return;
+    }
+
     navigate("/systems");
   };
 
@@ -126,10 +131,10 @@ const programs = [
   {
     title: "The Routine",
     systemKey: "routine",
-    status: "Coming Soon",
+    status: "",
     image1: "/images/bands-clock-1.png",
     image2: "/images/bands-clock-2.png",
-    active: false,
+    active: true,
   },
 ];
 

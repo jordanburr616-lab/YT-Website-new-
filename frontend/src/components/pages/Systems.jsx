@@ -150,7 +150,6 @@ function Systems() {
               {
                 title: "The Routine",
                 live: true,
-                status: "Coming Soon",
                 systemKey: "routine",
                 image1: "/images/bands-clock-1.png",
                 image2: "/images/bands-clock-2.png",

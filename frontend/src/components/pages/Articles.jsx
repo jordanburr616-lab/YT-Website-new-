@@ -16,6 +16,15 @@ function Articles() {
 
   const articles = [
     {
+      title: "How to Get Addicted to Building Muscle",
+      slug: "how-to-get-addicted-to-building-muscle",
+      category: "Fitness",
+      description:
+        "Six mindset shifts that make building muscle feel addictive by turning every workout into progress you actually want to pursue.",
+      image: "/images/video18.png",
+      live: true,
+    },
+    {
       title: "How to Get Out of a Rut",
       slug: "how-to-get-out-of-a-rut",
       category: "Mindset",

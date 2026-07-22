@@ -1,10 +1,67 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { trackEvent } from "../../../utils/analytics";
+import { usePageView } from "../../../hooks/usePageView";
 
 import { generateDailyPlan } from "./routineProgram/routineLogic";
 import { timeToMinutes } from "./routineProgram/timeHelpers";
 
+const STORAGE_KEY = "routinePlanner";
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
+  function createTimeOptions() {
+    const options = [];
+
+    for (let minutes = 0; minutes < 24 * 60; minutes += 15) {
+      const hours24 = Math.floor(minutes / 60);
+      const mins = minutes % 60;
+
+      const value = `${String(hours24).padStart(2, "0")}:${String(mins).padStart(
+        2,
+        "0"
+      )}`;
+
+      const period = hours24 >= 12 ? "PM" : "AM";
+      const hours12 = hours24 % 12 || 12;
+
+      const label = `${hours12}:${String(mins).padStart(2, "0")} ${period}`;
+
+      options.push({
+        value,
+        label,
+      });
+    }
+
+    return options;
+  }
+
+  const TIME_OPTIONS = createTimeOptions();
+  
+
 function Routine() {
+
+  const navigate = useNavigate();
+
+  function handleBack() {
+    trackEvent("routine_back_clicked", {
+      page: window.location.pathname,
+      metadata: {
+        destination: "/systems",
+      },
+    });
+
+    navigate("/systems");
+  }
+
+  usePageView("routine");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -14,7 +71,7 @@ function Routine() {
     String(tomorrow.getDate()).padStart(2, "0"),
   ].join("-");
 
-  const [formData, setFormData] = useState({
+  const defaultFormData = {
     date: defaultDate,
     wakeTime: "07:30",
     bedTime: "23:30",
@@ -28,13 +85,51 @@ function Routine() {
     includeWorkout: true,
     includeDeepWork: true,
     includeWindDown: true,
-  });
+  };
 
+  const [formData, setFormData] = useState(defaultFormData);
   const [commitments, setCommitments] = useState([
     { title: "Work", start: "", end: "" },
   ]);
-
   const [dailyPlan, setDailyPlan] = useState(null);
+  const [hasLoadedStorage, setHasLoadedStorage] = useState(false);
+  const [email, setEmail] = useState("");
+  const [signupStatus, setSignupStatus] = useState("");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+
+      if (saved) {
+        const data = JSON.parse(saved);
+
+        if (data.formData) {
+          setFormData((prev) => ({ ...prev, ...data.formData }));
+        }
+
+        if (Array.isArray(data.commitments)) {
+          setCommitments(data.commitments);
+        }
+      }
+    } catch (error) {
+      console.error("Could not load saved routine:", error);
+    } finally {
+      setHasLoadedStorage(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!hasLoadedStorage) return;
+
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ formData, commitments })
+      );
+    } catch (error) {
+      console.error("Could not save routine:", error);
+    }
+  }, [formData, commitments, hasLoadedStorage]);
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
@@ -48,62 +143,9 @@ function Routine() {
   function handleCommitmentChange(index, field, value) {
     setCommitments((prev) =>
       prev.map((commitment, i) =>
-        i === index
-          ? { ...commitment, [field]: value }
-          : commitment
+        i === index ? { ...commitment, [field]: value } : commitment
       )
     );
-  }
-
-  useEffect(() => {
-    const saved = localStorage.getItem("routinePlanner");
-
-    if (!saved) return;
-
-    const data = JSON.parse(saved);
-
-    setFormData(data.formData);
-    setCommitments(data.commitments);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "routinePlanner",
-      JSON.stringify({
-        formData,
-        commitments,
-      })
-    );
-  }, [formData, commitments]);
-
-  function clearDay() {
-    setFormData({
-      date: defaultDate,
-      wakeTime: "07:30",
-      bedTime: "23:30",
-      goal: "",
-      priority1: "",
-      priority2: "",
-      priority3: "",
-      includeBreakfast: true,
-      includeLunch: true,
-      includeDinner: true,
-      includeWorkout: true,
-      includeDeepWork: true,
-      includeWindDown: true,
-    });
-
-    setCommitments([
-      {
-        title: "Work",
-        start: "",
-        end: "",
-      },
-    ]);
-
-    localStorage.removeItem("routinePlanner");
-
-    setDailyPlan(null);
   }
 
   function addCommitment() {
@@ -117,60 +159,233 @@ function Routine() {
     setCommitments((prev) => prev.filter((_, i) => i !== index));
   }
 
+  function clearDay() {
+    trackEvent("routine_cleared", {
+      page: window.location.pathname,
+    });
+
+    localStorage.removeItem(STORAGE_KEY);
+    setFormData(defaultFormData);
+    setCommitments([{ title: "Work", start: "", end: "" }]);
+    setDailyPlan(null);
+    setEmail("");
+    setSignupStatus("");
+  }
+
+  function handlePrint() {
+    trackEvent("routine_print_clicked", {
+      page: window.location.pathname,
+      metadata: {
+        schedule_item_count: dailyPlan?.schedule?.length || 0,
+      },
+    });
+
+    window.print();
+  }
+
   function handleGenerateDailyPlan(e) {
     e.preventDefault();
 
     const plan = generateDailyPlan({
-        date: formData.date,
-        wakeTime: formData.wakeTime,
-        bedTime: formData.bedTime,
-        goal: formData.goal,
-        priorities: [
+      date: formData.date,
+      wakeTime: formData.wakeTime,
+      bedTime: formData.bedTime,
+      goal: formData.goal,
+      priorities: [
         formData.priority1,
         formData.priority2,
         formData.priority3,
-        ],
-        commitments,
-        includes: {
+      ],
+      commitments,
+      includes: {
         breakfast: formData.includeBreakfast,
         lunch: formData.includeLunch,
         dinner: formData.includeDinner,
         workout: formData.includeWorkout,
         deepWork: formData.includeDeepWork,
         windDown: formData.includeWindDown,
-        },
+      },
     });
 
     setDailyPlan(plan);
+
+    if (plan.error) {
+      trackEvent("routine_generate_failed", {
+        page: window.location.pathname,
+        metadata: {
+          reason: "invalid_schedule",
+        },
+      });
+
+      return;
     }
 
-    const wakeMinutes = timeToMinutes(formData.wakeTime);
-    const bedMinutes = timeToMinutes(formData.bedTime);
+    trackEvent(dailyPlan ? "routine_updated" : "routine_generated", {
+      page: window.location.pathname,
+      metadata: {
+        breakfast: formData.includeBreakfast,
+        lunch: formData.includeLunch,
+        dinner: formData.includeDinner,
+        workout: formData.includeWorkout,
+        deep_work: formData.includeDeepWork,
+        wind_down: formData.includeWindDown,
+        commitment_count: commitments.filter(
+          (commitment) =>
+            commitment.title?.trim() &&
+            commitment.start &&
+            commitment.end
+        ).length,
+        priority_count: [
+          formData.priority1,
+          formData.priority2,
+          formData.priority3,
+        ].filter((priority) => priority.trim()).length,
+      },
+    });
+  }
 
-    let awakeMinutes = bedMinutes - wakeMinutes;
+  function formatPlanDate(dateString) {
+    if (!dateString) return "";
 
-    if (awakeMinutes <= 0) {
-      awakeMinutes += 1440;
+    return new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(`${dateString}T00:00:00`));
+  }
+
+  function formatDuration(minutes) {
+    if (!minutes) return "0 min";
+
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    if (hours === 0) return `${remainingMinutes} min`;
+    if (remainingMinutes === 0) return `${hours} hr${hours === 1 ? "" : "s"}`;
+
+    return `${hours} hr ${remainingMinutes} min`;
+  }
+
+  function getItemDuration(item) {
+    if (
+      typeof item.sortTime !== "number" ||
+      typeof item.sortEnd !== "number"
+    ) {
+      return 0;
     }
 
-    const sleepMinutes = 1440 - awakeMinutes;
+    return Math.max(0, item.sortEnd - item.sortTime);
+  }
 
-    const hasSleepWarning =
-      sleepMinutes < 390 || sleepMinutes > 480;
+  const wakeMinutes = timeToMinutes(formData.wakeTime);
+  const bedMinutes = timeToMinutes(formData.bedTime);
+
+  let awakeMinutes = bedMinutes - wakeMinutes;
+
+  if (awakeMinutes <= 0) {
+    awakeMinutes += 1440;
+  }
+
+  const sleepMinutes = 1440 - awakeMinutes;
+  const hasSleepWarning = sleepMinutes < 390 || sleepMinutes > 480;
+
+  const summary = dailyPlan
+    ? dailyPlan.schedule.reduce(
+        (totals, item) => {
+          const duration = getItemDuration(item);
+
+          if (item.title === "Deep Work Session") {
+            totals.deepWork += duration;
+          }
+
+          if (item.title === "Workout") {
+            totals.workout += duration;
+          }
+
+          if (
+            commitments.some(
+              (commitment) =>
+                commitment.title?.trim() &&
+                commitment.title.trim() === item.title &&
+                commitment.start === item.rawStart &&
+                commitment.end === item.rawEnd
+            )
+          ) {
+            totals.commitments += duration;
+          }
+
+          return totals;
+        },
+        {
+          sleep: sleepMinutes,
+          deepWork: 0,
+          workout: 0,
+          commitments: 0,
+        }
+      )
+    : null;
+
+    async function handleSignupSubmit(e) {
+      e.preventDefault();
+      setSignupStatus("");
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/signup`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            source: "routine",
+          }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || "Signup failed");
+        }
+
+        trackEvent("email_signup", {
+          page: window.location.pathname,
+          metadata: {
+            location: "routine_results",
+            form: "routine_newsletter",
+          },
+        });
+
+        setSignupStatus("Thank you for signing up!");
+        setEmail("");
+      } catch (error) {
+        console.error(error);
+        setSignupStatus("Something went wrong. Try again.");
+      }
+    }
 
   return (
     <main className="routine-page">
-      <section className="routine-hero">
-        <p className="eyebrow">The Routine</p>
-        <h1>Build your day in under 2 minutes.</h1>
-        <p>
-          Create a simple Daily Plan that tells you what to do today instead of
-          guessing your way through it.
+      <button
+        type="button"
+        className="routine-back no-print"
+        onClick={handleBack}
+      >
+        ← Back to Systems
+      </button>
+
+      <section className="routine-hero no-print">
+        <h1>The Routine</h1>
+        <p className="routine-subtitle">
+          Build your day in under 2 minutes
         </p>
       </section>
 
       <section className="routine-layout">
-        <form className="routine-form" onSubmit={handleGenerateDailyPlan}>
+        <form
+          className="routine-form no-print"
+          onSubmit={handleGenerateDailyPlan}
+        >
           <h2>Your Day</h2>
 
           <label>
@@ -205,18 +420,15 @@ function Routine() {
             {hasSleepWarning && (
               <div className="sleep-warning">
                 <strong>Check your sleep window.</strong>
-
                 <p>
                   This schedule allows approximately{" "}
-                  {(sleepMinutes / 60).toFixed(1)} hours of sleep.
-                  Sleep is crucial for productivity, recovery, and
-                  focus. Aim for 6.5 to 8 hours each night.
+                  {(sleepMinutes / 60).toFixed(1)} hours of sleep. Sleep is
+                  crucial for productivity, recovery, and focus. Aim for 6.5 to
+                  8 hours each night.
                 </p>
               </div>
             )}
           </label>
-
-          
 
           <h2>Today's Goal</h2>
 
@@ -225,7 +437,7 @@ function Routine() {
             <input
               type="text"
               name="goal"
-              placeholder="Finish Round 3 edits"
+              placeholder=""
               value={formData.goal}
               onChange={handleChange}
             />
@@ -270,35 +482,46 @@ function Routine() {
                 }
               />
 
-              <input
-                type="time"
+              <select
                 value={commitment.start}
                 onChange={(e) =>
                   handleCommitmentChange(index, "start", e.target.value)
                 }
-              />
+                aria-label={`${commitment.title || "Commitment"} start time`}
+              >
+                <option value="">Start time</option>
 
-              <input
-                type="time"
+                {TIME_OPTIONS.map((time) => (
+                  <option key={time.value} value={time.value}>
+                    {time.label}
+                  </option>
+                ))}
+              </select>
+
+              <select
                 value={commitment.end}
                 onChange={(e) =>
                   handleCommitmentChange(index, "end", e.target.value)
                 }
-              />
-
-              <button
-                type="button"
-                onClick={() => removeCommitment(index)}
+                aria-label={`${commitment.title || "Commitment"} end time`}
               >
+                <option value="">End time</option>
+
+                {TIME_OPTIONS.map((time) => (
+                  <option key={time.value} value={time.value}>
+                    {time.label}
+                  </option>
+                ))}
+              </select>
+
+              <button type="button" onClick={() => removeCommitment(index)}>
                 Remove
               </button>
             </div>
           ))}
 
           {commitments.length === 0 && (
-            <p className="commitment-empty">
-              No fixed commitments added.
-            </p>
+            <p className="commitment-empty">No fixed commitments added.</p>
           )}
 
           <button type="button" onClick={addCommitment}>
@@ -309,7 +532,8 @@ function Routine() {
 
           <p className="routine-section-description">
             Deep Work blocks are focused sessions used to make progress on your
-            daily goal or top priorities, excluding workouts and fixed commitments.
+            daily goal or top priorities, excluding workouts and fixed
+            commitments.
           </p>
 
           <div className="routine-checks">
@@ -379,11 +603,7 @@ function Routine() {
               {dailyPlan ? "Update Plan" : "Generate Daily Plan"}
             </button>
 
-            <button
-              type="button"
-              className="clear-button"
-              onClick={clearDay}
-            >
+            <button type="button" className="clear-button" onClick={clearDay}>
               Clear Day
             </button>
           </div>
@@ -393,58 +613,166 @@ function Routine() {
           <p className="routine-error">{dailyPlan.error}</p>
         )}
 
-        {dailyPlan && !dailyPlan.error && (
-          <section className="daily-plan-preview">
-            <h2>Daily Plan</h2>
-            <p>{dailyPlan.date}</p>
+        <section
+          className={`daily-plan-preview ${
+            !dailyPlan || dailyPlan.error ? "daily-plan-empty" : ""
+          }`}
+        >
+          {!dailyPlan || dailyPlan.error ? (
+            <div className="plan-placeholder">
+              <div className="placeholder-icon">✓</div>
 
-            <h3>Today's Goal</h3>
-            <p>{dailyPlan.goal || "No goal entered."}</p>
+              <h2>Your Daily Plan</h2>
 
-            <h3>Today's Priorities</h3>
-            <ul>
-              {dailyPlan.priorities.length > 0 ? (
-                dailyPlan.priorities.map((priority, index) => (
-                  <li key={index}>{priority}</li>
-                ))
-              ) : (
-                <li>No priorities entered.</li>
-              )}
-            </ul>
+              <p>Complete the form and generate your schedule.</p>
 
-            <h3>Schedule</h3>
-
-            <div className="schedule-list">
-              {dailyPlan.schedule.map((item, index) => (
-                <div className="schedule-item" key={index}>
-                  <strong>{item.time}</strong>
-                  <span>{item.title}</span>
-                  {item.note && <p>{item.note}</p>}
-                </div>
-              ))}
+              <div className="placeholder-lines">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
             </div>
+          ) : (
+            <>
+              <div className="plan-heading-row">
+                <div>
+                  <h2>Daily Plan</h2>
+                  <p className="plan-date">
+                    {formatPlanDate(dailyPlan.date)}
+                  </p>
+                </div>
 
-            {dailyPlan.warnings?.length > 0 && (
-              <>
-                <h3>Planner Notes</h3>
-                <ul>
-                  {dailyPlan.warnings.map((warning, index) => (
-                    <li key={index}>{warning}</li>
-                  ))}
-                </ul>
-              </>
-            )}
+                <button
+                  type="button"
+                  className="print-button no-print"
+                  onClick={handlePrint}
+                >
+                  Print Plan
+                </button>
+              </div>
 
-            <h3>Reflection</h3>
-            <p>Today's Biggest Win: ____________________</p>
-            <p>Tomorrow's Goal: ____________________</p>
+              <h3>Today's Goal</h3>
+              <p>{dailyPlan.goal || "No goal entered."}</p>
 
-            <blockquote>
-              Small actions repeated daily become extraordinary results.
-            </blockquote>
-          </section>
-        )}
+              <h3>Today's Priorities</h3>
+
+              <ul>
+                {dailyPlan.priorities.length > 0 ? (
+                  dailyPlan.priorities.map((priority, index) => (
+                    <li key={index}>{priority}</li>
+                  ))
+                ) : (
+                  <li>No priorities entered.</li>
+                )}
+              </ul>
+
+              <h3>Daily Summary</h3>
+
+              <div className="routine-summary">
+                <div className="summary-item">
+                  <span>Sleep</span>
+                  <strong>{formatDuration(summary.sleep)}</strong>
+                </div>
+
+                <div className="summary-item">
+                  <span>Deep Work</span>
+                  <strong>{formatDuration(summary.deepWork)}</strong>
+                </div>
+
+                <div className="summary-item">
+                  <span>Workout</span>
+                  <strong>{formatDuration(summary.workout)}</strong>
+                </div>
+
+                <div className="summary-item">
+                  <span>Commitments</span>
+                  <strong>{formatDuration(summary.commitments)}</strong>
+                </div>
+              </div>
+
+              <h3>Schedule</h3>
+
+              <div className="schedule-list">
+                {dailyPlan.schedule.map((item, index) => {
+                  const nextItem = dailyPlan.schedule[index + 1];
+
+                  const breakMinutes =
+                    typeof item.sortEnd === "number" &&
+                    typeof nextItem?.sortTime === "number"
+                      ? nextItem.sortTime - item.sortEnd
+                      : 0;
+
+                  const showReset =
+                    item.title === "Deep Work Session" &&
+                    nextItem?.title === "Deep Work Session" &&
+                    breakMinutes >= 15 &&
+                    breakMinutes <= 30;
+
+                  return (
+                    <div key={`${item.title}-${item.sortTime ?? index}`}>
+                      <div className="schedule-item">
+                        <strong>{item.time}</strong>
+                        <span>{item.title}</span>
+                      </div>
+
+                      {showReset && (
+                        <div className="schedule-reset">
+                          <span>{breakMinutes}-minute reset</span>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {dailyPlan.warnings?.length > 0 && (
+                <div className="planner-notes">
+                  <h3>Planner Notes</h3>
+
+                  <ul>
+                    {dailyPlan.warnings.map((warning, index) => (
+                      <li key={index}>{warning}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </>
+          )}
+        </section>
       </section>
+      {dailyPlan && !dailyPlan.error && (
+        <section className="routine-newsletter no-print">
+          <h2>Your Plan Is Only the Beginning</h2>
+
+          <p>
+            Get new systems, videos, and practical self-improvement updates sent
+            directly to you.
+          </p>
+
+          <form
+            className="newsletter-form"
+            onSubmit={handleSignupSubmit}
+          >
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <button type="submit">Join</button>
+          </form>
+
+          {signupStatus && (
+            <p className="routine-newsletter-status">
+              {signupStatus}
+            </p>
+          )}
+        </section>
+      )}
     </main>
   );
 }
