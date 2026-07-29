@@ -73,7 +73,7 @@ function Video18Article() {
 
           <a
             className="article-video-link"
-            href="https://www.youtube.com/"
+            href="https://youtu.be/0VnhSGCGbvE"
             target="_blank"
             rel="noreferrer"
             onClick={() =>
