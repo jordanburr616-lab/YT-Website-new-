@@ -10,9 +10,12 @@ import Reset from "./components/pages/systems/ThirtyDayReset";
 import BuildPhase from "./components/pages/systems/BuildPhase";
 import Routine from "./components/pages/systems/Routine";
 
+import Video18Article from "./components/pages/articles/Video18Article";
 import Video17Article from "./components/pages/articles/Video17Article";
 import Video16Article from "./components/pages/articles/Video16Article";
 import Video15Article from "./components/pages/articles/Video15Article";
+import Video14Article from "./components/pages/articles/Video14Article";
+import Video13Article from "./components/pages/articles/Video13Article";
 
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
@@ -86,16 +89,18 @@ function AppContent() {
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f3f5f6ff" }}>
-      <Navbar
-        isMobile={isMobile}
-        setMenuOpen={setMenuOpen}
-      />
+      <div className="no-print">
+        <Navbar
+          isMobile={isMobile}
+          setMenuOpen={setMenuOpen}
+        />
 
-      <MobileMenu
-        isMobile={isMobile}
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-      />
+        <MobileMenu
+          isMobile={isMobile}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+      </div>
 
       <main>
         <div className="page-shell" key={location.pathname}>
@@ -108,9 +113,12 @@ function AppContent() {
             <Route path="/systems/routine" element={<Routine />} />
 
             <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/how-to-get-addicted-to-building-muscle" element={<Video18Article />}/>
             <Route path="/articles/how-to-get-out-of-a-rut" element={<Video17Article />}/>
             <Route path="/articles/why-you-care-so-much" element={<Video16Article />} />
             <Route path="/articles/the-7-stages-of-weight-loss" element={<Video15Article />}/>
+            <Route path="/articles/the-7-levels-of-a-glow-up" element={<Video14Article />}/>
+            <Route path="/articles/the-no-fap-timeline" element={<Video13Article />}/>
 
             <Route path="/community" element={<Community />} />
 
@@ -121,19 +129,23 @@ function AppContent() {
           </Routes>
         </div>
 
-        <ChatLauncher
-          chatOpen={chatOpen}
-          setChatOpen={setChatOpen}
-          chatMinimized={chatMinimized}
-          setChatMinimized={setChatMinimized}
-          chatHovered={chatHovered}
-          setChatHovered={setChatHovered}
-          chatSessionId={chatSessionId}
-          setChatSessionId={setChatSessionId}
-        />
+        <div className="no-print">
+          <ChatLauncher
+            chatOpen={chatOpen}
+            setChatOpen={setChatOpen}
+            chatMinimized={chatMinimized}
+            setChatMinimized={setChatMinimized}
+            chatHovered={chatHovered}
+            setChatHovered={setChatHovered}
+            chatSessionId={chatSessionId}
+            setChatSessionId={setChatSessionId}
+          />
+        </div>
       </main>
 
-      <Footer />
+      <div className="no-print">
+        <Footer />
+      </div>
     </div>
   );
 }

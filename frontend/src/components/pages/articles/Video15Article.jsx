@@ -478,15 +478,15 @@ function Video15Article() {
 
         <div
           className="article-next-card"
-          onClick={() => navigate("/articles/how-to-get-out-of-a-rut")}
+          onClick={() => navigate("/articles/the-7-levels-of-a-glow-up")}
         >
           <span>Next Article</span>
 
-          <h3>How to Get Out of a Rut (in 7 Days)</h3>
+          <h3>The 7 Levels of a Glow Up</h3>
 
           <p>
-            Follow a simple seven-day framework designed to help you rebuild momentum,
-            break the cycle, and start moving forward again.
+            Discover how healthier habits, confidence, and discipline build a real
+            glow up without falling into the trap of chasing perfection.
           </p>
 
           <span className="next-arrow">Read Article →</span>

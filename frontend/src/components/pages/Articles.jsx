@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { usePageView } from "../../hooks/usePageView";
 import { trackEvent } from "../../utils/analytics";
+import { HiOutlineDocumentText } from "react-icons/hi2";
 
 function Articles() {
   const navigate = useNavigate();
@@ -14,6 +15,15 @@ function Articles() {
   };
 
   const articles = [
+    {
+      title: "How to Get Addicted to Building Muscle",
+      slug: "how-to-get-addicted-to-building-muscle",
+      category: "Fitness",
+      description:
+        "Six mindset shifts that make building muscle feel addictive by turning every workout into progress you actually want to pursue.",
+      image: "/images/video18.png",
+      live: true,
+    },
     {
       title: "How to Get Out of a Rut",
       slug: "how-to-get-out-of-a-rut",
@@ -40,6 +50,24 @@ function Articles() {
           "Understand the seven stages nearly everyone experiences during a weight loss journey and how to keep moving forward.",
         image: "/images/video15.png",
         live: true,
+    },
+    {
+      title: "The 7 Levels of a Glow Up",
+      slug: "the-7-levels-of-a-glow-up",
+      category: "Self-Improvement",
+      description:
+        "A seven-level breakdown of how real transformation develops—from basic appearance changes to building a stronger identity.",
+      image: "/images/video14.png",
+      live: true,
+    },
+    {
+      title: "The No Fap Timeline",
+      slug: "the-no-fap-timeline",
+      category: "Self-Control",
+      description:
+        "A realistic breakdown of what can happen when you quit porn and stop relying on constant sexual stimulation.",
+      image: "/images/video13.png",
+      live: true,
     },
     ];
 
@@ -80,76 +108,60 @@ function Articles() {
 
       {/* ARTICLES SECTION */}
       <div
+        className="articles-section"
         style={{
           background: "#35a4cf",
           padding: "120px 0",
         }}
       >
         <section style={containerStyle}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "40px",
-            }}
-          >
+          <div className="articles-grid">
             {articles.map((article, i) => (
-                <div key={i} className="article-grid-item" style={{ textAlign: "center" }}>
-                    <div
-                    className="systems-size systems-tab-img article-card"
-                    onClick={() => {
-                        trackEvent("article_card_clicked", {
-                        page: window.location.pathname,
-                        metadata: {
-                            article_title: article.title,
-                            article_slug: article.slug,
-                            live: article.live,
-                        },
-                        });
+              <div key={article.slug} className="article-grid-item">
+                <div
+                  className="article-card"
 
-                        if (!article.live) return;
+                  
+                  onClick={() => {
+                    trackEvent("article_card_clicked", {
+                      page: window.location.pathname,
+                      metadata: {
+                        article_title: article.title,
+                        article_slug: article.slug,
+                        live: article.live,
+                      },
+                    });
 
-                        navigate(`/articles/${article.slug}`);
-                    }}
-                    style={{
-                        background: "#ffffff",
-                        height: "320px",
-                        borderRadius: "16px",
-                        marginBottom: "16px",
-                        overflow: "hidden",
-                        position: "relative",
-                        opacity: article.live ? 1 : 0.85,
-                        cursor: article.live ? "pointer" : "default",
-                    }}
-                    >
-                    <img
-                        src={article.image}
-                        alt={article.title}
-                        style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                        }}
-                    />
-                    </div>
+                    if (!article.live) return;
 
-                    <h3 style={{ fontWeight: "700", color: "white" }}>
-                    {article.title}
-                    </h3>
+                    navigate(`/articles/${article.slug}`);
+                  }}
+                  style={{
+                    opacity: article.live ? 1 : 0.85,
+                    cursor: article.live ? "pointer" : "default",
+                  }}
+                >
 
-                    <p
-                    style={{
-                        color: "white",
-                        opacity: 0.85,
-                        fontWeight: "600",
-                        marginTop: "6px",
-                    }}
-                    >
-                    {article.live ? article.readTime : "Coming Soon"}
-                    </p>
+                  <div className="article-type-icon">
+                    <HiOutlineDocumentText />
+                  </div>
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                  />
                 </div>
-                ))}
+
+                <h3 className="article-card-title">
+                  {article.title}
+                </h3>
+
+                {!article.live && (
+                  <p className="article-card-status">
+                    Coming Soon
+                  </p>
+                )}
+              </div>
+            ))}
           </div>
         </section>
       </div>
