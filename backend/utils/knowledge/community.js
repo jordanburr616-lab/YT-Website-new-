@@ -1,118 +1,135 @@
 const communityKnowledge = {
-  currentState: {
-    version: "v1",
 
+  access: {
+    route: "/community",
+    feedbackUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe_aSVEgy0P2xGBYJBnK_ONROAqKFjkx6V5i7dzeE8efgPN4A/viewform?usp=publish-editor",
+  },
+
+  currentState: {
     purpose:
-      "The Community section currently exists primarily as a feedback and growth channel between JB and the audience.",
+      "The Community section currently acts as a feedback and audience-input channel between JB and the people using Improving JB.",
+
+    currentAvailability:
+      "The current version is intentionally simple and is primarily powered through an external feedback form.",
 
     howItIsUsed: [
       "Collect feedback about the website experience",
 
-      "Collect feedback about systems, programs, and downloads",
+      "Collect feedback about systems, programs, interactive tools, and downloads",
 
-      "Collect thoughts on YouTube videos and topics",
+      "Collect thoughts on YouTube videos, articles, and future content topics",
 
-      "Allow users to share what has helped them, what they struggle with, or what feels unclear",
+      "Allow users to share what has helped them, what they are struggling with, or what feels unclear",
 
-      "Gather insight that helps shape future versions of the ecosystem",
+      "Gather suggestions that may help shape future versions of the Improving JB ecosystem",
 
-      "Currently powered through external feedback forms while the platform is still in early development",
+      "Give users a direct place to communicate ideas and concerns while the platform is still developing",
     ],
   },
 
   communityVision: {
     longTermGoal:
-      "The long-term goal is to build a real community of people trying to rebuild discipline, reduce chaos, improve consistency, and unf*ck their lives together.",
+      "The long-term vision is to create a genuine community of people working to rebuild discipline, reduce chaos, improve consistency, and make meaningful progress together.",
 
     biggerPurpose: [
-      "Create an environment where self-improvement feels less isolated",
+      "Make self-improvement feel less isolated",
 
-      "Allow people to learn from others going through similar struggles",
+      "Help people see that setbacks and inconsistency are common parts of growth",
 
-      "Build a healthier online culture centered around growth, accountability, and honesty instead of fake perfection",
+      "Create a healthier online culture centered around action, honesty, and long-term improvement instead of fake perfection",
 
-      "Give the audience a more direct role in shaping future content, systems, and tools",
+      "Allow users to learn from people working through similar challenges",
+
+      "Give the audience a meaningful role in shaping future content, systems, tools, and programs",
     ],
   },
 
   futureDirection: {
-    plannedIdeas: [
-      "A dedicated Discord community",
-
-      "YouTube memberships and deeper community access",
-
-      "Built-in website community features",
-
-      "Community-driven challenges, feedback systems, and progress sharing",
-    ],
-
     statusNote:
-      "These ideas represent long-term direction and are not fully active features yet.",
+      "The Community section may expand over time, but no additional features or launches are currently confirmed.",
   },
 
   feedbackFocus: {
     whatToShare: [
-      "Issues or friction on the website",
+      "Website bugs, friction, or navigation problems",
 
-      "Confusion about systems or programs",
+      "Confusion about systems, programs, tools, or downloads",
 
-      "Thoughts on videos or topics users want explored",
+      "Thoughts on YouTube videos or articles",
 
-      "Suggestions for future improvements",
+      "Topics users would like JB to explore",
 
-      "Personal takeaways users want JB to be aware of",
+      "Suggestions for future features or improvements",
+
+      "Personal takeaways or experiences related to Improving JB content",
     ],
 
     expectations:
-      "Feedback is actively reviewed and helps influence future improvements, though direct responses are not guaranteed.",
+      "Feedback may be reviewed and considered when JB improves the website, content, systems, and tools. A direct response or specific change is not guaranteed.",
   },
 
   boundaries: {
     whatCommunityIsNot: [
       "A fully built social platform",
 
-      "A live support group or real-time discussion forum",
+      "A live chat room or real-time discussion forum",
 
-      "Professional therapy or personal counseling",
+      "A professional support group",
 
-      "A replacement for real-world support systems",
+      "Therapy, counseling, crisis support, or medical guidance",
+
+      "A replacement for real-world relationships or professional support",
+
+      "A guarantee of direct communication with JB",
     ],
 
     limitations:
-      "The first version of the Community section is intentionally simple while the overall ecosystem continues developing.",
+      "The current Community section is intentionally limited while the larger Improving JB ecosystem continues developing.",
   },
 
   toneGuidelines: {
     howToDescribeIt: [
-      "Honest about current limitations",
+      "Honest about what currently exists",
 
-      "Forward-looking without overpromising",
+      "Forward-looking without presenting ideas as promises",
 
-      "Focused on shared growth and improvement",
+      "Focused on shared growth, feedback, and participation",
 
       "Grounded rather than hype-driven",
+
+      "Welcoming without exaggerating the size or activity of the community",
     ],
   },
 
   guardrails: {
     truthPolicy: [
-      "Do not promise future features or timelines",
+      "Do not promise future features, launch dates, or timelines",
 
-      "Do not pretend the community is already fully active",
+      "Do not present possible ideas as confirmed plans",
 
-      "Do not imply guaranteed interaction with JB",
+      "Do not pretend the community is already fully active or interactive",
 
-      "Do not exaggerate the current size or activity of the community",
+      "Do not imply guaranteed interaction or a personal response from JB",
+
+      "Do not exaggerate the current size, activity, or capabilities of the community",
+
+      "Do not claim that every feedback submission will result in a change",
+
+      "Only provide a feedback link when that exact link exists in the provided knowledge",
     ],
 
     allowedHelp: [
-      "Explain the purpose of the Community section",
+      "Explain the current purpose of the Community section",
 
-      "Explain how users can currently give feedback",
+      "Explain what kind of feedback users can submit",
 
-      "Explain the long-term vision for the community",
+      "Explain how feedback may influence future improvements",
 
-      "Connect users to relevant areas of the ecosystem",
+      "Explain the long-term vision without treating it as guaranteed",
+
+      "Direct users toward the confirmed feedback form or Community page",
+
+      "Connect users to relevant systems, tools, articles, videos, or website sections",
     ],
   },
 };

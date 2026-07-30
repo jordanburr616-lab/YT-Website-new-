@@ -5,20 +5,34 @@ const websiteKnowledge = {
     tagline: "Keep Building.",
 
     purpose:
-      "A central hub connecting JB’s YouTube content, systems, programs, future community features, and tools focused on helping people unf*ck their lives through structure, discipline, and long-term self-improvement.",
+      "A central hub connecting JB’s videos, articles, systems, tools, programs, newsletter, and community feedback around helping people unf*ck their lives through structure, discipline, fitness, and long-term self-improvement.",
+
+    structure:
+      "The main areas of Improving JB are separated into individual pages so users can be directed to specific systems, articles, and sections of the website.",
   },
 
   navigation: {
-    primaryTabs: ["Home", "Systems", "About Me", "Community"],
+    primaryTabs: ["Home", "Systems", "Articles", "Community"],
+
+    secondaryPages: [
+      "About",
+      "Contact",
+      "Privacy",
+      "Terms",
+    ],
 
     defaultLanding: "Home",
 
     notes: [
-      "The main navigation is located in the top tab bar.",
+      "The main navigation gives direct access to Home, Systems, Articles, and Community.",
 
-      "The chat button in the bottom right allows users to talk to Bands for guidance around the site and ecosystem.",
+      "About, Contact, Privacy, and Terms are available as additional website pages.",
 
-      "Different sections of the site connect together as part of the broader Improving JB ecosystem.",
+      "The chat button in the bottom-right corner allows users to talk to Bands for guidance around the site and Improving JB ecosystem.",
+
+      "Most major sections use separate pages, allowing users to open or share a direct page instead of relying on one long landing page.",
+
+      "Different sections of the website connect as part of the broader Improving JB ecosystem.",
     ],
   },
 
@@ -27,121 +41,168 @@ const websiteKnowledge = {
       label: "Home",
 
       purpose:
-        "Quick overview of the Improving JB ecosystem, featured systems, and recent content.",
+        "Provide a quick introduction to Improving JB and direct visitors toward its main content, systems, tools, newsletter, and social platforms.",
 
       mainSections: [
-        "Hero section (Keep Building)",
+        "Hero section built around the Keep Building message",
 
-        "Featured system highlight (The 10 Week Build)",
+        "Featured program or system highlight",
 
         "Systems preview section",
 
-        "Recent YouTube videos section",
+        "Recent or featured Improving JB content",
 
-        "Social links (YouTube, Instagram, TikTok)",
+        "Newsletter signup section",
 
-        "Newsletter and future ecosystem growth areas",
+        "Social links",
+
+        "Links into other areas of the Improving JB ecosystem",
       ],
 
       commonUserGoals: [
-        "Find JB’s newest YouTube videos",
+        "Understand what Improving JB is",
 
-        "Understand what the platform is about",
+        "Find the newest or featured content",
 
-        "Explore available systems and programs",
+        "Explore systems and tools",
+
+        "Open The Routine",
+
+        "Join the newsletter",
 
         "Get introduced to the ecosystem quickly",
       ],
+
+      importantNotes: [
+        "The Routine is currently featured on the Home page.",
+
+        "The newsletter signup is an active part of the page.",
+
+        "The Home page is an overview rather than the only location where content and systems can be accessed.",
+      ],
     },
 
-    Systems: {
+    systems: {
       label: "Systems",
 
       purpose:
-        "Explore JB’s systems, templates, and structured programs designed around discipline, execution, and long-term growth.",
+        "Let users explore JB’s available systems, tools, templates, and structured programs related to discipline, planning, consistency, and fitness.",
 
       currentSystems: [
+        {
+          name: "The Routine",
+
+          status: "available",
+
+          summary:
+            "An interactive daily planning tool that helps users organize their priorities, commitments, goals, and selected activities into a structured day.",
+        },
+
         {
           name: "30 Day Reset",
 
           status: "available",
 
           summary:
-            "A structured reset system focused on rebuilding consistency, structure, and daily execution.",
+            "A structured reset system focused on rebuilding consistency, awareness, structure, and daily execution.",
         },
+
         {
           name: "The 10 Week Build",
-          status: "available",
-          summary:
-            "A custom workout generator that creates a 10-week lifting program based on the user's maxes, schedule, goals, experience, workout length, and equipment access.",
-        },
-      ],
 
-      plannedSystems: [
-        {
-          name: "The Routine",
-          status: "planned",
+          status: "available",
+
           summary:
-            "A future daily planning system focused on structure, prioritization, and execution.",
+            "A workout generator that creates a 10-week training program based on user-entered goals, experience, schedule, workout length, equipment access, and strength information.",
         },
       ],
 
       commonUserGoals: [
-        "Understand what the 30 Day Reset is",
+        "Understand which Improving JB system best matches their needs",
 
-        "Explore available systems and future plans",
+        "Build a structured daily plan",
 
-        "Find tools related to discipline, consistency, and self-improvement",
+        "Learn about the 30 Day Reset",
+
+        "Generate a structured training program",
+
+        "Explore tools related to discipline, consistency, planning, and fitness",
+      ],
+
+      importantNotes: [
+        "The Routine, 30 Day Reset, and The 10 Week Build serve different purposes.",
+
+        "Bands may explain and compare the systems, but the actual tools and programs must be used through their corresponding website pages or access links.",
+
+        "Do not present internal upgrades or unreleased systems as currently available.",
+      ],
+    },
+
+    articles: {
+      label: "Articles",
+
+      purpose:
+        "Provide written Improving JB content covering self-improvement, discipline, fitness, mindset, habits, focus, and other topics discussed in JB’s videos.",
+
+      structure: [
+        "Articles are displayed as individual content cards.",
+
+        "Each live article has its own dedicated page.",
+
+        "Articles may act as written companions to Improving JB YouTube videos.",
+
+        "Article pages may connect users to related videos, systems, tools, or additional articles.",
+      ],
+
+      commonUserGoals: [
+        "Read Improving JB content instead of watching a video",
+
+        "Find an article about a specific struggle or topic",
+
+        "Explore fitness, mindset, discipline, or self-improvement ideas",
+
+        "Find the written companion to a YouTube video",
+
+        "Move between related articles",
+      ],
+
+      importantNotes: [
+        "Not every listed article may be live.",
+
+        "Only describe an article as available when the provided article knowledge confirms its publication status.",
+
+        "Do not assume every YouTube video has a published companion article.",
       ],
     },
 
     about: {
-      label: "About Me",
+      label: "About",
 
       purpose:
-        "Learn who JB is, what Improving JB stands for, and how the ecosystem connects together.",
+        "Explain who JB is, what Improving JB stands for, why the ecosystem was created, and how JB attempts to practice the principles he discusses.",
 
       topics: [
         "JB’s systems-first philosophy",
 
         "Why Improving JB was created",
 
-        "The connection between YouTube content, systems, and community",
+        "JB’s ongoing self-improvement journey",
 
-        "The overall mission of helping people rebuild structure and direction",
+        "JB’s approach to fitness, discipline, focused work, reading, recovery, and long-term challenges",
+
+        "The connection between videos, articles, systems, tools, newsletter, and community",
+
+        "Bands’ role as the Improving JB character and site guide",
       ],
 
       commonUserGoals: [
         "Understand JB’s approach and philosophy",
 
-        "Learn the purpose behind the ecosystem",
+        "Learn why JB may be considered trustworthy",
+
+        "Understand the purpose behind Improving JB",
 
         "Get context before exploring systems or content",
-      ],
-    },
-
-    chat: {
-      label: "Chat",
-
-      purpose:
-        "Talk to Bands for help navigating the ecosystem and understanding JB’s content, systems, and website.",
-
-      expectations: [
-        "Bands helps users navigate the site and ecosystem.",
-
-        "Bands explains systems, videos, pages, and overall platform direction.",
-
-        "Bands does not provide personal coaching or therapy.",
-      ],
-
-      commonUserGoals: [
-        "Find where something is located",
-
-        "Understand what a program is for",
-
-        "Figure out where to start",
-
-        "Learn how different parts of the ecosystem connect",
       ],
     },
 
@@ -149,24 +210,120 @@ const websiteKnowledge = {
       label: "Community",
 
       purpose:
-        "Support the long-term goal of building a community centered around growth, discipline, accountability, and shared self-improvement.",
+        "Give users a place to share feedback and help influence the continued development of Improving JB.",
 
-      topics: [
-        "User feedback and ecosystem improvement",
+      currentUses: [
+        "Share feedback about the website",
 
-        "Future Discord and membership plans",
+        "Report confusion or issues involving systems and tools",
 
-        "Audience involvement in future systems and content",
+        "Give thoughts on videos and articles",
 
-        "Building a healthier self-improvement culture online",
+        "Suggest future content topics",
+
+        "Share personal takeaways related to Improving JB",
       ],
 
       commonUserGoals: [
         "Share feedback with JB",
 
-        "Understand the future vision of the community",
+        "Report an issue with the website",
 
-        "Stay connected to future updates and ecosystem growth",
+        "Suggest an improvement or content topic",
+
+        "Understand the long-term community vision",
+
+        "Stay involved as Improving JB continues developing",
+      ],
+
+      importantNotes: [
+        "The Community section is currently centered primarily around feedback.",
+
+        "It is not currently a full social network, live forum, or real-time support group.",
+
+        "Future community ideas should only be described as possibilities unless they are publicly confirmed.",
+      ],
+    },
+
+    newsletter: {
+      label: "Newsletter",
+
+      purpose:
+        "Allow users to sign up for updates related to Improving JB content, systems, tools, programs, and website development.",
+
+      availability:
+        "The newsletter signup is currently available through the website.",
+
+      commonUserGoals: [
+        "Stay updated on new videos and articles",
+
+        "Hear about new systems and program updates",
+
+        "Remain connected to Improving JB",
+
+        "Receive future ecosystem announcements",
+      ],
+
+      importantNotes: [
+        "Only describe the specific frequency or contents of the newsletter when those details exist in the provided knowledge.",
+
+        "Do not claim that a signup was completed unless the website successfully confirms it.",
+      ],
+    },
+
+    contact: {
+      label: "Contact",
+
+      purpose:
+        "Give users a way to contact JB through the website’s provided contact form.",
+
+      commonUserGoals: [
+        "Send JB a direct message",
+
+        "Ask a business or website-related question",
+
+        "Report an issue that does not fit the Community feedback section",
+      ],
+
+      importantNotes: [
+        "A submitted message does not guarantee a response.",
+
+        "Bands should direct users to the Contact page rather than collecting private contact information inside the chat.",
+      ],
+    },
+
+    chat: {
+      label: "Bands Chat",
+
+      purpose:
+        "Let users talk to Bands for help navigating Improving JB and understanding JB’s systems, tools, articles, videos, website, and public philosophy.",
+
+      expectations: [
+        "Bands helps users navigate the website and ecosystem.",
+
+        "Bands explains confirmed systems, tools, articles, videos, pages, and platform direction.",
+
+        "Bands can recommend the most relevant Improving JB resource based on what the user is looking for.",
+
+        "Bands does not pretend to be JB.",
+
+        "Bands does not provide therapy, professional advice, or detailed personalized plans.",
+
+        "Bands cannot claim to complete actions on website tools unless those actions actually occur.",
+      ],
+
+      commonUserGoals: [
+        "Find where something is located",
+
+        "Understand what a system or tool is for",
+
+        "Choose between existing Improving JB resources",
+
+        "Find a relevant article or video",
+
+        "Figure out where to start",
+
+        "Learn how different parts of the ecosystem connect",
       ],
     },
   },
@@ -181,43 +338,109 @@ const websiteKnowledge = {
     tiktok: "https://www.tiktok.com/@improvingjb",
   },
 
-  pageHints: {
-    findingVideos: "Home → YouTube section",
+  internalRoutes: {
+    home: "/",
 
-    findingSystems: "Systems tab",
+    systems: "/systems",
 
-    learningAboutJB: "About Me tab",
+    articles: "/articles",
 
-    futureCommunity: "Community tab",
+    community: "/community",
 
-    gettingHelp: "Chat button",
+    about: "/about",
+
+    contact: "/contact",
+
+    routine: "/systems/routine",
+
+    thirtyDayReset: "/systems/reset",
+
+    tenWeekBuild: "/systems/build",
+
+    note:
+      "Replace null values only after confirming the exact active routes in the frontend router. Bands must not guess routes.",
   },
+
+  pageHints: {
+    findingArticles: "Articles page",
+
+    findingVideos:
+      "Relevant videos may be shown on the Home page, inside related articles, or through JB’s YouTube channel.",
+
+    findingSystems: "Systems page",
+
+    buildingADailyPlan: "The Routine",
+
+    learningAboutJB: "About page",
+
+    sharingFeedback: "Community page",
+
+    contactingJB: "Contact page",
+
+    joiningNewsletter: "Newsletter signup section on the website",
+
+    gettingHelp: "Bands chat button",
+  },
+
+  relationships: [
+    "Videos and articles may cover the same topic in watchable and readable formats.",
+
+    "Articles may direct users toward related systems or videos.",
+
+    "The Routine helps users structure an individual day.",
+
+    "The 30 Day Reset provides broader short-term structure and consistency support.",
+
+    "The 10 Week Build provides structured fitness programming.",
+
+    "The newsletter keeps users connected to new content and ecosystem updates.",
+
+    "The Community section allows users to give feedback that may influence future improvements.",
+
+    "Bands helps users understand and navigate all of these areas.",
+  ],
 
   limitations: [
     "The Community section is still early in development.",
-    "The Routine is planned for a future version.",
-    "Some future systems and features are still being built.",
+
+    "Some articles shown on the website may not yet be published.",
+
+    "Some systems and programs may be updated over time.",
+
+    "Future systems and features should not be treated as guaranteed or currently available.",
+
+    "Bands cannot perform actions inside tools, forms, downloads, or purchases on behalf of the user.",
   ],
 
   guardrails: {
     truthPolicy: [
-      "Do not invent features, pages, systems, or content that are not provided in the knowledge base.",
+      "Do not invent features, pages, routes, systems, tools, links, or content that are not provided in the knowledge base.",
 
       "If something is still in development, say so clearly.",
 
+      "Do not describe a resource as live unless its status is confirmed as available.",
+
       "If information is unknown, be honest instead of guessing.",
 
-      "Prefer directing users toward the correct section of the site.",
+      "Only provide exact internal routes and external links that exist in the knowledge base.",
+
+      "Do not claim that a form, newsletter signup, program generation, download, purchase, or other website action was completed unless the website confirms it.",
+
+      "Prefer directing users toward the most relevant page rather than listing every website section.",
     ],
 
     allowedHelp: [
-      "Navigation guidance",
+      "Provide navigation guidance",
 
-      "Explaining what each page or section is for",
+      "Explain what each page or section is for",
 
-      "Explaining how the ecosystem connects together",
+      "Explain how the Improving JB ecosystem connects together",
 
-      "Helping users find systems, videos, or community areas",
+      "Help users find systems, tools, articles, videos, newsletter signup areas, feedback options, and information about JB",
+
+      "Recommend the most relevant confirmed page or resource",
+
+      "Explain the difference between the website’s available systems and content formats",
     ],
   },
 };
