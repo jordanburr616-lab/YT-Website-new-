@@ -16,6 +16,8 @@ import Video16Article from "./components/pages/articles/Video16Article";
 import Video15Article from "./components/pages/articles/Video15Article";
 import Video14Article from "./components/pages/articles/Video14Article";
 import Video13Article from "./components/pages/articles/Video13Article";
+import Video12Article from "./components/pages/articles/Video12Article";
+import Video11Article from "./components/pages/articles/Video11Article";
 
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
@@ -119,6 +121,8 @@ function AppContent() {
             <Route path="/articles/the-7-stages-of-weight-loss" element={<Video15Article />}/>
             <Route path="/articles/the-7-levels-of-a-glow-up" element={<Video14Article />}/>
             <Route path="/articles/the-no-fap-timeline" element={<Video13Article />}/>
+            <Route path="/articles/how-to-get-addicted-to-not-using-your-phone" element={<Video12Article />}/>
+            <Route path="/articles/the-7-levels-of-nicotine-addiction" element={<Video11Article />}/>
 
             <Route path="/community" element={<Community />} />
 

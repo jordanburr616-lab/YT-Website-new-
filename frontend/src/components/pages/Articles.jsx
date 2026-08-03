@@ -69,6 +69,24 @@ function Articles() {
       image: "/images/video13.png",
       live: true,
     },
+    {
+      title: "How to Get Addicted to Not Using Your Phone",
+      slug: "how-to-get-addicted-to-not-using-your-phone",
+      category: "Self-Control",
+      description:
+        "A practical breakdown of how to make your phone less addictive and train yourself to enjoy spending more time away from constant scrolling.",
+      image: "/images/video12.png",
+      live: true,
+    },
+    {
+      title: "The 7 Levels of Nicotine Addiction",
+      slug: "the-7-levels-of-nicotine-addiction",
+      category: "Addiction",
+      description:
+        "A seven-level breakdown of how nicotine addiction develops, gradually takes control, and becomes increasingly difficult to escape.",
+      image: "/images/video11.png",
+      live: true,
+    },
     ];
 
   return (
