@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePageView } from "../../hooks/usePageView";
 import { trackEvent } from "../../utils/analytics";
@@ -5,6 +6,8 @@ import { HiOutlineDocumentText } from "react-icons/hi2";
 
 function Articles() {
   const navigate = useNavigate();
+
+  const [activeCategory, setActiveCategory] = useState("All");
 
   usePageView("articles");
 
@@ -15,6 +18,15 @@ function Articles() {
   };
 
   const articles = [
+    {
+      title: "The 5 Hidden Stats That Make You Smarter",
+      slug: "the-5-hidden-stats-that-make-you-smarter",
+      category: "Learning",
+      description:
+        "Discover the five hidden skills that determine how fast you learn, think, and solve problems—and how to train each one to become smarter over time.",
+      image: "/images/video19.png",
+      live: true,
+    },
     {
       title: "How to Get Addicted to Building Muscle",
       slug: "how-to-get-addicted-to-building-muscle",
@@ -89,6 +101,18 @@ function Articles() {
     },
     ];
 
+    const categories = [
+      "All",
+      ...new Set(articles.map((article) => article.category)),
+    ];
+
+    const filteredArticles =
+      activeCategory === "All"
+        ? articles
+        : articles.filter(
+            (article) => article.category === activeCategory
+          );
+
   return (
     <>
       {/* HERO */}
@@ -96,7 +120,7 @@ function Articles() {
         style={{
           background: "#afb1b3ff",
           width: "100%",
-          padding: "70px 0 24px 0",
+          padding: "42px 0 18px 0",
           position: "relative",
           overflow: "hidden",
         }}
@@ -113,7 +137,7 @@ function Articles() {
             style={{
               fontSize: "1.1rem",
               opacity: 0.7,
-              marginBottom: "48px",
+              marginBottom: "26px",
               maxWidth: "560px",
               color: "#000",
               fontWeight: "600",
@@ -129,12 +153,53 @@ function Articles() {
         className="articles-section"
         style={{
           background: "#35a4cf",
-          padding: "120px 0",
+          padding: "54px 0 80px",
         }}
       >
         <section style={containerStyle}>
+          <div className="articles-filter-section">
+            <div className="articles-filter-header">
+              <div>
+                <p className="articles-filter-label">Browse by topic</p>
+
+                <h2 className="articles-filter-title">
+                  Find what you need
+                </h2>
+              </div>
+
+              <p className="articles-results-count">
+                {filteredArticles.length}{" "}
+                {filteredArticles.length === 1 ? "article" : "articles"}
+              </p>
+            </div>
+
+            <div className="articles-filter-buttons">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  className={`articles-filter-button ${
+                    activeCategory === category ? "active" : ""
+                  }`}
+                  onClick={() => {
+                    setActiveCategory(category);
+
+                    trackEvent("article_filter_clicked", {
+                      page: window.location.pathname,
+                      metadata: {
+                        category,
+                      },
+                    });
+                  }}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="articles-grid">
-            {articles.map((article, i) => (
+            {filteredArticles.map((article) => (
               <div key={article.slug} className="article-grid-item">
                 <div
                   className="article-card"
