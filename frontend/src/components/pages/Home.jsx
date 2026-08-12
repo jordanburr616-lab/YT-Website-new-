@@ -79,6 +79,10 @@ function Home() {
   const youtubeVideos = [
 
   {
+    id: "hqkJV5ItSpk",
+    title: "the 5 hidden stats the make you smarter",
+  },
+  {
     id: "0VnhSGCGbvE",
     title: "how to make building muscle as addictive as videogames"
   },
@@ -98,10 +102,7 @@ function Home() {
     id: "bZ_UqzFKKNI",
     title: "the no fap timeline (what actually happens)",
   },
-  {
-    id: "7cdjkpQghl0",
-    title: "how to get addicted to NOT using your phone",
-  },
+  
   
 
 ];
