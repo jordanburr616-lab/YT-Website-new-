@@ -71,7 +71,7 @@ function Video19Article() {
 
           <a
             className="article-video-link"
-            href="PASTE_VIDEO_19_YOUTUBE_LINK_HERE"
+            href="https://youtu.be/hqkJV5ItSpk"
             target="_blank"
             rel="noreferrer"
           >
