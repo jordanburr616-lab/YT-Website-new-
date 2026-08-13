@@ -1,5 +1,180 @@
 const videosKnowledge = [
   {
+        id: 19,
+
+        title: "The 5 Hidden Stats That Make You Smarter",
+
+        slug: "the-5-hidden-stats-that-make-you-smarter",
+
+        status: "published",
+
+        category: "Learning & Intelligence",
+
+        publishedAt: "2026-08-12",
+
+        summary:
+            "Explains five trainable mental stats—curiosity, focus, application, recovery, and pattern recognition—that improve how effectively someone learns, adapts, solves problems, and connects ideas.",
+
+        description:
+            "Instead of treating intelligence as a fixed number or the ability to memorize information, the guide presents intelligence as a collection of trainable abilities. Through neuroplasticity, repeated behaviors can strengthen the mental pathways behind learning, focus, application, recovery, and pattern recognition.",
+
+        topics: [
+            "Intelligence",
+            "Learning",
+            "Neuroplasticity",
+            "Curiosity",
+            "Focus",
+            "Application",
+            "Recovery",
+            "Pattern recognition",
+            "Memory",
+            "Deep work",
+            "Learning skills",
+            "Mental performance",
+        ],
+
+        userProblems: [
+            "I want to become smarter",
+            "I struggle to remember what I learn",
+            "I can't focus while studying",
+            "I consume information but never use it",
+            "I want to learn faster",
+            "I get distracted constantly",
+            "I forget books shortly after reading them",
+            "I want to improve my intelligence",
+            "I struggle connecting ideas together",
+            "I don't know how to learn effectively",
+        ],
+
+        fiveStats: [
+            {
+            stat: 1,
+            title: "Curiosity",
+            focus:
+                "Give the brain a meaningful reason to learn by connecting information to genuine interests and useful questions.",
+            },
+            {
+            stat: 2,
+            title: "Focus",
+            focus:
+                "Give the brain uninterrupted time to fully travel and strengthen the pathways required for deeper learning.",
+            },
+            {
+            stat: 3,
+            title: "Application",
+            focus:
+                "Use information through practice, projects, teaching, and experimentation so the brain recognizes that the knowledge matters.",
+            },
+            {
+            stat: 4,
+            title: "Recovery",
+            focus:
+                "Use sleep, breaks, movement, nutrition, exercise, and lower-stimulation periods to support learning and mental performance.",
+            },
+            {
+            stat: 5,
+            title: "Pattern Recognition",
+            focus:
+                "Connect new information with existing knowledge and recognize repeated structures across problems, ideas, and experiences.",
+            },
+        ],
+
+        keyIdeas: [
+            "Intelligence is not one singular stat.",
+            "Knowing information and knowing how to use information are different abilities.",
+            "Neuroplasticity allows the brain to adapt based on repeated behavior.",
+            "The brain becomes better at the skills it repeatedly practices.",
+            "Curiosity gives the brain a reason to learn.",
+            "Focus provides uninterrupted time for deeper understanding.",
+            "Application helps transform consumed information into usable knowledge.",
+            "Recovery supports the brain as it processes and strengthens learning.",
+            "Pattern recognition connects individual pieces of knowledge into larger ideas.",
+            "Becoming smarter requires better training rather than simply consuming more information.",
+        ],
+
+        practicalActions: [
+            "Connect new information to subjects you already understand.",
+            "Ask why a topic matters instead of only memorizing what it means.",
+            "Remove your phone and unnecessary distractions while learning.",
+            "Choose one task to focus on at a time.",
+            "Explain new ideas in your own words.",
+            "Apply useful information as soon as possible.",
+            "Teach concepts to another person.",
+            "Protect your sleep and take meaningful breaks.",
+            "Exercise regularly and allow periods without constant stimulation.",
+            "Compare new ideas with concepts you already understand.",
+            "Study mistakes instead of only correct answers.",
+        ],
+
+        bestFor:
+            "People who want to become better learners, improve focus, remember more of what they consume, connect ideas more effectively, or develop their intelligence through trainable behaviors.",
+
+        notFor:
+            "People looking for guaranteed IQ increases, instant intelligence hacks, or a substitute for formal education and professional cognitive assessment.",
+
+        importantCaveats: [
+            "The five stats describe trainable abilities rather than a complete scientific measurement of intelligence.",
+            "Improvement occurs through repeated practice rather than overnight transformation.",
+            "School and memorization can still be valuable even though they do not represent every aspect of intelligence.",
+            "Recovery is part of productive learning rather than an excuse to avoid meaningful work.",
+            "Bands should not promise specific IQ increases from practicing these skills.",
+        ],
+
+        relatedSystems: [
+            "The Routine",
+        ],
+
+        relatedArticles: [
+            {
+            title: "The 5 Hidden Stats That Make You Smarter",
+            path: "/articles/the-5-hidden-stats-that-make-you-smarter",
+            },
+        ],
+
+        videoUrl: "https://youtu.be/hqkJV5ItSpk",
+
+        articlePath: "/articles/the-5-hidden-stats-that-make-you-smarter",
+
+        recommendationPriority: 10,
+
+        recommendedWhen: [
+            "The user asks how to become smarter.",
+            "The user wants to improve how they learn.",
+            "The user struggles to remember information.",
+            "The user struggles with focus while studying or working.",
+            "The user consumes lots of information without applying it.",
+            "The user wants to improve pattern recognition.",
+            "The user asks about neuroplasticity.",
+            "The user wants to improve their mental performance.",
+        ],
+
+        coreTransformation: {
+            from:
+            "Someone who treats intelligence as a fixed trait and primarily consumes or memorizes information.",
+
+            to:
+            "Someone who deliberately trains curiosity, focus, application, recovery, and pattern recognition to become a more effective learner.",
+        },
+
+        searchTerms: [
+            "how to become smarter",
+            "intelligence",
+            "learning",
+            "neuroplasticity",
+            "focus",
+            "curiosity",
+            "pattern recognition",
+            "remember what I learn",
+            "learn faster",
+            "how to study",
+            "mental performance",
+            "application",
+            "recovery",
+            "deep work",
+        ],
+        },
+        
+  {
     id: 18,
 
     title: "How to Get Addicted to Building Muscle",
@@ -1188,7 +1363,362 @@ const videosKnowledge = [
         "how to recover after relapse",
         "build sexual self control",
     ],
-    }
+    },
+    {
+        id: 12,
+
+        title: "How to Get Addicted to Not Using Your Phone",
+
+        slug: "how-to-get-addicted-to-not-using-your-phone",
+
+        status: "published",
+
+        category: "Self-Control & Productivity",
+
+        publishedAt: "2026-05-07",
+
+        summary:
+            "Four practical steps for retraining automatic phone habits by adding friction, replacing scrolling, redesigning the environment, and turning the phone back into an intentional tool.",
+
+        description:
+            "The guide treats excessive phone use as a trained behavioral pattern rather than simply a discipline problem. It explains how neuroplasticity strengthens repeated scrolling habits and provides a four-step system for interrupting those pathways and building more intentional behavior.",
+
+        topics: [
+            "Phone addiction",
+            "Screen time",
+            "Social media",
+            "Focus",
+            "Self-control",
+            "Neuroplasticity",
+            "Dopamine",
+            "Environment design",
+            "Habit replacement",
+            "Productivity",
+            "Attention",
+            "Digital habits",
+        ],
+
+        userProblems: [
+            "I use my phone too much",
+            "I can't stop scrolling",
+            "My screen time is too high",
+            "I constantly check my phone",
+            "Social media is destroying my focus",
+            "I scroll instead of working",
+            "I use my phone whenever I'm bored",
+            "I stay up scrolling at night",
+            "I want to reduce my screen time",
+            "I automatically reach for my phone",
+            "I keep ignoring app limits",
+        ],
+
+        fourSteps: [
+            {
+            step: 1,
+            title: "Add Friction",
+            focus:
+                "Make distracting behavior less automatic by increasing the effort required to access distracting apps and content.",
+            },
+            {
+            step: 2,
+            title: "Replace the Behavior",
+            focus:
+                "Prepare simple alternative activities so the brain has somewhere else to go when the impulse to scroll appears.",
+            },
+            {
+            step: 3,
+            title: "Adjust Your Environment",
+            focus:
+                "Keep the phone outside immediate reach and sight so the environment produces fewer triggers to check it.",
+            },
+            {
+            step: 4,
+            title: "Weaponize Your Phone",
+            focus:
+                "Turn the device back into an intentional tool for communication, learning, planning, creating, and useful activities.",
+            },
+        ],
+
+        keyIdeas: [
+            "Excessive phone use is not only a discipline problem but also a trained behavioral pattern.",
+            "Phones can become an automatic response to boredom, stress, loneliness, and discomfort.",
+            "Neuroplasticity strengthens behaviors that are repeatedly practiced.",
+            "Constant fast stimulation can make slower rewarding activities feel more difficult.",
+            "Adding friction creates a pause between an impulse and an action.",
+            "Removing a behavior without replacing it leaves an empty space the old habit can reclaim.",
+            "Environment influences how frequently phone-related impulses appear.",
+            "The goal is not necessarily eliminating technology but regaining control over attention.",
+            "Tracking screen time makes excessive use harder to minimize.",
+            "Reducing phone use is a nonlinear process that requires repeated intentional choices.",
+        ],
+
+        practicalActions: [
+            "Remove distracting apps from the home screen.",
+            "Delete or log out of apps that create the most problems.",
+            "Use grayscale or stronger app blockers.",
+            "Disable unnecessary notifications.",
+            "Choose three simple replacement behaviors.",
+            "Keep the phone outside immediate reach while working.",
+            "Keep the phone away from the bed at night.",
+            "Track total screen time each day.",
+            "Set a timer before intentionally scrolling.",
+            "Replace some distracting apps with tools for learning, planning, reading, or creating.",
+        ],
+
+        bestFor:
+            "People who constantly check their phone, struggle with excessive scrolling, have high screen time, lose focus to social media, or want technology to become a useful tool instead of an automatic distraction.",
+
+        notFor:
+            "People seeking a perfect digital detox, complete elimination of technology, or a guarantee that reducing phone use will immediately solve every productivity or attention problem.",
+
+        importantCaveats: [
+            "Years of phone habits will not disappear within a few days.",
+            "Occasionally scrolling longer than intended does not erase previous progress.",
+            "The goal is intentional technology use rather than automatically treating all phone use as harmful.",
+            "Productive apps can still become distractions if used compulsively.",
+            "Bands should avoid diagnosing the user with an addiction solely based on screen time.",
+        ],
+
+        relatedSystems: [
+            "The Routine",
+            "30 Day Reset",
+        ],
+
+        relatedArticles: [
+            {
+            title: "How to Get Addicted to Not Using Your Phone",
+            path: "/articles/how-to-get-addicted-to-not-using-your-phone",
+            },
+        ],
+
+        videoUrl: "https://www.youtube.com/watch?v=7cdjkpQghl0",
+
+        articlePath: "/articles/how-to-get-addicted-to-not-using-your-phone",
+
+        recommendationPriority: 10,
+
+        recommendedWhen: [
+            "The user says they use their phone too much.",
+            "The user wants to reduce screen time.",
+            "The user cannot stop scrolling.",
+            "The user struggles focusing because of their phone.",
+            "The user automatically checks social media.",
+            "The user scrolls late at night.",
+            "The user wants a phone detox or reset.",
+            "The user asks how to make distracting apps less appealing.",
+        ],
+
+        coreTransformation: {
+            from:
+            "Someone who automatically reaches for their phone whenever boredom, discomfort, or distraction appears.",
+
+            to:
+            "Someone who deliberately controls when and why they use their phone and redirects attention toward more meaningful activities.",
+        },
+
+        searchTerms: [
+            "phone addiction",
+            "stop scrolling",
+            "screen time",
+            "reduce screen time",
+            "social media addiction",
+            "phone detox",
+            "stop checking phone",
+            "focus",
+            "dopamine",
+            "neuroplasticity",
+            "app blocker",
+            "digital detox",
+            "phone habits",
+            "social media",
+        ],
+        },
+        {
+        id: 11,
+
+        title: "The 7 Levels of Nicotine Addiction",
+
+        slug: "the-7-levels-of-nicotine-addiction",
+
+        status: "published",
+
+        category: "Addiction & Self-Control",
+
+        publishedAt: "2026-04-10",
+
+        summary:
+            "Explains seven levels through which nicotine use can progress from social curiosity into dependence, along with ways to interrupt the pattern before nicotine gains more control.",
+
+        description:
+            "The guide shows how nicotine use can gradually progress from dislike and curiosity into occasional use, ownership, denial, daily dependence, and addiction. Each level identifies behaviors that signal increasing dependence and actions that can help interrupt or reverse the progression.",
+
+        topics: [
+            "Nicotine",
+            "Vaping",
+            "Nicotine addiction",
+            "Addiction",
+            "Self-control",
+            "Cravings",
+            "Dependence",
+            "Habit change",
+            "Environment design",
+            "Social pressure",
+            "Trigger management",
+            "Quitting nicotine",
+        ],
+
+        userProblems: [
+            "I think I'm addicted to nicotine",
+            "I want to quit vaping",
+            "I vape too much",
+            "I only vape socially",
+            "I bought my own vape",
+            "I can't focus without nicotine",
+            "I keep trying to quit and failing",
+            "I don't know if I'm addicted",
+            "Nicotine controls my day",
+            "I use nicotine when I'm stressed or bored",
+            "I spend too much money on nicotine",
+        ],
+
+        sevenLevels: [
+            {
+            level: 1,
+            title: "Despise",
+            focus:
+                "Nicotine has not become a habit yet, making refusing the first use the simplest way to prevent the progression.",
+            },
+            {
+            level: 2,
+            title: "Curiosity",
+            focus:
+                "An early experience with nicotine becomes memorable and may begin appearing as an option during stress or discomfort.",
+            },
+            {
+            level: 3,
+            title: "Only Every Now and Then",
+            focus:
+                "Nicotine becomes associated with parties, drinking, hangouts, stress, or other recurring situations while still feeling occasional.",
+            },
+            {
+            level: 4,
+            title: "You Buy Your Own",
+            focus:
+                "Owning nicotine removes friction and dramatically increases accessibility, making repeated use easier.",
+            },
+            {
+            level: 5,
+            title: "I Am Not Addicted",
+            focus:
+                "Denial begins protecting increasingly frequent use as nicotine becomes connected to boredom, stress, driving, work, and ordinary routines.",
+            },
+            {
+            level: 6,
+            title: "Nicotine Controls Your Day",
+            focus:
+                "Nicotine begins influencing mood, attention, schedule, spending, and the ability to function comfortably without using it.",
+            },
+            {
+            level: 7,
+            title: "Addiction",
+            focus:
+                "Repeated failed attempts to quit and dependence indicate that stronger accountability and professional support may be appropriate.",
+            },
+        ],
+
+        keyIdeas: [
+            "Nicotine dependence often develops gradually through decisions that initially seem insignificant.",
+            "Social pressure can encourage nicotine use before someone actually wants the substance itself.",
+            "Stress, boredom, alcohol, social environments, and other triggers can reinforce nicotine use.",
+            "Easy access increases the likelihood that occasional behavior becomes automatic.",
+            "Denial can protect a habit from meaningful change.",
+            "Tracking usage makes the extent of the behavior harder to minimize.",
+            "Financial spending can reveal consequences that individual purchases hide.",
+            "Removing triggers and reducing accessibility can interrupt automatic patterns.",
+            "Relapse does not prove that quitting is impossible.",
+            "More severe dependence may require accountability and qualified professional support.",
+        ],
+
+        practicalActions: [
+            "Refuse nicotine before experimentation becomes repetition.",
+            "Identify healthier responses to stress and boredom.",
+            "Stop accepting nicotine from other people.",
+            "Temporarily avoid environments strongly associated with nicotine use.",
+            "Remove personal nicotine devices and backups.",
+            "Track how frequently nicotine is used.",
+            "Delay nicotine sessions to interrupt automatic behavior.",
+            "Calculate how much money is being spent on nicotine.",
+            "Track triggers, emotions, and situations surrounding nicotine use.",
+            "Tell trusted people about the goal to quit.",
+            "Consider qualified professional support when dependence becomes difficult to manage alone.",
+        ],
+
+        bestFor:
+            "People who use nicotine or vape and want to understand how dependence develops, identify their current pattern, or begin regaining control before the behavior becomes more severe.",
+
+        notFor:
+            "People seeking individualized medical treatment, medication recommendations, or a guaranteed method for quitting nicotine.",
+
+        importantCaveats: [
+            "The seven levels describe a progression framework rather than a medical diagnostic scale.",
+            "Not everyone experiences nicotine dependence in exactly the same sequence.",
+            "More severe nicotine dependence can require professional support.",
+            "Reducing use may help some people interrupt automatic behavior, but the article ultimately presents complete removal as the goal.",
+            "Bands should not diagnose the user with nicotine addiction or replace advice from a qualified medical professional.",
+        ],
+
+        relatedSystems: [
+            "30 Day Reset",
+            "The Routine",
+        ],
+
+        relatedArticles: [
+            {
+            title: "The 7 Levels of Nicotine Addiction",
+            path: "/articles/the-7-levels-of-nicotine-addiction",
+            },
+        ],
+
+        videoUrl: "https://www.youtube.com/watch?v=XqFfUQ4zMS0",
+
+        articlePath: "/articles/the-7-levels-of-nicotine-addiction",
+
+        recommendationPriority: 9,
+
+        recommendedWhen: [
+            "The user asks how nicotine addiction develops.",
+            "The user wants to quit vaping.",
+            "The user is worried that occasional nicotine use is becoming a habit.",
+            "The user says they need nicotine to focus or feel normal.",
+            "The user repeatedly tries to quit nicotine and returns to it.",
+            "The user wants to understand whether their nicotine use is escalating.",
+            "The user says nicotine is affecting their schedule or spending.",
+        ],
+
+        coreTransformation: {
+            from:
+            "Someone whose nicotine use is gradually becoming more automatic and influential over everyday life.",
+
+            to:
+            "Someone who recognizes the progression, removes triggers and access, seeks support when needed, and begins regaining control over nicotine use.",
+        },
+
+        searchTerms: [
+            "nicotine addiction",
+            "vaping",
+            "quit vaping",
+            "quit nicotine",
+            "am I addicted to nicotine",
+            "nicotine dependence",
+            "vape addiction",
+            "nicotine cravings",
+            "stop vaping",
+            "nicotine withdrawal",
+            "social vaping",
+            "nicotine habit",
+            "how to quit nicotine",
+        ],
+        },
 ];
 
 export default videosKnowledge;

@@ -2,198 +2,93 @@ import { useNavigate } from "react-router-dom";
 import { usePageView } from "../../hooks/usePageView";
 import { trackEvent } from "../../utils/analytics";
 
-
 function Systems() {
-
   const navigate = useNavigate();
 
   usePageView("systems");
-  
-  const containerStyle = {
-    maxWidth: "1100px",
-    margin: "0 auto",
-    padding: "0 24px",
+
+  const systems = [
+    {
+      title: "The Routine",
+      description: "Build your day in under 2 minutes.",
+      problem: "I need structure for my day.",
+      cta: "Build My Day",
+      systemKey: "routine",
+      image1: "/images/bands-clock-1.png",
+      image2: "/images/bands-clock-2.png",
+      route: "/systems/routine",
+      tag: "DAILY SYSTEM",
+    },
+    {
+      title: "30 Day Reset",
+      description: "Rebuild your habits, discipline, and momentum.",
+      problem: "I've fallen off and need a reset.",
+      cta: "Start The Reset",
+      systemKey: "30-day-reset",
+      image1: "/images/bands-refresh-1.png",
+      image2: "/images/bands-refresh-2.png",
+      route: "/systems/reset",
+      tag: "30 DAY SYSTEM",
+    },
+    {
+      title: "The 10 Week Build",
+      description: "Create a structured training plan around your goals.",
+      problem: "I need structure for my training.",
+      cta: "Build My Program",
+      systemKey: "build-phase",
+      image1: "/images/bands-workout-1.png",
+      image2: "/images/bands-workout-2.png",
+      route: "/systems/build",
+      tag: "TRAINING SYSTEM",
+    },
+  ];
+
+  const handleSystemClick = (system, source) => {
+    trackEvent("system_card_clicked", {
+      page: window.location.pathname,
+      metadata: {
+        system_title: system.title,
+        system_key: system.systemKey,
+        source,
+      },
+    });
+
+    navigate(system.route);
   };
-
-
-  const heroStyles = {
-  titleWrap: {
-    display: "inline-block",
-    position: "relative",
-    marginBottom: "32px",
-  },
-  title: {
-    fontSize: "4rem",
-    fontWeight: "800",
-    marginBottom: "12px",
-    color: "white",
-    WebkitTextStroke: "2px black",
-    letterSpacing: "0.8px",
-    textShadow: `
-      0 0 6px rgba(110, 193, 228, 0.6),
-      0 0 12px rgba(110, 193, 228, 0.4),
-      0 0 18px rgba(110, 193, 228, 0.25)
-    `,
-    whiteSpace: "nowrap",
-  },
-  underline: {
-    height: "12px",
-    width: "102%",
-    background: "#2da6da",
-    borderRadius: "6px",
-    marginTop: "-20px",
-    opacity: 0.85,
-    transform: "rotate(-0.6deg)",
-  },
-  subtitle: {
-    fontSize: "1.25rem",
-    opacity: 0.7,
-    marginBottom: "40px",
-    maxWidth: "500px",
-    color: "#000",
-    fontWeight: "600",
-  },
-  ctaWrap: {
-    display: "flex",
-    gap: "16px",
-    flexWrap: "wrap",
-  },
-  button: {
-    background: "#2da6da",
-    color: "white",
-    border: "none",
-    padding: "14px 22px",
-    borderRadius: "8px",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    fontSize: "0.95rem",
-    fontWeight: "600",
-    letterSpacing: "0.5px",
-    transition: "transform 0.2s ease",
-  },
-};
-
 
   return (
     <>
       {/* HERO */}
-      <div
-        style={{
-          background: "#afb1b3ff",
-          width: "100%",
-          padding: "130px 0 0 0",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <section style={containerStyle}>
+      <section className="systems-page-hero">
+        <div className="systems-page-container">
+          <div className="systems-hero-content">
+            <div className="systems-hero-title-wrap">
+              <img
+                className="systems-hero-title"
+                src="/images/productivity-systems-title.png"
+                alt="Productivity Systems"
+              />
+            </div>
 
-          {/* TITLE */}
-          <div className="title-size">
-            <img
-              src="/images/productivity-systems-title.png"
-              alt="Systems"
-            
-            />
+            <p className="systems-page-subtitle">
+              Free tools and structured programs designed to turn intention into
+              consistent action.
+            </p>
           </div>
+        </div>
+      </section>
 
-          {/* SUBTITLE */}
-          <p
-            style={{
-              ...heroStyles.subtitle,
-              fontSize: "1.1rem",
-              marginBottom: "48px",
-              textWrap: 0,
-            }}
-          >
-            Structured systems/programs designed to turn intention into consistent action.
-          </p>
+      {/* SYSTEM CARDS */}
+      <section className="systems-page-main">
+        <div className="systems-page-container">
 
-        </section>
-      </div>
-
-      {/* SYSTEMS SECTION */}
-      <div
-        style={{
-          background: "#35a4cf",
-          padding: "120px 0",
-        }}
-      >
-        <section style={{ ...containerStyle }}>
-          
-
-          {/* SYSTEMS GRID */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "40px",
-            }}
-          >
-            {[
-              {
-                title: "30 Day Reset",
-                live: true,
-                systemKey: "30-day-reset",
-                image1: "/images/bands-refresh-1.png",
-                image2: "/images/bands-refresh-2.png",
-              },
-              {
-                title: "The 10 Week Build",
-                live: true,
-                systemKey: "build-phase",
-                image1: "/images/bands-workout-1.png",
-                image2: "/images/bands-workout-2.png",
-              },
-              {
-                title: "The Routine",
-                live: true,
-                systemKey: "routine",
-                image1: "/images/bands-clock-1.png",
-                image2: "/images/bands-clock-2.png",
-              },
-            ].map((system, i) => (
-              <div key={i} style={{ textAlign: "center" }}>
-                <div
-                  className="reset-image systems-size systems-tab-img"
-                  onClick={() => {
-                    trackEvent("system_card_clicked", {
-                      page: window.location.pathname,
-                      metadata: {
-                        system_title: system.title,
-                        system_key: system.systemKey,
-                        live: system.live,
-                      },
-                    });
-
-                    if (!system.live) return;
-
-                    if (system.systemKey === "30-day-reset") {
-                      navigate("/systems/reset");
-                    }
-
-                    if (system.systemKey === "build-phase") {
-                      navigate("/systems/build");
-                    }
-
-                    if (system.systemKey === "routine") {
-                      navigate("/systems/routine");
-                    }
-                  }}
-                  style={{
-                    background: "#ffffff",
-                    height: "320px",
-                    borderRadius: "16px",
-                    marginBottom: "16px",
-                    overflow: "hidden",
-                    position: "relative",
-                    opacity: system.live ? 1 : 0.75,
-                    cursor: system.live ? "pointer" : "default",
-                    transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                  }}
-                >
+          <div className="systems-page-grid">
+            {systems.map((system) => (
+              <article
+                key={system.systemKey}
+                className="systems-page-card"
+              >
+                <div className="systems-card-image reset-image" onClick={() => handleSystemClick(system, "image")}>
                   <img
                     src={system.image1}
                     alt={system.title}
@@ -205,32 +100,31 @@ function Systems() {
                     alt={`${system.title} Active`}
                     className="reset-img reset-img-2"
                   />
+
+                  <span className="systems-card-tag">{system.tag}</span>
                 </div>
 
-                <h3 style={{ fontWeight: "700", color: "white" }}>
-                  {system.title}
-                </h3>
-                {system.status && (
-                  <p
-                    style={{
-                      marginTop: "6px",
-                      fontSize: "0.85rem",
-                      fontWeight: "700",
-                      color: "rgba(255, 255, 255, 0.8)",
-                      letterSpacing: "0.8px",
-                      textTransform: "uppercase",
+                <div className="systems-card-content">
+                  <h3>{system.title}</h3>
+
+                  <p>{system.description}</p>
+
+                  <button
+                    type="button"
+                    className="systems-card-button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSystemClick(system, "button");
                     }}
                   >
-                    {system.status}
-                  </p>
-                )}
-              </div>
+                    {system.cta} →
+                  </button>
+                </div>
+              </article>
             ))}
           </div>
-
-        </section>
-      </div>
-
+        </div>
+      </section>
     </>
   );
 }
