@@ -10,6 +10,7 @@ import Reset from "./components/pages/systems/ThirtyDayReset";
 import BuildPhase from "./components/pages/systems/BuildPhase";
 import Routine from "./components/pages/systems/Routine";
 
+import Video20Article from "./components/pages/articles/Video20Article";
 import Video19Article from "./components/pages/articles/Video19Article";
 import Video18Article from "./components/pages/articles/Video18Article";
 import Video17Article from "./components/pages/articles/Video17Article";
@@ -116,6 +117,7 @@ function AppContent() {
             <Route path="/systems/routine" element={<Routine />} />
 
             <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/how-to-reverse-alcoholism" element={<Video20Article />}/>
             <Route path="/articles/the-5-hidden-stats-that-make-you-smarter" element={<Video19Article />}/>
             <Route path="/articles/how-to-get-addicted-to-building-muscle" element={<Video18Article />}/>
             <Route path="/articles/how-to-get-out-of-a-rut" element={<Video17Article />}/>

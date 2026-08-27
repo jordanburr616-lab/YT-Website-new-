@@ -18,6 +18,16 @@ function Articles() {
   };
 
   const articles = [
+
+    {
+      title: "How to Reverse Alcoholism",
+      slug: "how-to-reverse-alcoholism",
+      category: "Addiction",
+      description:
+        "A practical guide to reversing alcohol dependence, rebuilding what drinking took from your life, and working your way back to Level 0.",
+      image: "/images/video20.png",
+      live: true,
+    },
     {
       title: "The 5 Hidden Stats That Make You Smarter",
       slug: "the-5-hidden-stats-that-make-you-smarter",
