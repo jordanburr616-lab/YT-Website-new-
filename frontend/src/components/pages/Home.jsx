@@ -79,6 +79,10 @@ function Home() {
   const youtubeVideos = [
 
   {
+    id: "f6v-ppTYNhk",
+    title: "the 7 levels to alcoholism",
+  },
+  {
     id: "hqkJV5ItSpk",
     title: "the 5 hidden stats the make you smarter",
   },
@@ -98,10 +102,7 @@ function Home() {
     id: "ZHRfDUs0QuM",
     title: "the 7 levels of a glow up",
   },
-  {
-    id: "bZ_UqzFKKNI",
-    title: "the no fap timeline (what actually happens)",
-  },
+  
   
   
 

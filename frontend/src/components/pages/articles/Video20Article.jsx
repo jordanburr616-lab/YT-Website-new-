@@ -66,13 +66,13 @@ function Video20Article() {
           <h1>How to Reverse Alcoholism</h1>
 
           <p className="article-subtitle">
-            Alcohol can slowly take control of your life. Level 0 is about
-            reversing that process and taking control back.
+            Alcohol can slowly take control of your life... so reaching level 0 is all about
+            reversing the alcohol process and taking back control.
           </p>
 
           <a
             className="article-video-link"
-            href="#"
+            href="https://www.youtube.com/watch?v=f6v-ppTYNhk"
             target="_blank"
             rel="noreferrer"
           >
@@ -86,19 +86,19 @@ function Video20Article() {
           <h2>Introduction</h2>
 
           <p>
-            Alcohol addiction usually does not happen overnight.
+            Alcohol addiction usually does not happen because of one night.
           </p>
 
           <p>
-            A drink on special occasions becomes drinking every weekend.
-            Drinking for fun becomes drinking to escape. Your tolerance grows,
+            A drink on special occasions can quickly move to drinking every weekend.
+            Drinking for fun becomes drinking to escape. Your tolerance continues to expand,
             alcohol becomes more important, and eventually something that used
-            to be a small part of your life can begin controlling it.
+            to be a small part of your life can start to take full control.
           </p>
 
           <p>
             But if alcohol can gradually take pieces of your life away, those
-            pieces can also gradually be taken back.
+            pieces can also be taken back over time.
           </p>
 
           <p>
@@ -107,7 +107,7 @@ function Video20Article() {
 
           <blockquote>
             Level 0 is not about pretending alcohol was never a problem. It is
-            about reaching the point where alcohol no longer controls your
+            about reaching the point where alcohol no longer has a say in your
             decisions.
           </blockquote>
         </section>
@@ -125,13 +125,12 @@ function Video20Article() {
           </p>
 
           <p>
-            As alcohol moves deeper into your life, that relationship can
-            reverse.
+            As alcohol moves deeper into your life, that relationship typically reverses on itself.
           </p>
 
           <p>
             Your weekends revolve around drinking. Your social life revolves
-            around drinking. Stress makes you want to drink. Boredom makes you
+            around drinking. Normal human emotions make you want to drink. Boredom makes you
             want to drink. Eventually, alcohol gets a vote in almost everything.
           </p>
 
@@ -167,9 +166,9 @@ function Video20Article() {
           </p>
 
           <p>
-            You stopped working out because you got busy. You wasted Saturday
-            because you were tired. You spent too much money because everyone
-            went out. You stopped seeing certain people because life changed.
+            You stopped working out because you got "busy". You wasted Saturday
+            because "you were tired". You spent too much money because "all my friends went out".
+             You stopped seeing certain people because "life changed".
           </p>
 
           <p>
@@ -177,7 +176,7 @@ function Video20Article() {
           </p>
 
           <p>
-            But eventually you need to look at the entire picture.
+            But eventually you need to look at the picture as a whole.
           </p>
 
           <p>Ask yourself what drinking has affected:</p>
@@ -188,7 +187,7 @@ function Video20Article() {
           <p>- Your energy</p>
           <p>- Your hobbies</p>
           <p>- Your work</p>
-          <p>- Your ability to enjoy life without alcohol</p>
+          <p>- Your ability to enjoy life without the need of alcohol</p>
 
           <blockquote>
             The way back starts when you stop protecting the habit from the
@@ -207,11 +206,11 @@ function Video20Article() {
           <h2>Step 2: Break the Automatic Drinking Loop</h2>
 
           <p>
-            At the beginning, drinking requires a decision.
+            At the beginning, drinking requires some kind of decision.
           </p>
 
           <p>
-            Eventually, it can become automatic.
+            Which overtime, that decision will become automatic.
           </p>
 
           <p>
@@ -230,7 +229,7 @@ function Video20Article() {
 
           <p>
             Start small. Have one night where the normal trigger happens and you
-            do something different.
+            don't impulsively drink.
           </p>
 
           <p>
@@ -247,7 +246,7 @@ function Video20Article() {
           <h2>Step 3: Figure Out What You Were Escaping From</h2>
 
           <p>
-            Alcohol is not always the original problem.
+            Alcohol is usually not the main source of the problem.
           </p>
 
           <p>
@@ -263,11 +262,11 @@ function Video20Article() {
           <p>Not knowing what you are doing with your life.</p>
 
           <p>
-            Drinking can temporarily make those feelings quieter.
+            Drinking can temporarily make those feelings go silent.
           </p>
 
           <p>
-            But making something quieter is not the same as solving it.
+            But silencing an emotion is not the same thing as finding a solution.
           </p>
 
           <p>
@@ -292,14 +291,14 @@ function Video20Article() {
           <h2>Step 4: Make Drinking Harder</h2>
 
           <p>
-            Trying to change while keeping the exact environment that created
-            the problem makes everything harder.
+            Trying to change while remaining in the same exact environment that created
+            the problem makes everything 10x harder.
           </p>
 
           <p>
             If alcohol is sitting around your house, every weekend revolves
             around bars, and everyone around you expects you to drink, you are
-            relying almost entirely on willpower.
+            relying almost entirely on your willpower.
           </p>
 
           <p>Change the environment instead.</p>
@@ -340,7 +339,7 @@ function Video20Article() {
           </p>
 
           <p>
-            If alcohol was how you handled stress, what replaces it?
+            If alcohol was how you handled stress, what should replace it?
           </p>
 
           <p>
@@ -360,8 +359,7 @@ function Video20Article() {
           <p>- Work toward a goal that requires you to be present.</p>
 
           <p>
-            Eventually, drinking starts competing against things that actually
-            matter to you.
+            Eventually, drinking will battle for time with the things that truly matter.
           </p>
 
           <blockquote>
@@ -378,7 +376,7 @@ function Video20Article() {
         </section>
 
         <section className="article-section">
-          <h2>Step 6: Do Not Let One Failure Become Ten</h2>
+          <h2>Step 6: Do Not Let One Failure Turn Into Ten</h2>
 
           <p>
             Progress is easy to destroy when you think in extremes.
@@ -403,7 +401,7 @@ function Video20Article() {
           <p>What excuse did you make beforehand?</p>
 
           <p>
-            The failure contains information about the part of your system that
+            The failure has a ton of information about the part of your system that
             still needs to change.
           </p>
 
@@ -417,7 +415,7 @@ function Video20Article() {
           <h2>Step 7: Start Taking Your Life Back</h2>
 
           <p>
-            Eventually, reversing alcoholism becomes about much more than
+            Eventually, reversing alcoholism becomes about something bigger than
             alcohol.
           </p>
 
@@ -443,7 +441,7 @@ function Video20Article() {
           <p>One responsibility you start taking seriously again.</p>
 
           <p>
-            None of those decisions look life-changing by themselves.
+            None of those decisions look life-changing on the outside.
           </p>
 
           <p>
@@ -469,12 +467,12 @@ function Video20Article() {
 
           <p>
             There is an important difference between changing an unhealthy
-            relationship with alcohol and dealing with severe physical
+            relationship with alcohol and dealing with a severe physical
             dependence.
           </p>
 
           <p>
-            If you drink heavily or regularly enough that stopping causes
+            If you drink heavily or regularly enough that stopping causes many
             withdrawal symptoms, trying to suddenly quit on your own can be
             dangerous.
           </p>
@@ -487,7 +485,7 @@ function Video20Article() {
 
           <p>
             The deeper alcohol has worked its way into your life, the more
-            support you may need while working your way back.
+            support you may need while climbing your way back.
           </p>
 
           <blockquote>
@@ -542,7 +540,7 @@ function Video20Article() {
           <h2>Final Thoughts: The Way Back to Level 0</h2>
 
           <p>
-            Level 0 does not mean life suddenly becomes easy.
+            Level 0 does not mean life will instantly get easier.
           </p>
 
           <p>
@@ -557,9 +555,7 @@ function Video20Article() {
           </p>
 
           <p>
-            Your relationships matter again. Your goals matter again. Your
-            health matters again. Your hobbies matter again. Your future matters
-            again.
+            Your relationships, goals, health, hobbies, and even future all will start to matter again.
           </p>
 
           <p>
